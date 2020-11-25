@@ -19,9 +19,10 @@
               ></a>
             </b-col>
             <b-col md="12">
-              <b-button v-b-modal.vagasCadastradas class="btn-home"
+              <a href="/empresa/vagasCadastradas"
+                ><b-button class="btn-home"
                 >Vagas Cadastradas</b-button
-              >
+              ></a>
             </b-col>
           </b-row>
         </div>

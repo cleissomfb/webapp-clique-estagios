@@ -32,7 +32,7 @@
                 ><b-icon icon="card-list" class="mr-3"></b-icon
                 >Cadastrar Vaga</b-nav-item
               >
-              <b-nav-item v-b-modal.vagasCadastradas @click="hide"
+              <b-nav-item href="/empresa/vagasCadastradas" @click="hide"
                 ><b-icon icon="card-list" class="mr-3"></b-icon
                 >Vagas Cadastradas</b-nav-item
               >

@@ -21,6 +21,7 @@ import RecuperarSenhaEmpresa from '../views/empresa/RecuperarSenhaEmpresa.vue'
 import HomeEmpresa from '../views/empresa/HomeEmpresa.vue'
 import PerfilEmpresa from '../views/empresa/PerfilEmpresa.vue'
 import CadastrarVaga from '../views/empresa/CadastrarVaga.vue'
+import vagasCadastradas from '../views/empresa/VagasCadastradas.vue'
 
 Vue.use(VueRouter)
 
@@ -68,8 +69,12 @@ const routes = [
         components: { empresaView: CadastrarVaga }
       },
       {
+        path: 'editarVaga/:id',
+        components: { empresaView: CadastrarVaga }
+      },
+      {
         path: 'vagasCadastradas',
-        // components: { empresaView: CadastrarVaga }
+        components: { empresaView: vagasCadastradas }
       },
     ],
     beforeEnter(_, __, next) { // Impede usuários não assinados

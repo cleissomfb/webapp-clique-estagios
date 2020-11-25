@@ -1,13 +1,16 @@
+const baseURL = process.env.VUE_APP_API_LOCATION
+
 import Vue from 'vue'
 import { authHeader } from '../helpers/auth'
 
 export const vagaService = {
   findVaga,
   // getByIdVaga,
+  getByCompany,
   findVagaSearch,
   saveVaga,
   editVaga,
-  delete: _deleteVaga
+  _deleteVaga
 }
 
 function findVaga () {
@@ -15,7 +18,7 @@ function findVaga () {
     method: 'GET',
     headers: authHeader()
   }
-  return Vue.axios.get('https://api-clique-estagios.herokuapp.com/vagas', requestCfg)
+  return Vue.axios.get(baseURL + '/vagas', requestCfg)
 }
 
 function findVagaSearch (buscaVaga) {
@@ -23,7 +26,15 @@ function findVagaSearch (buscaVaga) {
     method: 'GET',
     headers: authHeader()
   }
-  return Vue.axios.get(`https://api-clique-estagios.herokuapp.com/vagas/search?cnpj=${buscaVaga}`, requestCfg)
+  return Vue.axios.get(baseURL + `/vagas/search?id=${buscaVaga}`, requestCfg)
+}
+
+function getByCompany (cnpj) {
+  const requestCfg = {
+    method: 'GET',
+    headers: authHeader()
+  }
+  return Vue.axios.get(baseURL + `/vagas/getByCompany?cnpj=${cnpj}`, requestCfg)
 }
 
 /*
@@ -41,7 +52,7 @@ function saveVaga (vaga) {
     method: 'POST',
     headers: authHeader()
   }
-  return Vue.axios.post('https://api-clique-estagios.herokuapp.com/vagas', vaga, requestCfg)
+  return Vue.axios.post(baseURL + '/vagas', vaga, requestCfg)
 }
 
 function editVaga (vaga) {
@@ -49,7 +60,7 @@ function editVaga (vaga) {
     method: 'PUT',
     headers: authHeader()
   }
-  return Vue.axios.put(`https://api-clique-estagios.herokuapp.com/vagas`, vaga, requestCfg)
+  return Vue.axios.put(baseURL + `/vagas`, vaga, requestCfg)
 }
 
 function _deleteVaga (idVaga) {
@@ -57,5 +68,5 @@ function _deleteVaga (idVaga) {
     method: 'DELETE',
     headers: authHeader()
   }
-  return Vue.axios.delete(`https://api-clique-estagios.herokuapp.com/vagas/${idVaga}`, requestCfg)
+  return Vue.axios.delete(baseURL + `/vagas/${idVaga}`, requestCfg)
 }

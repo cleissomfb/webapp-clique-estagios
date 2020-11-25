@@ -181,6 +181,53 @@
   padding-bottom: 20px;
 }
 
+/* Modal de Visuzação da Vaga */
+#visualizarVaga {
+  margin-top: 56px;
+}
+
+.container-visualizar-vaga {
+  text-align: center;
+  border: solid 2px #2ad2b3 !important;
+}
+
+.container-visualizar-vaga .titulo-vaga{
+  border: solid 2px #2ad2b3 !important;
+  color: #FFFFFF;
+  background-color: #2ad2b3;
+  font-size: 125%;
+}
+
+.container-visualizar-vaga .titulo-vaga label{
+  padding: 2px;
+  font-weight: bold;
+}
+
+.container-visualizar-vaga .subtitulo-vaga .sub-titulo{
+  padding: 1px;
+  font-weight: bold;
+  color: #2ad2b3;
+}
+
+.container-visualizar-vaga .subtitulo{
+  background-color: #f7f7f7;
+  color: #2ad2b3;
+  font-weight: bold;
+}
+
+.container-visualizar-vaga .subtitulo .item {
+  color: #212529;
+  font-weight: normal;
+  /* background-color: #FFFFFF; */
+ 
+}
+.container-visualizar-vaga .noPaddingLeft {
+  padding-left: 0px;
+}
+.container-visualizar-vaga .noPaddingRight {
+  padding-right: 0px;
+}
+
 @media only screen and (max-width: 500px) {
   .card-container {
     width: 300px;

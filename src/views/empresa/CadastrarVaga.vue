@@ -3,7 +3,8 @@
     <div class="container">
       <form class="col-md-12 ml-auto mr-auto">
         <div class="mt-5">
-          <h2 class="title titulos">Cadastro de Vaga</h2>
+          <h2 class="title titulos" v-if="vaga._id == null || vaga._id == undefined">Cadastro de Vaga</h2>
+          <h2 class="title titulos" v-if="vaga._id != null || vaga._id != undefined">Editar Vaga</h2>
         </div>
         <b-row class="mt-5">
           <b-col md="12">
@@ -316,6 +317,9 @@ export default {
     return {
       submitted: false,
       empresa: {},
+      idVagaExiste: true,
+      errorMsg: null,
+      infoMsg: null,
       vaga: {
         titulo: "",
         atividades: "",
@@ -330,7 +334,7 @@ export default {
         horario: "",
         cargaHoraria: "",
         requisitos: "",
-        SemestreMinimo: "",
+        semestreMinimo: "",
         beneficios: "",
         outrosBeneficios: "",
         observacao: "",
@@ -385,22 +389,40 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
+      console.log(this.idVagaExiste);
 
-      vagaService
-        .saveVaga(this.vaga)
-        .then(() => {
-          this.infoMsg = "Vaga cadastrada com sucesso!";
-          this.showAlertSuccess();
-          this.$router.push("/empresa/homeEmpresa");
-          // localStorage.setItem("empresa", JSON.stringify(this.empresa));
-        })
-        .catch(error => {
-          this.errorMsg = error;
-          // this.errorMsg = "Erro ao criar a lista.";
-          console.log(error);
-          this.showAlertDanger();
-        });
-      console.log(this.vaga);
+      if (this.idVagaExiste == false) {
+        vagaService
+          .saveVaga(this.vaga)
+          .then(() => {
+            this.infoMsg = "Vaga cadastrada com sucesso!";
+            this.showAlertSuccess();
+            this.$router.push("/empresa/homeEmpresa");
+          })
+          .catch((error) => {
+            this.errorMsg = error;
+            // this.errorMsg = "Erro ao criar a lista.";
+            console.log(error);
+            this.showAlertDanger();
+          });
+        console.log(this.vaga);
+      }
+      if (this.idVagaExiste == true) {
+        vagaService
+          .editVaga(this.vaga)
+          .then(() => {
+            this.infoMsg = "Vaga editada com sucesso!";
+            this.showAlertSuccess();
+            this.$router.push("/empresa/homeEmpresa");
+          })
+          .catch((error) => {
+            this.errorMsg = error;
+            // this.errorMsg = "Erro ao criar a lista.";
+            console.log(error);
+            this.showAlertDanger();
+          });
+        console.log(this.vaga);
+      }
     },
 
     // Geral da tela
@@ -412,6 +434,7 @@ export default {
         appendToast: append,
         variant: "success",
         solid: true,
+        toaster: 'b-toaster-bottom-right',
       });
     },
     showAlertDanger(append = false) {
@@ -422,6 +445,7 @@ export default {
         appendToast: append,
         variant: "danger",
         solid: true,
+        toaster: 'b-toaster-bottom-right',
       });
     },
 
@@ -434,27 +458,47 @@ export default {
     },
   },
   mounted() {
-    this.empresa = JSON.parse(localStorage.getItem("empresa"));
-    console.log(this.empresa);
+    const idVaga = this.$route.params.id;
+    console.log(idVaga);
 
-    // this.vaga.
+    if (idVaga) {
+      this.idVagaExiste = true;
+      vagaService.findVagaSearch;
+      vagaService
+        .findVagaSearch(idVaga)
+        .then((vaga) => {
+          this.vaga = vaga.data;
+        })
+        .catch((error) => {
+          this.errorMsg = error;
+          // this.errorMsg = "Erro ao criar a lista.";
+          console.log(error);
+          this.showAlertDanger();
+        });
+      console.log(this.idVagaExiste);
+    } else {
+      this.idVagaExiste = false;
 
-    if (this.empresa.informacoes.endereco.cidade) {
-      this.vaga.cidade = this.empresa.informacoes.endereco.cidade;
+      this.empresa = JSON.parse(localStorage.getItem("empresa"));
+      // console.log(this.empresa);
+
+      if (this.empresa.informacoes.endereco.cidade) {
+        this.vaga.cidade = this.empresa.informacoes.endereco.cidade;
+      }
+      if (this.empresa.informacoes.endereco.bairro) {
+        this.vaga.bairro = this.empresa.informacoes.endereco.bairro;
+      }
+      if (this.empresa.informacoes.outros.onibusPerto) {
+        this.vaga.onibusProximos = this.empresa.informacoes.outros.onibusPerto;
+      }
+      if (this.empresa.informacoes.outros.pontosRef) {
+        this.vaga.pontoReferencia = this.empresa.informacoes.outros.pontosRef;
+      }
+      if (this.empresa.informacoes.principais.ramo) {
+        this.vaga.ramo = this.empresa.informacoes.principais.ramo;
+      }
+      console.log(this.idVagaExiste);
     }
-    if (this.empresa.informacoes.endereco.bairro) {
-      this.vaga.bairro = this.empresa.informacoes.endereco.bairro;
-    }
-    if (this.empresa.informacoes.outros.onibusPerto) {
-      this.vaga.onibusProximos = this.empresa.informacoes.outros.onibusPerto;
-    }
-    if (this.empresa.informacoes.outros.pontosRef) {
-      this.vaga.pontoReferencia = this.empresa.informacoes.outros.pontosRef;
-    }
-    if (this.empresa.informacoes.principais.ramo) {
-      this.vaga.ramo = this.empresa.informacoes.principais.ramo;
-    }
-    console.log(this.vaga);
   },
 };
 </script>

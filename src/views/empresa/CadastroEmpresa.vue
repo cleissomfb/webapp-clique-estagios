@@ -47,7 +47,7 @@
                   class="text-danger text-center"
                   v-if="submitted && !$v.empresa.senha.required"
                 >
-                  Digite a senha.<br>
+                  Digite a senha.<br />
                 </span>
                 <span
                   class="text-danger text-center"
@@ -75,7 +75,7 @@
                   class="text-danger text-center"
                   v-if="submitted && !$v.empresa.confirmarSenha.required"
                 >
-                  Digite a confirmação da senha.<br>
+                  Digite a confirmação da senha.<br />
                 </span>
                 <span
                   class="text-danger text-center"
@@ -615,33 +615,58 @@
               <b-button pill class="btn-editado" @click="saveEmpresa"
                 ><b-icon icon="check" class="mr-1"></b-icon>Cadastrar</b-button
               >
-              <b-button pill class="btn-editado ml-2" @click="$bvModal.show('cancelarCadastroEmpresa')"
+              <b-button
+                pill
+                class="btn-editado ml-2"
+                @click="$bvModal.show('cancelarCadastroEmpresa')"
                 ><b-icon icon="x" class="mr-1"></b-icon>Cancelar</b-button
               >
             </div>
           </b-col>
         </form>
       </div>
-       <b-modal id="cancelarCadastroEmpresa" centered class="mt-5" title="Ops, atenção!">
-        <p class="my-2">Você realmente deseja cancelar essa edição do perfil da empresa?</p>
+      <b-modal
+        id="cancelarCadastroEmpresa"
+        centered
+        class="mt-5"
+        title="Ops, atenção!"
+      >
+        <p class="my-2">
+          Você realmente deseja cancelar essa edição do perfil da empresa?
+        </p>
         <template #modal-footer>
           <b-button
             size="md"
             pill
             class="float-right btn-editado mr-2"
             @click="cancelarEmpresa"
-          ><b-icon icon="check" class="mr-1"></b-icon>
+            ><b-icon icon="check" class="mr-1"></b-icon>
             Sair
           </b-button>
           <b-button
             size="md"
             pill
             class="float-right btn-editado"
-           @click="hideConfirmacaoEmpresa"
-          ><b-icon icon="x" class="mr-1"></b-icon>
+            @click="hideConfirmacaoEmpresa"
+            ><b-icon icon="x" class="mr-1"></b-icon>
             Cancelar
           </b-button>
-      </template>
+        </template>
+      </b-modal>
+      <b-modal id="modalCep" centered class="mt-5" title="Ops, atenção!">
+        <p class="my-2">
+          O CEP não foi digitado corretamente, tente novamente!
+        </p>
+        <template #modal-footer>
+          <b-button
+            size="md"
+            pill
+            class="float-right btn-editado"
+            @click="hideCep"
+            ><b-icon icon="check" class="mr-1"></b-icon>
+            OK
+          </b-button>
+        </template>
       </b-modal>
     </div>
     <Contato />
@@ -661,13 +686,13 @@ export default {
   components: {
     NavbarPaginaInicial,
     Contato,
-    Footer
+    Footer,
   },
   data() {
     return {
       cep: "",
       data: {},
-      
+
       submitted: false,
 
       maskCnpj: "##.###.###/####-##",
@@ -810,15 +835,21 @@ export default {
         .normalize("NFD")
         .replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, "");
       if (parsed.length == 8) {
-        buscarCepService.buscarCep(parsed).then((response) => {
-          this.data = response.data;
-          // console.log(response.data)
-          this.empresa.informacoes.endereco.cep = this.data.cep;
-          this.empresa.informacoes.endereco.rua = this.data.logradouro;
-          this.empresa.informacoes.endereco.uf = this.data.uf;
-          this.empresa.informacoes.endereco.cidade = this.data.localidade;
-          this.empresa.informacoes.endereco.bairro = this.data.bairro;
-        });
+        buscarCepService
+          .buscarCep(parsed)
+          .then((response) => {
+            this.data = response.data;
+            // console.log(response.data)
+            this.empresa.informacoes.endereco.cep = this.data.cep;
+            this.empresa.informacoes.endereco.rua = this.data.logradouro;
+            this.empresa.informacoes.endereco.uf = this.data.uf;
+            this.empresa.informacoes.endereco.cidade = this.data.localidade;
+            this.empresa.informacoes.endereco.bairro = this.data.bairro;
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$bvModal.show("modalCep");
+          });
       }
     },
     saveEmpresa() {
@@ -828,7 +859,7 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
-      
+
       empresaService
         .saveEmpresa(this.empresa)
         .then(() => {
@@ -870,7 +901,11 @@ export default {
     },
 
     hideConfirmacaoEmpresa() {
-      this.$bvModal.hide('cancelarCadastroEmpresa');
+      this.$bvModal.hide("cancelarCadastroEmpresa");
+    },
+
+    hideCep() {
+      this.$bvModal.hide("modalCep");
     },
   },
 };

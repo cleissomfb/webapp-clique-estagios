@@ -613,7 +613,10 @@
               <b-button pill class="btn-editado" @click="saveEmpresa"
                 ><b-icon icon="check" class="mr-1"></b-icon>Cadastrar</b-button
               >
-              <b-button pill class="btn-editado ml-2" @click="$bvModal.show('cancelar')"
+              <b-button
+                pill
+                class="btn-editado ml-2"
+                @click="$bvModal.show('cancelar')"
                 ><b-icon icon="x" class="mr-1"></b-icon>Cancelar</b-button
               >
             </div>
@@ -621,25 +624,42 @@
         </form>
       </div>
       <b-modal id="cancelar" centered class="mt-5" title="Ops, atenção!">
-        <p class="my-2">Você realmente deseja cancelar essa edição do perfil da empresa?</p>
+        <p class="my-2">
+          Você realmente deseja cancelar essa edição do perfil da empresa?
+        </p>
         <template #modal-footer>
           <b-button
             size="md"
             pill
             class="float-right btn-editado mr-2"
             @click="cancelarEmpresa"
-          ><b-icon icon="check" class="mr-1"></b-icon>
+            ><b-icon icon="check" class="mr-1"></b-icon>
             Sair
           </b-button>
           <b-button
             size="md"
             pill
             class="float-right btn-editado"
-           @click="hideConfirmacaoEmpresa"
-          ><b-icon icon="x" class="mr-1"></b-icon>
+            @click="hideConfirmacaoEmpresa"
+            ><b-icon icon="x" class="mr-1"></b-icon>
             Cancelar
           </b-button>
-      </template>
+        </template>
+      </b-modal>
+      <b-modal id="modalCep" centered class="mt-5" title="Ops, atenção!">
+        <p class="my-2">
+          O CEP não foi digitado corretamente, tente novamente!
+        </p>
+        <template #modal-footer>
+          <b-button
+            size="md"
+            pill
+            class="float-right btn-editado"
+            @click="hideCep"
+            ><b-icon icon="check" class="mr-1"></b-icon>
+            OK
+          </b-button>
+        </template>
       </b-modal>
     </div>
   </div>
@@ -790,15 +810,21 @@ export default {
         .normalize("NFD")
         .replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, "");
       if (parsed.length == 8) {
-        buscarCepService.buscarCep(parsed).then((response) => {
-          this.data = response.data;
-          // console.log(response.data)
-          this.empresa.informacoes.endereco.cep = this.data.cep;
-          this.empresa.informacoes.endereco.rua = this.data.logradouro;
-          this.empresa.informacoes.endereco.uf = this.data.uf;
-          this.empresa.informacoes.endereco.cidade = this.data.localidade;
-          this.empresa.informacoes.endereco.bairro = this.data.bairro;
-        });
+        buscarCepService
+          .buscarCep(parsed)
+          .then((response) => {
+            this.data = response.data;
+              this.empresa.informacoes.endereco.cep = this.data.cep;
+              this.empresa.informacoes.endereco.rua = this.data.logradouro;
+              this.empresa.informacoes.endereco.uf = this.data.uf;
+              this.empresa.informacoes.endereco.cidade = this.data.localidade;
+              this.empresa.informacoes.endereco.bairro = this.data.bairro;
+          })
+          .catch((error) => {
+            if (!error.status) {
+              this.$bvModal.show("modalCep");
+            }
+          });
       }
     },
     saveEmpresa() {
@@ -830,7 +856,11 @@ export default {
     },
 
     hideConfirmacaoEmpresa() {
-      this.$bvModal.hide('cancelar');
+      this.$bvModal.hide("cancelar");
+    },
+
+    hideCep() {
+      this.$bvModal.hide("modalCep");
     },
 
     // Geral da tela
@@ -842,6 +872,7 @@ export default {
         appendToast: append,
         variant: "success",
         solid: true,
+        toaster: "b-toaster-bottom-right",
       });
     },
     showAlertDanger(append = false) {
@@ -852,6 +883,7 @@ export default {
         appendToast: append,
         variant: "danger",
         solid: true,
+        toaster: "b-toaster-bottom-right",
       });
     },
   },
