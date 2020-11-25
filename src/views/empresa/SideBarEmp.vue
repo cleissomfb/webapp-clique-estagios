@@ -29,7 +29,7 @@
                 >Editar Perfil</b-nav-item
               >
               <b-nav-item href="/empresa/cadastrarVaga" @click="hide"
-                ><b-icon icon="card-list" class="mr-3"></b-icon
+                ><b-icon icon="card-text" class="mr-3"></b-icon
                 >Cadastrar Vaga</b-nav-item
               >
               <b-nav-item href="/empresa/vagasCadastradas" @click="hide"
