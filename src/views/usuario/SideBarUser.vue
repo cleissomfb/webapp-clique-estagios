@@ -19,15 +19,15 @@
           </div>
           <nav class="my-5 mx-4">
             <b-nav vertical>
-               <b-nav-item active href="/usuario/homeUsuario"
+               <b-nav-item active href="/usuario/homeUsuario" @click="hide"
                 ><b-icon icon="bar-chart-fill" class="mr-3 "></b-icon
                 >Página Incial</b-nav-item
               >
-              <b-nav-item active href="/usuario/perfilUsuario"
+              <b-nav-item active href="/usuario/perfilUsuario" @click="hide"
                 ><b-icon icon="pencil" class="mr-3"></b-icon
                 >Perfil Perfil</b-nav-item
               >
-              <b-nav-item v-b-modal.visualizarVagas  @click="hide"
+              <b-nav-item  active href="/usuario/visualizarVagas" @click="hide"
                 ><b-icon icon="card-list" class="mr-3"></b-icon
                 >Visualizar Vagas</b-nav-item
               >

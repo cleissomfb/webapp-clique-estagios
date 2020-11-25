@@ -237,7 +237,10 @@
   color: #212529;
   font-weight: normal;
   /* background-color: #FFFFFF; */
- 
+}
+
+.container-visualizar-vaga .visualizar-vaga-botao-candidatar {
+  margin: 30px;
 }
 /* .container-visualizar-vaga .noPaddingLeft {
   padding-left: 0px !important;

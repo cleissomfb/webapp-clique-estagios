@@ -14,9 +14,10 @@
                 >
               </b-col>
               <b-col md="12">
-                <b-button v-b-modal.visualizarVagas class="btn-home"
+                <a href="/usuario/visualizarVagas"
+                  ><b-button class="btn-home"
                   >Visualizar Vagas</b-button
-                >
+                ></a>
               </b-col>
               <b-col md="12">
                 <b-button v-b-modal.vagasSelecionadas class="btn-home"

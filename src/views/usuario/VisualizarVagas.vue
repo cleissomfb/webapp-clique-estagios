@@ -4,7 +4,7 @@
       <div class="container">
         <form class="col-md-12 ml-auto mr-auto">
           <div class="mt-5">
-            <h2 class="title titulos">Vagas Cadastradas</h2>
+            <h2 class="title titulos">Visualizar Vagas</h2>
           </div>
           <div class="mt-5 tamanhoFixo">
             <b-pagination
@@ -15,8 +15,8 @@
             ></b-pagination>
             <b-table
               responsive
-              :fields="fieldsVagasCastradas"
-              :items="vagasCadastradas"
+              :fields="fieldsVagasDisponiveis"
+              :items="vagasDisponiveis"
               :show-empty="true"
               :total-rows="rows"
               :per-page="perPage"
@@ -32,24 +32,6 @@
                   v-b-tooltip.hover
                   title="Visualizar a vaga"
                   ><b-icon icon="file-earmark-text"></b-icon
-                ></b-button>
-                <b-button
-                  small
-                  class="mr-1"
-                  variant="info"
-                  @click="editVaga(row.item)"
-                  v-b-tooltip.hover
-                  title="Editar a vaga"
-                >
-                  <b-icon icon="pencil"></b-icon
-                ></b-button>
-                <b-button
-                  small
-                  variant="danger"
-                  @click="deleteVaga(row.item)"
-                  v-b-tooltip.hover
-                  title="Deletar a vaga"
-                  ><b-icon icon="x-circle"></b-icon
                 ></b-button>
               </template>
             </b-table>
@@ -73,8 +55,12 @@
             <b-col md="4" class="noPaddingRight">
               <div>
                 <div class="subtitulo"><label>Ramo: </label> <br /></div>
-                <label class="item" v-if="vaga.ramo != null">{{ vaga.ramo }}</label>
-                <label class="item" v-if="vaga.ramo == null">Não Descrito</label>
+                <label class="item" v-if="vaga.ramo != null">{{
+                  vaga.ramo
+                }}</label>
+                <label class="item" v-if="vaga.ramo == null"
+                  >Não Descrito</label
+                >
               </div>
             </b-col>
             <b-col md="4" class="noPaddingLeft noPaddingRight">
@@ -82,8 +68,12 @@
                 <div class="subtitulo">
                   <label class="sub-titulo">Cidade: </label> <br />
                 </div>
-                <label class="item" v-if="vaga.cidade != null"> {{ vaga.cidade }}</label>
-                <label class="item" v-if="vaga.cidade == null">Não Descrito</label>
+                <label class="item" v-if="vaga.cidade != null">
+                  {{ vaga.cidade }}</label
+                >
+                <label class="item" v-if="vaga.cidade == null"
+                  >Não Descrito</label
+                >
               </div>
             </b-col>
             <b-col md="4" class="noPaddingLeft">
@@ -91,8 +81,12 @@
                 <div class="subtitulo">
                   <label class="sub-titulo">Bairro: </label> <br />
                 </div>
-                <label class="item"  v-if="vaga.bairro != null">{{ vaga.bairro }} </label>
-                <label class="item" v-if="vaga.bairro == null">Não Descrito</label>
+                <label class="item" v-if="vaga.bairro != null"
+                  >{{ vaga.bairro }}
+                </label>
+                <label class="item" v-if="vaga.bairro == null"
+                  >Não Descrito</label
+                >
               </div>
             </b-col>
             <b-col md="12">
@@ -101,8 +95,12 @@
               </div>
             </b-col>
             <b-col md="12">
-              <label v-if="vaga.onibusProximos != null">{{ vaga.onibusProximos }}</label>
-              <label class="item" v-if="vaga.onibusProximos == null">Não Descrito</label>
+              <label v-if="vaga.onibusProximos != null">{{
+                vaga.onibusProximos
+              }}</label>
+              <label class="item" v-if="vaga.onibusProximos == null"
+                >Não Descrito</label
+              >
             </b-col>
             <b-col md="12">
               <div class="subtitulo">
@@ -110,18 +108,26 @@
               </div>
             </b-col>
             <b-col md="12">
-              <label v-if="vaga.pontoReferencia != null">{{ vaga.pontoReferencia }}</label>
-               <label class="item" v-if="vaga.pontoReferencia == null">Não Descrito</label>
+              <label v-if="vaga.pontoReferencia != null">{{
+                vaga.pontoReferencia
+              }}</label>
+              <label class="item" v-if="vaga.pontoReferencia == null"
+                >Não Descrito</label
+              >
             </b-col>
-            <b-col md="4" class="noPaddingRight ">
+            <b-col md="4" class="noPaddingRight">
               <div>
-                <div class="subtitulo noBorderMobile"><label>Nª de Vagas: </label> <br /></div>
+                <div class="subtitulo noBorderMobile">
+                  <label>Nª de Vagas: </label> <br />
+                </div>
                 <label>{{ vaga.numeroVagas }}</label>
               </div>
             </b-col>
             <b-col md="4" class="noPaddingLeft noPaddingRight">
               <div>
-                <div class="subtitulo noBorderMobile"><label>Remuneração: </label> <br /></div>
+                <div class="subtitulo noBorderMobile">
+                  <label>Remuneração: </label> <br />
+                </div>
                 <label> {{ vaga.remuneracao }}</label>
               </div>
             </b-col>
@@ -198,9 +204,20 @@
             <b-col md="12">
               <label>{{ vaga.observacao }} </label>
             </b-col>
+            <b-col md="12">
+              <div class="visualizar-vaga-botao-candidatar"></div>
+            </b-col>
           </b-row>
         </div>
         <template #modal-footer>
+          <b-button
+            size="md"
+            pill
+            class="float-right btn-editado"
+            @click="candadatarVaga"
+            ><b-icon icon="check" class="mr-1"></b-icon>
+            Candidatar-se
+          </b-button>
           <b-button
             size="md"
             pill
@@ -211,27 +228,6 @@
           </b-button>
         </template>
       </b-modal>
-      <b-modal id="deletar" centered class="mt-5" title="Ops, atenção!">
-        <p class="my-2">Você realmente deseja deletar está vaga?</p>
-        <template #modal-footer>
-          <b-button
-            size="md"
-            pill
-            class="float-right btn-editado mr-2"
-            @click="confirmaDeleteVaga"
-            ><b-icon icon="check" class="mr-1"></b-icon>
-            Sair
-          </b-button>
-          <b-button
-            size="md"
-            pill
-            class="float-right btn-editado"
-            @click="hideDeleteVaga"
-            ><b-icon icon="x" class="mr-1"></b-icon>
-            Cancelar
-          </b-button>
-        </template>
-      </b-modal>
     </div>
   </div>
 </template>
@@ -239,11 +235,11 @@
 <script>
 import { vagaService } from "@/service";
 export default {
-  name: "VagasCadastradas",
+  name: "VisualizarVagas",
   data() {
     return {
-      vagasCadastradas: [],
-      fieldsVagasCastradas: [
+      vagasDisponiveis: [],
+      fieldsVagasDisponiveis: [
         {
           key: "actions",
           label: "Ações",
@@ -267,25 +263,6 @@ export default {
     };
   },
   methods: {
-    editVaga(vaga) {
-      this.$router.push({ path: `/empresa/editarVaga/${vaga._id}` });
-    },
-    confirmaDeleteVaga() {
-      vagaService
-        ._deleteVaga(this.idVaga)
-        .then(() => {
-          this.infoMsg = "Vaga deletada com sucesso!";
-          this.showAlertSuccess();
-          this.$bvModal.hide("deletar");
-          this.findVagas();
-        })
-        .catch((error) => {
-          this.errorMsg = error;
-          // this.errorMsg = "Erro ao criar a lista.";
-          console.log(error);
-          this.showAlertDanger();
-        });
-    },
     showAlertSuccess(append = false) {
       this.toastCount++;
       this.$bvToast.toast(this.infoMsg, {
@@ -310,9 +287,10 @@ export default {
     },
     findVagas() {
       vagaService
-        .getByCompany(this.empresa.informacoes.principais.cnpj)
-        .then((vagdas) => {
-          this.vagasCadastradas = vagdas.data;
+        .findVaga()
+        .then((vagas) => {
+          this.vagasDisponiveis = vagas.data;
+          console.log(this.vagasDisponiveis);
         })
         .catch((error) => {
           this.errorMsg = error;
@@ -324,7 +302,6 @@ export default {
 
     visualizarVaga(vaga) {
       this.$bvModal.show("visualizarVaga");
-
       vagaService
         .findVagaSearch(vaga._id)
         .then((vaga) => {
@@ -340,24 +317,18 @@ export default {
     hideVisualizarVaga() {
       this.$bvModal.hide("visualizarVaga");
     },
-
-    deleteVaga(vaga) {
-      this.$bvModal.show("deletar");
-      this.idVaga = vaga._id;
-    },
-
-    hideDeleteVaga() {
-      this.$bvModal.hide("deletar");
-    },
+    candidatarVaga() {
+      
+    }
   },
 
   mounted() {
-    this.empresa = JSON.parse(localStorage.getItem("empresa"));
+    // this.empresa = JSON.parse(localStorage.getItem("empresa"));
     this.findVagas();
   },
   computed: {
     rows() {
-      return this.vagasCadastradas.length;
+      return this.vagasDisponiveis.length;
     },
   },
 };

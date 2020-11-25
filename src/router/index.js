@@ -13,6 +13,7 @@ import CadastroUsuario from '../views/usuario/CadastroUsuario.vue'
 import RecuperarSenhaUsuario from '../views/usuario/RecuperarSenhaUsuario.vue'
 import HomeUsuario from '../views/usuario/HomeUsuario.vue'
 import PerfilUsuario from '../views/usuario/PerfilUsuario.vue'
+import VisualizarVagas from '../views/usuario/VisualizarVagas.vue'
 
 // View da pasta Empresa
 import Empresa from '../views/empresa/Empresa.vue'
@@ -98,6 +99,10 @@ const routes = [
         path: 'perfilUsuario',
         components: { usuarioView: PerfilUsuario }
       },
+      {
+        path: 'visualizarVagas',
+        components: { usuarioView: VisualizarVagas }
+      }
     ],
     beforeEnter(_, __, next) { // Impede usuários não assinados
       if (isSignedInUser()) { // de acessar a página Home.
