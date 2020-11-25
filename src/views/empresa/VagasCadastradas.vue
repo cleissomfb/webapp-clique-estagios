@@ -6,7 +6,7 @@
           <div class="mt-5">
             <h2 class="title titulos">Vagas Cadastradas</h2>
           </div>
-          <div class="md-12 mt-5">
+          <div class="mt-5 tamanhoFixo">
             <b-table
               responsive
               :fields="fieldsVagasCastradas"
@@ -106,21 +106,21 @@
               <label v-if="vaga.pontoReferencia != null">{{ vaga.pontoReferencia }}</label>
                <label class="item" v-if="vaga.pontoReferencia == null">Não Descrito</label>
             </b-col>
-            <b-col md="4" class="noPaddingRight">
+            <b-col md="4" class="noPaddingRight ">
               <div>
-                <div class="subtitulo"><label>Nª de Vagas: </label> <br /></div>
+                <div class="subtitulo noBorderMobile"><label>Nª de Vagas: </label> <br /></div>
                 <label>{{ vaga.numeroVagas }}</label>
               </div>
             </b-col>
             <b-col md="4" class="noPaddingLeft noPaddingRight">
               <div>
-                <div class="subtitulo"><label>Remuneração: </label> <br /></div>
+                <div class="subtitulo noBorderMobile"><label>Remuneração: </label> <br /></div>
                 <label> {{ vaga.remuneracao }}</label>
               </div>
             </b-col>
             <b-col md="4" class="noPaddingLeft">
               <div>
-                <div class="subtitulo">
+                <div class="subtitulo noBorderMobile">
                   <label>Possiblidade de Efetivação: </label>
                   <br />
                 </div>

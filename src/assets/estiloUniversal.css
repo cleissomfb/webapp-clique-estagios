@@ -221,12 +221,12 @@
   /* background-color: #FFFFFF; */
  
 }
-.container-visualizar-vaga .noPaddingLeft {
-  padding-left: 0px;
+/* .container-visualizar-vaga .noPaddingLeft {
+  padding-left: 0px !important;
 }
 .container-visualizar-vaga .noPaddingRight {
-  padding-right: 0px;
-}
+  padding-right: 0px !important;
+} */
 
 @media only screen and (max-width: 500px) {
   .card-container {
@@ -243,5 +243,28 @@
   .contato-endereco h4 {
     font-size: 12px !important;
     line-height: 20px;
+  }
+
+  .noBorderMobile {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  .container-visualizar-vaga .noPaddingLeft {
+    padding-left: none !important;
+  }
+  .container-visualizar-vaga .noPaddingRight {
+    padding-right: none !important;
+  }
+
+  .tamanhoFixo {
+    width: 64% !important;
+    /* position: relative; */
+    white-space: nowrap;
+    overflow-x: hidden;
+  }
+
+  .titulos {
+    font-size: 25px;
   }
 }
