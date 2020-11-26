@@ -28,10 +28,10 @@
                 >Perfil Perfil</b-nav-item
               >
               <b-nav-item  active href="/usuario/visualizarVagas" @click="hide"
-                ><b-icon icon="card-list" class="mr-3"></b-icon
+                ><b-icon icon="card-text" class="mr-3"></b-icon
                 >Visualizar Vagas</b-nav-item
               >
-              <b-nav-item v-b-modal.vagasSelecionadas @click="hide"
+              <b-nav-item active href="/usuario/vagasSelecionadas" @click="hide"
                 ><b-icon icon="card-list" class="mr-3"></b-icon>Vagas Selecionadas</b-nav-item
               >
             </b-nav>

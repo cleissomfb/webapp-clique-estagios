@@ -532,7 +532,7 @@
               :key="k"
             >
               <b-row>
-                <b-col md="9">
+                <b-col md="9" cols="7">
                   <b-form-group
                     id="outraRedeSocial"
                     label="Outra Rede Social:"
@@ -545,25 +545,31 @@
                     ></b-form-input>
                   </b-form-group>
                 </b-col>
-                <b-col class="mt-4">
-                  <ion-icon
-                    name="add-outline"
-                    class="m-3"
-                    v-show="
-                      k == usuario.informacoes.redesSociais.outras.length - 1
-                    "
-                    @click="addOutraRedeSocial(k)"
-                  ></ion-icon
-                  ><ion-icon
-                    class="m-3"
-                    name="remove-outline"
-                    @click="removeOutraRedeSocial(k)"
-                    v-show="
-                      k ||
-                      (!k &&
-                        usuario.informacoes.redesSociais.outras.length >= 1)
-                    "
-                  ></ion-icon>
+                <b-col class="mt-4" md="3" cols="5">
+                  <div class="correcao-buttons">
+                    <b-button
+                      class="bg-button"
+                      v-show="
+                        k == usuario.informacoes.redesSociais.outras.length - 1
+                      "
+                      @click="addOutraRedeSocial(k)"
+                    >
+                      <b-icon
+                        icon="plus"
+                        aria-hidden="true"
+                      ></b-icon> </b-button
+                    ><b-button
+                      class="ml-1 bg-danger"
+                      v-show="
+                        k ||
+                        (!k &&
+                          usuario.informacoes.redesSociais.outras.length >= 1)
+                      "
+                      @click="removeOutraRedeSocial(k)"
+                    >
+                      <b-icon icon="x"  aria-hidden="true"></b-icon>
+                    </b-button>
+                  </div>
                 </b-col>
               </b-row>
             </b-col>
@@ -1370,15 +1376,14 @@
           <b-col md="12">
             <div style="text-align: center" class="my-5">
               <b-button pill class="btn-editado" @click="saveCandidato"
-                ><b-icon icon="check" class="mr-1"></b-icon
-                  >Cadastrar</b-button
+                ><b-icon icon="check" class="mr-1"></b-icon>Cadastrar</b-button
               >
-               <b-button
-                  pill
-                  class="btn-editado ml-2"
-                  @click="$bvModal.show('cancelarCadastroCandidato')"
-                  ><b-icon icon="x" class="mr-1"></b-icon>Cancelar</b-button
-                >
+              <b-button
+                pill
+                class="btn-editado ml-2"
+                @click="$bvModal.show('cancelarCadastroCandidato')"
+                ><b-icon icon="x" class="mr-1"></b-icon>Cancelar</b-button
+              >
             </div>
           </b-col>
         </form>

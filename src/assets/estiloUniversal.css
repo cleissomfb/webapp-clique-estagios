@@ -44,6 +44,15 @@
   color: #FFFFFF;
 }
 
+.correcao-buttons {
+    margin-top: 7px !important;
+}
+
+.bg-button {
+  background-color: #2ad2b3 !important;
+  color: #FFFFFF;
+}
+
 /* Navbar - Empresa e Usuário */
 .navbar {
   background-color: #2ad2b3 !important;
@@ -201,12 +210,19 @@
 
 /* Modal de Visuzação da Vaga */
 #visualizarVaga {
-  margin-top: 56px;
+  margin-top: 25px;
+}
+
+.modal-footer {
+  /* margin-bottom: 25px !important; */
 }
 
 .container-visualizar-vaga {
   text-align: center;
   border: solid 2px #2ad2b3 !important;
+  width: auto;
+  height: 350px;
+  overflow: auto;
 }
 
 .container-visualizar-vaga .titulo-vaga{
@@ -279,11 +295,28 @@
     padding-right: none !important;
   }
 
-  .tamanhoFixo {
-    width: 64% !important;
-    /* position: relative; */
+  /* .tamanhoFixo {
+    width: 100% !important;
+    position: relative;
     white-space: nowrap;
-    overflow-x: hidden;
+    overflow-x: scroll !important;
+
+    width: auto !important;
+    position: relative !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  } */
+
+  .tamanhoFixo {
+    display:block; 
+    width:auto; 
+    max-width: calc(100vw - 65px);
+    overflow-x: auto; 
+    white-space: nowrap;
+  }
+
+  .table-action td:not(:first-child) {
+    display: block;
   }
 
   .titulos {
@@ -293,4 +326,28 @@
   .contato-mapa {
     display: none;
   }
+}
+
+/* Styles dos Paginator */
+.page-item.active .page-link {
+  background-color: #2ad2b3 !important;
+  border-color: #2ad2b3 !important;
+  color: #FFFFFF !important;
+}
+
+.page-item .page-link {
+  color: #2ad2b3 !important;
+}
+
+.page-item .page-link:hover {
+  color: #FFFFFF !important;
+  background-color: #2ad2b3 !important;
+  border-color: #2ad2b3 !important;
+}
+
+/* Styles dos Checkbox */
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #2ad2b3 !important;
+  background-color: #2ad2b3 !important;
 }

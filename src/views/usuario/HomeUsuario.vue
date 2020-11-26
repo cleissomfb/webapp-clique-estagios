@@ -20,20 +20,14 @@
                 ></a>
               </b-col>
               <b-col md="12">
-                <b-button v-b-modal.vagasSelecionadas class="btn-home"
+                 <a href="/usuario/vagasSelecionadas"
+                  ><b-button class="btn-home"
                   >Vagas Selecionadas</b-button
-                >
+                ></a>
               </b-col>
             </b-row>
           </div>
         </div>
-        <b-modal centered id="visualizarVagas" title="Visualizar Vagas">
-          <p class="my-4">Hello from modal!</p>
-        </b-modal>
-
-        <b-modal centered id="vagasSelecionadas" title="Vagas Selecionadas">
-          <p class="my-4">Hello from modal!</p>
-        </b-modal>
       </div>
     </div>
   </div>

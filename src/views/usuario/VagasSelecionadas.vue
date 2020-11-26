@@ -4,7 +4,7 @@
       <div class="container">
         <form class="col-md-12 ml-auto mr-auto">
           <div class="mt-5">
-            <h2 class="title titulos">Visualizar Vagas</h2>
+            <h2 class="title titulos">Vagas Selecionadas</h2>
           </div>
           <div class="mt-5">
             <b-pagination
@@ -15,14 +15,14 @@
             ></b-pagination>
             <b-table
               :responsive="true"
-              :fields="fieldsVagasDisponiveis"
-              :items="vagasDisponiveis"
+              :fields="fieldsVagasSelecionadas"
+              :items="vagasSelecionadas"
               :show-empty="true"
               :total-rows="rows"
               :per-page="perPage"
               :current-page="currentPage"
-              empty-text="Não há Vagas."
-              striped
+              empty-text="Não há vagas selecionadas."
+              striped 
               hover
               class="tamanhoFixo"
             >
@@ -217,43 +217,9 @@
             size="md"
             pill
             class="float-right btn-editado"
-            @click="modalConfirmarVaga"
-            ><b-icon icon="check" class="mr-1"></b-icon>
-            Candidatar-se
-          </b-button>
-          <b-button
-            size="md"
-            pill
-            class="float-right btn-editado"
             @click="hideVisualizarVaga"
             ><b-icon icon="x" class="mr-1"></b-icon>
             Voltar
-          </b-button>
-        </template>
-      </b-modal>
-      <b-modal
-        id="modalConfirmarVaga"
-        centered
-        class="mt-5"
-        title="Ops, atenção!"
-      >
-        <p class="my-2">Você realmente deseja se candidatar a essa vaga?</p>
-        <template #modal-footer>
-          <b-button
-            size="md"
-            pill
-            class="float-right btn-editado mr-2"
-            @click="confirmarInteresseVaga"
-            ><b-icon icon="check" class="mr-1"></b-icon>
-            Sair
-          </b-button>
-          <b-button
-            size="md"
-            pill
-            class="float-right btn-editado"
-            @click="hideInteresseVaga"
-            ><b-icon icon="x" class="mr-1"></b-icon>
-            Cancelar
           </b-button>
         </template>
       </b-modal>
@@ -267,8 +233,8 @@ export default {
   name: "VisualizarVagas",
   data() {
     return {
-      vagasDisponiveis: [],
-      fieldsVagasDisponiveis: [
+      vagasSelecionadas: [],
+      fieldsVagasSelecionadas: [
         {
           key: "actions",
           label: "Ações",
@@ -281,7 +247,7 @@ export default {
           thStyle: { width: "25% !important" },
         },
       ],
-      empresa: {},
+      usuario: {},
       perPage: 5,
       currentPage: 1,
       errorMsg: null,
@@ -316,10 +282,10 @@ export default {
     },
     findVagas() {
       vagaService
-        .findVaga()
+        .getByPerson(this.usuario.informacoes.pessoais.cpf)
         .then((vagas) => {
-          this.vagasDisponiveis = vagas.data;
-          console.log(this.vagasDisponiveis);
+          this.vagasSelecionadas = vagas.data;
+          console.log(this.vagasSelecionadas);
         })
         .catch((error) => {
           this.errorMsg = error;
@@ -331,7 +297,6 @@ export default {
 
     visualizarVaga(vaga) {
       this.$bvModal.show("visualizarVaga");
-      this.idVaga = vaga._id;
       vagaService
         .findVagaSearch(vaga._id)
         .then((vaga) => {
@@ -347,40 +312,15 @@ export default {
     hideVisualizarVaga() {
       this.$bvModal.hide("visualizarVaga");
     },
-
-    modalConfirmarVaga() {
-      this.$bvModal.show("modalConfirmarVaga");
-    },
-
-    confirmarInteresseVaga() {
-      const candidatarVaga = {
-        idVaga: this.idVaga,
-      };
-
-      vagaService
-        .vagaInterese(candidatarVaga)
-        .then((vaga) => {
-          this.infoMsg = "Parabéns, você demonstrou interesse por essa vaga. Boa sorte!";
-          this.showAlertSuccess();
-          this.$bvModal.hide("modalConfirmarVaga");
-          this.$bvModal.hide("visualizarVaga");
-        })
-        .catch((error) => {
-          this.errorMsg = error;
-          // this.errorMsg = "Erro ao criar a lista.";
-          console.log(error);
-          this.showAlertDanger();
-        });
-    },
   },
 
   mounted() {
-    // this.empresa = JSON.parse(localStorage.getItem("empresa"));
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
     this.findVagas();
   },
   computed: {
     rows() {
-      return this.vagasDisponiveis.length;
+      return this.vagasSelecionadas.length;
     },
   },
 };

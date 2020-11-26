@@ -14,6 +14,7 @@ import RecuperarSenhaUsuario from '../views/usuario/RecuperarSenhaUsuario.vue'
 import HomeUsuario from '../views/usuario/HomeUsuario.vue'
 import PerfilUsuario from '../views/usuario/PerfilUsuario.vue'
 import VisualizarVagas from '../views/usuario/VisualizarVagas.vue'
+import VagasSelecionadas from '../views/usuario/VagasSelecionadas.vue'
 
 // View da pasta Empresa
 import Empresa from '../views/empresa/Empresa.vue'
@@ -102,6 +103,10 @@ const routes = [
       {
         path: 'visualizarVagas',
         components: { usuarioView: VisualizarVagas }
+      },
+      {
+        path: 'vagasSelecionadas',
+        components: { usuarioView: VagasSelecionadas }
       }
     ],
     beforeEnter(_, __, next) { // Impede usuários não assinados

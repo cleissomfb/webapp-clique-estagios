@@ -7,10 +7,12 @@ export const vagaService = {
   findVaga,
   // getByIdVaga,
   getByCompany,
+  getByPerson,
   findVagaSearch,
   saveVaga,
   editVaga,
-  _deleteVaga
+  _deleteVaga,
+  vagaInterese
 }
 
 function findVaga () {
@@ -35,6 +37,14 @@ function getByCompany (cnpj) {
     headers: authHeader()
   }
   return Vue.axios.get(baseURL + `/vagas/getByCompany?cnpj=${cnpj}`, requestCfg)
+}
+
+function getByPerson (cpf) {
+  const requestCfg = {
+    method: 'GET',
+    headers: authHeader()
+  }
+  return Vue.axios.get(baseURL + `/vagas/getByPerson?cpf=${cpf}`, requestCfg)
 }
 
 /*
@@ -69,4 +79,12 @@ function _deleteVaga (idVaga) {
     headers: authHeader()
   }
   return Vue.axios.delete(baseURL + `/vagas/${idVaga}`, requestCfg)
+}
+
+function vagaInterese (vaga) {
+  const requestCfg = {
+    method: 'POST',
+    headers: authHeader()
+  }
+  return Vue.axios.post(baseURL + '/vagas/interesse', vaga, requestCfg)
 }
