@@ -24,6 +24,7 @@ import HomeEmpresa from '../views/empresa/HomeEmpresa.vue'
 import PerfilEmpresa from '../views/empresa/PerfilEmpresa.vue'
 import CadastrarVaga from '../views/empresa/CadastrarVaga.vue'
 import vagasCadastradas from '../views/empresa/VagasCadastradas.vue'
+import CandidatosInteressados from '../views/empresa/CandidatosInteressados.vue'
 
 Vue.use(VueRouter)
 
@@ -77,6 +78,10 @@ const routes = [
       {
         path: 'vagasCadastradas',
         components: { empresaView: vagasCadastradas }
+      },
+      {
+        path: 'candidatosInteressados/:id',
+        components: { empresaView: CandidatosInteressados }
       },
     ],
     beforeEnter(_, __, next) { // Impede usuários não assinados

@@ -12,7 +12,8 @@ export const vagaService = {
   saveVaga,
   editVaga,
   _deleteVaga,
-  vagaInterese
+  vagaInterese,
+  vagaInteressados
 }
 
 function findVaga () {
@@ -87,4 +88,12 @@ function vagaInterese (vaga) {
     headers: authHeader()
   }
   return Vue.axios.post(baseURL + '/vagas/interesse', vaga, requestCfg)
+}
+
+function vagaInteressados (idVaga) {
+  const requestCfg = {
+    method: 'GET',
+    headers: authHeader()
+  }
+  return Vue.axios.get(baseURL + `/vagas/interessados?id=${idVaga}`, requestCfg)
 }

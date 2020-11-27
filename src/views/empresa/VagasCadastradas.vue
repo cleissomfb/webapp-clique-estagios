@@ -45,6 +45,16 @@
                 ></b-button>
                 <b-button
                   small
+                  class="mr-1"
+                  variant="info"
+                  @click="candidatosVaga(row.item)"
+                  v-b-tooltip.hover
+                  title="Usuários que se candidataram a vaga"
+                >
+                  <b-icon icon="people"></b-icon
+                ></b-button>
+                <b-button
+                  small
                   variant="danger"
                   @click="deleteVaga(row.item)"
                   v-b-tooltip.hover
@@ -247,7 +257,7 @@ export default {
         {
           key: "actions",
           label: "Ações",
-          thStyle: { width: "20% !important" },
+          thStyle: { width: "30% !important" },
         },
         { key: "titulo", label: "Titulo" },
         {
@@ -264,6 +274,7 @@ export default {
       idVaga: null,
       vaga: {},
       currentPage: 1,
+      vagaInteressados: {},
     };
   },
   methods: {
@@ -349,6 +360,10 @@ export default {
     hideDeleteVaga() {
       this.$bvModal.hide("deletar");
     },
+
+    candidatosVaga(vaga) {
+      this.$router.push({ path: `/empresa/candidatosInteressados/${vaga._id}` });
+    }
   },
 
   mounted() {

@@ -210,7 +210,7 @@
 
 /* Modal de Visuzação da Vaga */
 #visualizarVaga {
-  margin-top: 25px;
+  margin-top: 28px;
 }
 
 .modal-footer {
@@ -220,9 +220,10 @@
 .container-visualizar-vaga {
   text-align: center;
   border: solid 2px #2ad2b3 !important;
-  width: auto;
+  /* width: auto;
   height: 350px;
   overflow: auto;
+  padding: 0 !important; */
 }
 
 .container-visualizar-vaga .titulo-vaga{
@@ -258,12 +259,12 @@
 .container-visualizar-vaga .visualizar-vaga-botao-candidatar {
   margin: 30px;
 }
-/* .container-visualizar-vaga .noPaddingLeft {
+.container-visualizar-vaga .noPaddingLeft {
   padding-left: 0px !important;
 }
 .container-visualizar-vaga .noPaddingRight {
   padding-right: 0px !important;
-} */
+}
 
 @media only screen and (max-width: 500px) {
   .card-container {
@@ -295,18 +296,6 @@
     padding-right: none !important;
   }
 
-  /* .tamanhoFixo {
-    width: 100% !important;
-    position: relative;
-    white-space: nowrap;
-    overflow-x: scroll !important;
-
-    width: auto !important;
-    position: relative !important;
-    overflow-x: auto !important;
-    white-space: nowrap !important;
-  } */
-
   .tamanhoFixo {
     display:block; 
     width:auto; 
@@ -315,16 +304,33 @@
     white-space: nowrap;
   }
 
+  .container-visualizar-vaga col-md-12 col-md-4 col-md-6 {
+    /* padding: 0 !important; */
+    padding-right: 0 !important;
+    padding-left:  0 !important;
+  }
+
   .table-action td:not(:first-child) {
     display: block;
   }
 
   .titulos {
     font-size: 25px;
+    text-align: center;
   }
 
   .contato-mapa {
     display: none;
+  }
+
+  .container-visualizar-vaga {
+    text-align: center;
+    border: solid 2px #2ad2b3 !important;
+    /* width: auto !important; */
+    width: calc(100vw - 54px) !important;
+    height: 350px !important;
+    overflow: auto !important;
+    padding: 0 !important;
   }
 }
 
