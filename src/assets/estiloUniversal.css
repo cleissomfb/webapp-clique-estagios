@@ -271,6 +271,32 @@
   margin: 15px !important;
 }
 
+/* Cards */
+
+.card {
+  border: 1px solid #2ad2b3 !important;
+  text-align: center;
+  box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card .card-header {
+  background-color: #2ad2b3 !important;
+  color: #FFFFFF;
+  font-weight: bold !important;
+  font-size: 120% !important;
+}
+
+.card .card-text .subtitulo {
+  background-color: #f7f7f7;
+  color: #2ad2b3;
+  font-weight: bold;
+}
+
+.card .card-footer {
+  background-color: #FFFFFF;
+  border-top: none;
+}
+
 @media only screen and (max-width: 500px) {
   .card-container {
     width: 300px;

@@ -6,7 +6,7 @@
           <div class="mt-5">
             <h2 class="title titulos">Vagas Cadastradas</h2>
           </div>
-          <div class="mt-5 tamanhoFixo">
+          <!-- <div class="mt-5 tamanhoFixo">
             <b-pagination
               v-model="currentPage"
               :total-rows="rows"
@@ -63,6 +63,108 @@
                 ></b-button>
               </template>
             </b-table>
+          </div> -->
+
+          <div md="12">
+            <div>
+              <b-row md="12">
+                <b-col
+                  md="4"
+                  v-for="(input, k) in vagasCadastradas.slice((currentPage-1)*perPage,(currentPage-1)*perPage+perPage)"
+                  :key="k"
+                  class="my-4"
+                >
+                  <b-card>
+                    <template #header>
+                      <div md="12">
+                        <label>{{ input.titulo }}</label>
+                      </div>
+                    </template>
+                    <div md="12">
+                      <b-card-text>
+                        <b-row>
+                          <b-col md="12">
+                            <div>
+                              <div class="subtitulo">
+                                <label>Atividade </label> <br />
+                              </div>
+                              <label class="item">{{ input.atividades }}</label>
+                            </div>
+                          </b-col>
+                          <b-col md="6">
+                            <div>
+                              <div class="subtitulo">
+                                <label>Remuneração</label> <br />
+                              </div>
+                              <label class="item">{{
+                                input.remuneracao
+                              }}</label>
+                            </div>
+                          </b-col>
+                          <b-col md="6">
+                            <div>
+                              <div class="subtitulo">
+                                <label>Carga Horária </label> <br />
+                              </div>
+                              <label class="item">{{
+                                input.cargaHoraria
+                              }}</label>
+                            </div>
+                          </b-col>
+                        </b-row>
+                      </b-card-text>
+                    </div>
+                    <template #footer>
+                      <b-col md="12">
+                        <b-button
+                          small
+                          class="mr-1"
+                          variant="info"
+                          @click="visualizarVaga(input)"
+                          v-b-tooltip.hover
+                          title="Visualizar a vaga"
+                          ><b-icon icon="file-earmark-text"></b-icon
+                        ></b-button>
+                        <b-button
+                          small
+                          class="mr-1"
+                          variant="info"
+                          @click="editVaga(input)"
+                          v-b-tooltip.hover
+                          title="Editar a vaga"
+                        >
+                          <b-icon icon="pencil"></b-icon
+                        ></b-button>
+                        <b-button
+                          small
+                          class="mr-1"
+                          variant="info"
+                          @click="candidatosVaga(input)"
+                          v-b-tooltip.hover
+                          title="Usuários que se candidataram a vaga"
+                        >
+                          <b-icon icon="people"></b-icon
+                        ></b-button>
+                        <b-button
+                          small
+                          variant="danger"
+                          @click="deleteVaga(input)"
+                          v-b-tooltip.hover
+                          title="Deletar a vaga"
+                          ><b-icon icon="x-circle"></b-icon
+                        ></b-button>
+                      </b-col>
+                    </template>
+                  </b-card>
+                </b-col>
+              </b-row>
+              <b-pagination
+                v-model="currentPage"
+                :per-page="perPage"
+                :total-rows="vagasCadastradas.length"
+                align="center"
+              ></b-pagination>
+            </div>
           </div>
         </form>
       </div>
@@ -83,8 +185,12 @@
             <b-col md="4" class="noPaddingRight">
               <div>
                 <div class="subtitulo"><label>Ramo: </label> <br /></div>
-                <label class="item" v-if="vaga.ramo != null">{{ vaga.ramo }}</label>
-                <label class="item" v-if="vaga.ramo == null">Não Descrito</label>
+                <label class="item" v-if="vaga.ramo != null">{{
+                  vaga.ramo
+                }}</label>
+                <label class="item" v-if="vaga.ramo == null"
+                  >Não Descrito</label
+                >
               </div>
             </b-col>
             <b-col md="4" class="noPaddingLeft noPaddingRight">
@@ -92,8 +198,12 @@
                 <div class="subtitulo">
                   <label class="sub-titulo">Cidade: </label> <br />
                 </div>
-                <label class="item" v-if="vaga.cidade != null"> {{ vaga.cidade }}</label>
-                <label class="item" v-if="vaga.cidade == null">Não Descrito</label>
+                <label class="item" v-if="vaga.cidade != null">
+                  {{ vaga.cidade }}</label
+                >
+                <label class="item" v-if="vaga.cidade == null"
+                  >Não Descrito</label
+                >
               </div>
             </b-col>
             <b-col md="4" class="noPaddingLeft">
@@ -101,8 +211,12 @@
                 <div class="subtitulo">
                   <label class="sub-titulo">Bairro: </label> <br />
                 </div>
-                <label class="item"  v-if="vaga.bairro != null">{{ vaga.bairro }} </label>
-                <label class="item" v-if="vaga.bairro == null">Não Descrito</label>
+                <label class="item" v-if="vaga.bairro != null"
+                  >{{ vaga.bairro }}
+                </label>
+                <label class="item" v-if="vaga.bairro == null"
+                  >Não Descrito</label
+                >
               </div>
             </b-col>
             <b-col md="12">
@@ -111,8 +225,12 @@
               </div>
             </b-col>
             <b-col md="12">
-              <label v-if="vaga.onibusProximos != null">{{ vaga.onibusProximos }}</label>
-              <label class="item" v-if="vaga.onibusProximos == null">Não Descrito</label>
+              <label v-if="vaga.onibusProximos != null">{{
+                vaga.onibusProximos
+              }}</label>
+              <label class="item" v-if="vaga.onibusProximos == null"
+                >Não Descrito</label
+              >
             </b-col>
             <b-col md="12">
               <div class="subtitulo">
@@ -120,18 +238,26 @@
               </div>
             </b-col>
             <b-col md="12">
-              <label v-if="vaga.pontoReferencia != null">{{ vaga.pontoReferencia }}</label>
-               <label class="item" v-if="vaga.pontoReferencia == null">Não Descrito</label>
+              <label v-if="vaga.pontoReferencia != null">{{
+                vaga.pontoReferencia
+              }}</label>
+              <label class="item" v-if="vaga.pontoReferencia == null"
+                >Não Descrito</label
+              >
             </b-col>
-            <b-col md="4" class="noPaddingRight ">
+            <b-col md="4" class="noPaddingRight">
               <div>
-                <div class="subtitulo noBorderMobile"><label>Nª de Vagas: </label> <br /></div>
+                <div class="subtitulo noBorderMobile">
+                  <label>Nª de Vagas: </label> <br />
+                </div>
                 <label>{{ vaga.numeroVagas }}</label>
               </div>
             </b-col>
             <b-col md="4" class="noPaddingLeft noPaddingRight">
               <div>
-                <div class="subtitulo noBorderMobile"><label>Remuneração: </label> <br /></div>
+                <div class="subtitulo noBorderMobile">
+                  <label>Remuneração: </label> <br />
+                </div>
                 <label> {{ vaga.remuneracao }}</label>
               </div>
             </b-col>
@@ -267,13 +393,12 @@ export default {
         },
       ],
       empresa: {},
-      perPage: 5,
-      currentPage: 1,
+      perPage: 6,
+      currentPage: 6,
       errorMsg: null,
       infoMsg: null,
       idVaga: null,
       vaga: {},
-      currentPage: 1,
       vagaInteressados: {},
     };
   },
@@ -362,8 +487,10 @@ export default {
     },
 
     candidatosVaga(vaga) {
-      this.$router.push({ path: `/empresa/candidatosInteressados/${vaga._id}` });
-    }
+      this.$router.push({
+        path: `/empresa/candidatosInteressados/${vaga._id}`,
+      });
+    },
   },
 
   mounted() {
