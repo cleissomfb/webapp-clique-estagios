@@ -160,7 +160,7 @@
   width: 100%;
   float: left;
   background-color: #2ad2b3;
-  height: 300px;
+  height: 320px;
   /* display: table; */
   padding-top: 30px;
   padding-bottom: 30px;
@@ -178,26 +178,40 @@
 }
 
 .contato-mapa {
-  margin-top: 20px;
+  margin-top: 35px;
 }
 
 .contato-mapa iframe{
   width: 550px;
+  border-radius: 15px;
 }
 
 .contato-endereco {
   float: left;
   text-align: left;
   list-style: none;
-  padding-left: 50px;
-  margin-top: 25px;
+  padding-left: 75px;
+  margin-top: 33px;
+  border: 2px solid #FFFFFF;
+  border-radius: 15px;
+  background-color: #fff;
+  height: 155px;
+  padding-top: 5px;
+  margin-left: 10px;
+  width: 525px;
+}
+
+.contato-endereco ion-icon {
+  padding-right: 10px;
+  font-size: 120%;
 }
 
 .contato-endereco h4 {
-  color: #FFFFFF;
-  line-height: 28px;
+  color: #2ad2b3;
+  line-height: 10px;
   font-size: 15px !important;
   font-weight: 700;
+  margin-top: 7px;
 }
 
 /* Footer */
@@ -320,10 +334,10 @@
 
 @media only screen and (max-width: 500px) {
   .card-container {
-    width: 300px;
+    width: 350px;
   }
   .contato {
-    height: 250px;
+    height: 290px;
   }
 
   .contato-logo img {
@@ -336,13 +350,19 @@
 
   .contato-endereco {
     padding-left: 0px;
-    text-align: center;
-    margin-top: 25px;
+    /* text-align: center; */
+    margin-top: 10px;
+    background-color: #FFFFFF !important;
+    border: 2px solid #FFFFFF;
+    padding-left: 10px;
+    max-width: calc(100vw - 50px);
+    height: 175px;
   }
 
   .contato-endereco h4 {
     font-size: 12px !important;
     line-height: 20px;
+    color: #2ad2b3;
   }
 
   .noBorderMobile {
@@ -369,10 +389,6 @@
     /* padding: 0 !important; */
     padding-right: 0 !important;
     padding-left:  0 !important;
-  }
-
-  .table-action td:not(:first-child) {
-    display: block;
   }
 
   .titulos {
