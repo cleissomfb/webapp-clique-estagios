@@ -4,7 +4,7 @@
       <b-row>
         <b-col md="12">
           <div class="contato-logo">
-            <h4>Clique Estágios</h4>
+             <img src="@/assets/logo_total.png" />
           </div>
         </b-col>
         <b-col md="6">

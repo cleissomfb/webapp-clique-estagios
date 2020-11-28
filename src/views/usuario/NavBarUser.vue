@@ -11,7 +11,7 @@
         <b-navbar-nav>
           <b-nav-item
             ><router-link to="/usuario/homeUsuario"
-              >Home</router-link
+              ><img src="@/assets/logo_menor.png" alt="Logo menor"></router-link
             ></b-nav-item
           >
         </b-navbar-nav>

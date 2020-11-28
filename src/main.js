@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueMask from 'v-mask'
 import Vuelidate from 'vuelidate'
+// import { btnTop } from './assets/btn-top.js'
 
 Vue.use(Vuelidate)
 Vue.use(VueMask)
@@ -21,6 +22,10 @@ Vue.use(IconsPlugin)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(VueAxios, axios)
+
+// Vue.use(btnTop)
+
+
 
 Vue.config.productionTip = false
 

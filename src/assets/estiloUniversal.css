@@ -63,6 +63,11 @@
   z-index: 9999;
 }
 
+.navbar .navbar-nav .nav-item .nav-link img {
+  width: auto;
+  height: 40px;
+}
+
 /* Sidebar - Empresa e Usuário */
 .sidebar {
   background-color: #2ad2b3 !important;
@@ -155,7 +160,7 @@
   width: 100%;
   float: left;
   background-color: #2ad2b3;
-  height: 250px;
+  height: 300px;
   /* display: table; */
   padding-top: 30px;
   padding-bottom: 30px;
@@ -166,10 +171,10 @@
   text-align: center;
 }
 
-.contato-logo h4{
-  color: #FFFFFF;
-  font-weight: bold !important;
-  font-size: 150%;
+.contato-logo img{
+  background-repeat: no-repeat;
+  width: auto;
+  height: 60px;
 }
 
 .contato-mapa {
@@ -277,6 +282,8 @@
   border: 1px solid #2ad2b3 !important;
   text-align: center;
   box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
+  width: auto;
+  height: 300px;
 }
 
 .card .card-header {
@@ -297,17 +304,40 @@
   border-top: none;
 }
 
+.btn-up {
+	position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: red;
+  color: #FFFFFF;
+  border-radius: 50vh;
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: none;
+}
+
+
 @media only screen and (max-width: 500px) {
   .card-container {
     width: 300px;
   }
   .contato {
-    height: 300px;
+    height: 250px;
   }
+
+  .contato-logo img {
+    height: 45px;
+  }
+
+  .contato-mapa {
+    display: none;
+  }
+
   .contato-endereco {
     padding-left: 0px;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 25px;
   }
 
   .contato-endereco h4 {
@@ -350,10 +380,6 @@
     text-align: center;
   }
 
-  .contato-mapa {
-    display: none;
-  }
-
   .container-visualizar-vaga {
     text-align: center;
     border: solid 2px #2ad2b3 !important;
@@ -362,6 +388,14 @@
     height: 350px !important;
     overflow: auto !important;
     padding: 0 !important;
+  }
+
+  .navbar .navbar-nav .nav-item .nav-link img {
+    height: 25px;
+  }
+
+  .card {
+    height: auto;
   }
 }
 

@@ -6,7 +6,7 @@
           <div class="mt-5">
             <h2 class="title titulos">Vagas Selecionadas</h2>
           </div>
-          <div class="mt-5">
+          <!-- <div class="mt-5">
             <b-pagination
               v-model="currentPage"
               :total-rows="rows"
@@ -38,6 +38,92 @@
                 ></b-button>
               </template>
             </b-table>
+          </div> -->
+          <div md="12">
+            <div>
+              <b-overlay :show="show" rounded="sm">
+                <b-row md="12">
+                  <b-col md="12" v-if="vagasSelecionadas.length == 0">
+                    <p class="text-center my-5">Ainda não há vagas cadastradas.</p>
+                  </b-col>
+                  <b-col
+                    md="4"
+                    v-for="(input, k) in vagasSelecionadas.slice(
+                      (currentPage - 1) * perPage,
+                      (currentPage - 1) * perPage + perPage
+                    )"
+                    :key="k"
+                    class="my-4"
+                  >
+                    <b-card>
+                      <template #header>
+                        <div md="12">
+                          <label>{{ input.titulo }}</label>
+                        </div>
+                      </template>
+                      <div md="12">
+                        <b-card-text>
+                          <b-row>
+                            <b-col md="12">
+                              <div>
+                                <div class="subtitulo">
+                                  <label>Atividade </label> <br />
+                                </div>
+                                <label class="item">{{
+                                  input.atividades
+                                }}</label>
+                              </div>
+                            </b-col>
+                            <b-col md="6">
+                              <div>
+                                <div class="subtitulo">
+                                  <label>Remuneração</label> <br />
+                                </div>
+                                <label class="item">{{
+                                  input.remuneracao
+                                }}</label>
+                              </div>
+                            </b-col>
+                            <b-col md="6">
+                              <div>
+                                <div class="subtitulo">
+                                  <label>Carga Horária </label> <br />
+                                </div>
+                                <label class="item">{{
+                                  input.cargaHoraria
+                                }}</label>
+                              </div>
+                            </b-col>
+                          </b-row>
+                        </b-card-text>
+                      </div>
+                      <template #footer>
+                        <b-col md="12">
+                          <b-button
+                            small
+                            class="mr-1"
+                            variant="info"
+                            @click="visualizarVaga(input)"
+                            v-b-tooltip.hover
+                            title="Visualizar a vaga"
+                            ><b-icon icon="file-earmark-text"></b-icon
+                          ></b-button>
+                        </b-col>
+                      </template>
+                    </b-card>
+                  </b-col>
+                </b-row>
+              </b-overlay>
+            </div>
+            <b-pagination
+              v-if="vagasSelecionadas.length > 0"
+              v-model="currentPage"
+              :per-page="perPage"
+              :total-rows="vagasSelecionadas.length"
+              @click="voltarTopo()"
+              align="center"
+              class="mt-5"
+            ></b-pagination>
           </div>
         </form>
       </div>
@@ -248,13 +334,14 @@ export default {
         },
       ],
       usuario: {},
-      perPage: 5,
+      perPage: 6,
       currentPage: 1,
       errorMsg: null,
       infoMsg: null,
       idVaga: null,
       vaga: {},
       currentPage: 1,
+      show: false,
     };
   },
   methods: {
@@ -281,11 +368,13 @@ export default {
       });
     },
     findVagas() {
+      this.show = true;
       vagaService
         .getByPerson(this.usuario.informacoes.pessoais.cpf)
         .then((vagas) => {
           this.vagasSelecionadas = vagas.data;
-          console.log(this.vagasSelecionadas);
+          // console.log(this.vagasSelecionadas);
+          this.show = false;
         })
         .catch((error) => {
           this.errorMsg = error;
@@ -312,6 +401,10 @@ export default {
     hideVisualizarVaga() {
       this.$bvModal.hide("visualizarVaga");
     },
+
+    voltarTopo(){
+      window.scrollTo(0, 0);
+    }
   },
 
   mounted() {

@@ -6,165 +6,120 @@
           <div class="mt-5">
             <h2 class="title titulos">Vagas Cadastradas</h2>
           </div>
-          <!-- <div class="mt-5 tamanhoFixo">
-            <b-pagination
-              v-model="currentPage"
-              :total-rows="rows"
-              :per-page="perPage"
-              align="center"
-            ></b-pagination>
-            <b-table
-              responsive
-              :fields="fieldsVagasCastradas"
-              :items="vagasCadastradas"
-              :show-empty="true"
-              :total-rows="rows"
-              :per-page="perPage"
-              :current-page="currentPage"
-              empty-text="Não há Vagas."
-            >
-              <template v-slot:cell(actions)="row" style="width: 555px">
-                <b-button
-                  small
-                  class="mr-1"
-                  variant="info"
-                  @click="visualizarVaga(row.item)"
-                  v-b-tooltip.hover
-                  title="Visualizar a vaga"
-                  ><b-icon icon="file-earmark-text"></b-icon
-                ></b-button>
-                <b-button
-                  small
-                  class="mr-1"
-                  variant="info"
-                  @click="editVaga(row.item)"
-                  v-b-tooltip.hover
-                  title="Editar a vaga"
-                >
-                  <b-icon icon="pencil"></b-icon
-                ></b-button>
-                <b-button
-                  small
-                  class="mr-1"
-                  variant="info"
-                  @click="candidatosVaga(row.item)"
-                  v-b-tooltip.hover
-                  title="Usuários que se candidataram a vaga"
-                >
-                  <b-icon icon="people"></b-icon
-                ></b-button>
-                <b-button
-                  small
-                  variant="danger"
-                  @click="deleteVaga(row.item)"
-                  v-b-tooltip.hover
-                  title="Deletar a vaga"
-                  ><b-icon icon="x-circle"></b-icon
-                ></b-button>
-              </template>
-            </b-table>
-          </div> -->
-
           <div md="12">
             <div>
-              <b-row md="12">
-                <b-col
-                  md="4"
-                  v-for="(input, k) in vagasCadastradas.slice((currentPage-1)*perPage,(currentPage-1)*perPage+perPage)"
-                  :key="k"
-                  class="my-4"
-                >
-                  <b-card>
-                    <template #header>
+              <b-overlay :show="show" rounded="sm">
+                <b-row md="12">
+                  <b-col md="12" v-if="vagasCadastradas.length == 0">
+                    <p class="text-center my-5">
+                      Ainda não há vagas cadastradas.
+                    </p>
+                  </b-col>
+                  <b-col
+                    md="4"
+                    v-for="(input, k) in vagasCadastradas.slice(
+                      (currentPage - 1) * perPage,
+                      (currentPage - 1) * perPage + perPage
+                    )"
+                    :key="k"
+                    class="my-4"
+                  >
+                    <b-card>
+                      <template #header>
+                        <div md="12">
+                          <label>{{ input.titulo }}</label>
+                        </div>
+                      </template>
                       <div md="12">
-                        <label>{{ input.titulo }}</label>
+                        <b-card-text>
+                          <b-row>
+                            <b-col md="12">
+                              <div>
+                                <div class="subtitulo">
+                                  <label>Atividade </label> <br />
+                                </div>
+                                <label class="item">{{
+                                  input.atividades
+                                }}</label>
+                              </div>
+                            </b-col>
+                            <b-col md="6">
+                              <div>
+                                <div class="subtitulo">
+                                  <label>Remuneração</label> <br />
+                                </div>
+                                <label class="item">{{
+                                  input.remuneracao
+                                }}</label>
+                              </div>
+                            </b-col>
+                            <b-col md="6">
+                              <div>
+                                <div class="subtitulo">
+                                  <label>Carga Horária </label> <br />
+                                </div>
+                                <label class="item">{{
+                                  input.cargaHoraria
+                                }}</label>
+                              </div>
+                            </b-col>
+                          </b-row>
+                        </b-card-text>
                       </div>
-                    </template>
-                    <div md="12">
-                      <b-card-text>
-                        <b-row>
-                          <b-col md="12">
-                            <div>
-                              <div class="subtitulo">
-                                <label>Atividade </label> <br />
-                              </div>
-                              <label class="item">{{ input.atividades }}</label>
-                            </div>
-                          </b-col>
-                          <b-col md="6">
-                            <div>
-                              <div class="subtitulo">
-                                <label>Remuneração</label> <br />
-                              </div>
-                              <label class="item">{{
-                                input.remuneracao
-                              }}</label>
-                            </div>
-                          </b-col>
-                          <b-col md="6">
-                            <div>
-                              <div class="subtitulo">
-                                <label>Carga Horária </label> <br />
-                              </div>
-                              <label class="item">{{
-                                input.cargaHoraria
-                              }}</label>
-                            </div>
-                          </b-col>
-                        </b-row>
-                      </b-card-text>
-                    </div>
-                    <template #footer>
-                      <b-col md="12">
-                        <b-button
-                          small
-                          class="mr-1"
-                          variant="info"
-                          @click="visualizarVaga(input)"
-                          v-b-tooltip.hover
-                          title="Visualizar a vaga"
-                          ><b-icon icon="file-earmark-text"></b-icon
-                        ></b-button>
-                        <b-button
-                          small
-                          class="mr-1"
-                          variant="info"
-                          @click="editVaga(input)"
-                          v-b-tooltip.hover
-                          title="Editar a vaga"
-                        >
-                          <b-icon icon="pencil"></b-icon
-                        ></b-button>
-                        <b-button
-                          small
-                          class="mr-1"
-                          variant="info"
-                          @click="candidatosVaga(input)"
-                          v-b-tooltip.hover
-                          title="Usuários que se candidataram a vaga"
-                        >
-                          <b-icon icon="people"></b-icon
-                        ></b-button>
-                        <b-button
-                          small
-                          variant="danger"
-                          @click="deleteVaga(input)"
-                          v-b-tooltip.hover
-                          title="Deletar a vaga"
-                          ><b-icon icon="x-circle"></b-icon
-                        ></b-button>
-                      </b-col>
-                    </template>
-                  </b-card>
-                </b-col>
-              </b-row>
-              <b-pagination
-                v-model="currentPage"
-                :per-page="perPage"
-                :total-rows="vagasCadastradas.length"
-                align="center"
-              ></b-pagination>
+                      <template #footer>
+                        <b-col md="12">
+                          <b-button
+                            small
+                            class="mr-1"
+                            variant="info"
+                            @click="visualizarVaga(input)"
+                            v-b-tooltip.hover
+                            title="Visualizar a vaga"
+                            ><b-icon icon="file-earmark-text"></b-icon
+                          ></b-button>
+                          <b-button
+                            small
+                            class="mr-1"
+                            variant="info"
+                            @click="editVaga(input)"
+                            v-b-tooltip.hover
+                            title="Editar a vaga"
+                          >
+                            <b-icon icon="pencil"></b-icon
+                          ></b-button>
+                          <b-button
+                            small
+                            class="mr-1"
+                            variant="info"
+                            @click="candidatosVaga(input)"
+                            v-b-tooltip.hover
+                            title="Usuários que se candidataram a vaga"
+                          >
+                            <b-icon icon="people"></b-icon
+                          ></b-button>
+                          <b-button
+                            small
+                            variant="danger"
+                            @click="deleteVaga(input)"
+                            v-b-tooltip.hover
+                            title="Deletar a vaga"
+                            ><b-icon icon="x-circle"></b-icon
+                          ></b-button>
+                        </b-col>
+                      </template>
+                    </b-card>
+                  </b-col>
+                </b-row>
+              </b-overlay>
             </div>
+            <b-pagination
+              v-if="vagasCadastradas.length > 0"
+              v-model="currentPage"
+              :per-page="perPage"
+              :total-rows="vagasCadastradas.length"
+              align="center"
+              class="mt-5"
+            ></b-pagination>
           </div>
         </form>
       </div>
@@ -394,12 +349,13 @@ export default {
       ],
       empresa: {},
       perPage: 6,
-      currentPage: 6,
+      currentPage: 1,
       errorMsg: null,
       infoMsg: null,
       idVaga: null,
       vaga: {},
       vagaInteressados: {},
+      show: false,
     };
   },
   methods: {
@@ -445,10 +401,12 @@ export default {
       });
     },
     findVagas() {
+      this.show = true;
       vagaService
         .getByCompany(this.empresa.informacoes.principais.cnpj)
         .then((vagdas) => {
           this.vagasCadastradas = vagdas.data;
+          this.show = false;
         })
         .catch((error) => {
           this.errorMsg = error;

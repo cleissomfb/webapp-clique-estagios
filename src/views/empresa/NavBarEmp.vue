@@ -7,7 +7,7 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item><router-link to="/empresa/homeEmpresa">Home</router-link></b-nav-item>
+        <b-nav-item><router-link to="/empresa/homeEmpresa"><img src="@/assets/logo_menor.png" alt="Logo menor"></router-link></b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->

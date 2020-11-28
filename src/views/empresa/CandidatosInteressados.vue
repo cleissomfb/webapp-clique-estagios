@@ -6,38 +6,91 @@
           <div class="mt-5">
             <h2 class="title titulos">Usuários Interessados</h2>
           </div>
-          <div class="mt-5">
-            <b-pagination
-              v-model="currentPage"
-              :total-rows="rows"
-              :per-page="perPage"
-              align="center"
-            ></b-pagination>
-            <b-table
-              :responsive="true"
-              :fields="fieldsInteressadosVagas"
-              :items="interessadosVagas"
-              :show-empty="true"
-              :total-rows="rows"
-              :per-page="perPage"
-              :current-page="currentPage"
-              empty-text="Não há usuários interessados."
-              striped
-              hover
-              class="tamanhoFixo"
-            >
-              <template v-slot:cell(actions)="row" style="width: 555px">
-                <b-button
-                  small
-                  class="mr-1"
-                  variant="info"
-                  @click="candidatoInteressado(row.item)"
-                  v-b-tooltip.hover
-                  title="Visualizar a candidato."
-                  ><b-icon icon="file-earmark-text"></b-icon
-                ></b-button>
-              </template>
-            </b-table>
+          <div md="12">
+            <div>
+              <b-overlay :show="show" rounded="sm">
+                <b-row md="12">
+                  <b-col md="12" v-if="interessadosVagas.length == 0">
+                    <p class="text-center my-5">
+                      Ainda não há candidatos para essa vaga.
+                    </p>
+                  </b-col>
+                  <b-col
+                    md="4"
+                    v-for="(input, k) in interessadosVagas.slice(
+                      (currentPage - 1) * perPage,
+                      (currentPage - 1) * perPage + perPage
+                    )"
+                    :key="k"
+                    class="my-4"
+                  >
+                    <b-card>
+                      <template #header>
+                        <div md="12">
+                          <label>{{ input.informacoes.pessoais.nome }}</label>
+                        </div>
+                      </template>
+                      <div md="12">
+                        <b-card-text>
+                          <b-row>
+                            <b-col md="12">
+                              <div>
+                                <div class="subtitulo">
+                                  <label>E-mail</label> <br />
+                                </div>
+                                <label class="item">{{
+                                  input.informacoes.pessoais.email
+                                }}</label>
+                              </div>
+                            </b-col>
+                            <b-col md="6">
+                              <div>
+                                <div class="subtitulo">
+                                  <label>Celular </label> <br />
+                                </div>
+                                <label class="item">{{
+                                  input.informacoes.contato.celular
+                                }}</label>
+                              </div>
+                            </b-col>
+                            <b-col md="6">
+                              <div>
+                                <div class="subtitulo">
+                                  <label>Cidade </label> <br />
+                                </div>
+                                <label class="item">{{
+                                  input.informacoes.endereco.cidade
+                                }}</label>
+                              </div>
+                            </b-col>
+                          </b-row>
+                        </b-card-text>
+                      </div>
+                      <template #footer>
+                        <b-col md="12">
+                          <b-button
+                            small
+                            class="mr-1"
+                            variant="info"
+                            @click="candidatoInteressado(input)"
+                            v-b-tooltip.hover
+                            title="Visualizar a candidato."
+                            ><b-icon icon="file-earmark-text"></b-icon
+                          ></b-button>
+                        </b-col>
+                      </template>
+                    </b-card>
+                  </b-col>
+                </b-row>
+              </b-overlay>
+              <b-pagination
+                v-if="interessadosVagas.length > 0"
+                v-model="currentPage"
+                :per-page="perPage"
+                :total-rows="interessadosVagas.length"
+                align="center"
+              ></b-pagination>
+            </div>
           </div>
         </form>
       </div>
@@ -289,24 +342,35 @@
                 </b-col>
               </b-row>
             </div>
-            <div
-              md="12"
-              class="experiencia"
-              
-            >
+            <div md="12" class="experiencia">
               <b-row>
                 <b-col md="12">
                   <div class="subtitulo">
-                    <label v-if="dadosExperienciaAtualBoolean == true" >Experiência Atual</label>
-                    <label v-if="dadosExperienciaAtualBoolean == false" >Experiência</label>
+                    <label v-if="dadosExperienciaAtualBoolean == true"
+                      >Experiência Atual</label
+                    >
+                    <label v-if="dadosExperienciaAtualBoolean == false"
+                      >Experiência</label
+                    >
                   </div>
                 </b-col>
                 <b-col md="12">
-                  <label v-if="dadosExperienciaAtualBoolean == true" class="item"></label>
-                  <label v-if="dadosExperienciaAtualBoolean == false" class="item">Candidato(a) sem experiência</label>
+                  <label
+                    v-if="dadosExperienciaAtualBoolean == true"
+                    class="item"
+                  ></label>
+                  <label
+                    v-if="dadosExperienciaAtualBoolean == false"
+                    class="item"
+                    >Candidato(a) sem experiência</label
+                  >
                 </b-col>
                 <div></div>
-                <b-col md="6" class="noPaddingRight" v-if="dadosExperienciaAtualBoolean == true">
+                <b-col
+                  md="6"
+                  class="noPaddingRight"
+                  v-if="dadosExperienciaAtualBoolean == true"
+                >
                   <div>
                     <div class="subtitulo">
                       <label class="sub-titulo">Atividade Atual </label> <br />
@@ -323,7 +387,11 @@
                     >
                   </div>
                 </b-col>
-                <b-col md="6" class="noPaddingLeft" v-if="dadosExperienciaAtualBoolean == true">
+                <b-col
+                  md="6"
+                  class="noPaddingLeft"
+                  v-if="dadosExperienciaAtualBoolean == true"
+                >
                   <div>
                     <div class="subtitulo">
                       <label class="sub-titulo">Empresa Atual </label> <br />
@@ -340,7 +408,11 @@
                     >
                   </div>
                 </b-col>
-                <b-col md="6" class="noPaddingRight" v-if="dadosExperienciaAtualBoolean == true">
+                <b-col
+                  md="6"
+                  class="noPaddingRight"
+                  v-if="dadosExperienciaAtualBoolean == true"
+                >
                   <div>
                     <div class="subtitulo">
                       <label class="sub-titulo">Periodo Inicial Atual </label>
@@ -358,7 +430,11 @@
                     >
                   </div>
                 </b-col>
-                <b-col md="6" class="noPaddingLeft" v-if="dadosExperienciaAtualBoolean == true">
+                <b-col
+                  md="6"
+                  class="noPaddingLeft"
+                  v-if="dadosExperienciaAtualBoolean == true"
+                >
                   <div>
                     <div class="subtitulo">
                       <label class="sub-titulo">Periodo Final Atual </label>
@@ -416,8 +492,8 @@ export default {
           thStyle: { width: "35% !important" },
         },
       ],
-      perPage: 5,
-      currentPage: 1,
+      perPage: 6,
+      currentPage: 6,
       errorMsg: null,
       infoMsg: null,
       idVaga: null,
@@ -433,6 +509,7 @@ export default {
       dadosExperienciaPenultimaBoolean: true,
       dadosDisponibilidade: {},
       currentPage: 1,
+      show: false,
     };
   },
   methods: {
@@ -459,11 +536,13 @@ export default {
       });
     },
     findCandidatosVaga(idVaga) {
+      this.show = true;
       vagaService
         .vagaInteressados(idVaga)
         .then((vagas) => {
           this.interessadosVagas = vagas.data;
           console.log(this.interessadosVagas);
+          this.show = false;
         })
         .catch((error) => {
           this.errorMsg = error;
@@ -484,8 +563,8 @@ export default {
 
         if (this.candidato.informacoes.experiencias[0]) {
           this.dadosExperienciaAtual = this.candidato.informacoes.experiencias[0];
-        }else {
-        this.dadosExperienciaAtualBoolean = false;
+        } else {
+          this.dadosExperienciaAtualBoolean = false;
         }
         // this.dadosExperienciaAtualBoolean = false;
 
