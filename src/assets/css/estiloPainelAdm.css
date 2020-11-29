@@ -250,7 +250,7 @@
 	position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: red;
+  /* background-color: red; */
   color: #FFFFFF;
   border-radius: 50vh;
   border: none;

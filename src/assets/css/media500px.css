@@ -122,7 +122,13 @@
     padding-right: 4px;
   }
 
+  .imagem-oportunidade {
+    background-size: auto auto;
+    background-position: 35% 0%
+  }
+
   .imagem-busque-oportunidades {
     height: 520px;
   }
+
 }
