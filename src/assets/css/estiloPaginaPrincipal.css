@@ -22,6 +22,69 @@
   color: #2ad2b3 !important;
 }
 
+/* Imagem Oportunidade */
+.imagem-oportunidade {
+  width: 100%;
+  float: left;
+  background-image: url(../imagens/bg_oportunidades.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top center;
+  display: table;
+  margin-top: -20px;
+  min-height: 800px !important;
+  height: 800px !important;
+}
+
+/* Busque Oportunidades */
+.imagem-busque-oportunidades {
+  width: 100%;
+  background-image: url(../imagens/FormasGrad.png);
+  background-size: auto;
+  background-position: top center;
+  background-repeat: repeat-x;
+  height: 380px;
+}
+.busque-oportunidades {
+  width: 100%;
+  float: left;
+  text-align: center;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.busque-oportunidades h1 {
+  margin-top: 50px;
+  font-size: 35px;
+  font-weight: 700;
+  color: #2ad2b3;
+  font-style: normal;
+  text-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+}
+
+.busque-oportunidades .text-busque-oportunidade {
+  text-align: center;
+  margin: 0 auto;
+}
+.busque-oportunidades p {
+  margin-top: 25px;
+  padding: 25px;
+  font-weight: 400;
+  font-size: 115%;
+}
+
+.busque-oportunidades .btn-busque-oportunidade {
+  margin-top: 25px !important;
+}
+
+.busque-oportunidades .small-btn-busque-oportunidade {
+  font-weight: 600 !important;
+}
+
+.busque-oportunidades .small-btn-busque-oportunidade a:hover{
+  color: #2ad2b3 !important;
+}
+
 /* Instituicoes Parceiras */
 .instituicao {
   width: 100%;

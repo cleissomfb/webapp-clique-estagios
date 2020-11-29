@@ -1,6 +1,6 @@
 @media only screen and (max-width: 500px) {
   .card-container {
-    width: calc(100vw - 54px) !important;;
+    width: calc(100vw - 54px) !important;
   }
   .contato {
     height: 330px;
@@ -120,5 +120,9 @@
 
   .btn-up .icon {
     padding-right: 4px;
+  }
+
+  .imagem-busque-oportunidades {
+    height: 520px;
   }
 }

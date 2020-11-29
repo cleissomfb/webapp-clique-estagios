@@ -1,5 +1,5 @@
 <template>
-  <div class="instituicao section mt-5">
+  <div class="instituicao section">
     <div class="container">
       <b-row>
         <b-col md="12">
