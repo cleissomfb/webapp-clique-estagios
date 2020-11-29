@@ -6,14 +6,16 @@ import VueAxios from 'vue-axios'
 import 'babel-polyfill'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
-import './assets/estiloUniversal.css'
+import './assets/css/estiloPainelAdm.css'
+import './assets/css/estiloPaginaPrincipal.css'
+import './assets/css/media500px.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueMask from 'v-mask'
 import Vuelidate from 'vuelidate'
-// import { btnTop } from './assets/btn-top.js'
+import './assets/js/scroller.js'
 
 Vue.use(Vuelidate)
 Vue.use(VueMask)
@@ -22,10 +24,6 @@ Vue.use(IconsPlugin)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(VueAxios, axios)
-
-// Vue.use(btnTop)
-
-
 
 Vue.config.productionTip = false
 

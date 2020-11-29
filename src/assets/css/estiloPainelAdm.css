@@ -1,6 +1,6 @@
 .containerImagem {
   width: 100%;
-  background-image: url(./FormasGrad.png);
+  background-image: url(../imagens/FormasGrad.png);
   background-size: auto;
   background-position: top center;
   background-repeat: repeat-x;
@@ -30,7 +30,7 @@
   margin-bottom: 20px;
   height: 38px;
   padding-bottom: 3px;
-  background-image: url(./sep.png);
+  background-image: url(../imagens/sep.png);
   background-repeat: repeat-x;
   background-position: bottom left;
 }
@@ -85,7 +85,7 @@
 .imagemHome {
   width: 100%;
   float: left;
-  background-image: url(./FormasColor.png);
+  background-image: url(../imagens/FormasColor.png);
   background-position: top center;
   min-height: 800px !important;
   height: 800px !important;
@@ -93,7 +93,7 @@
 .imagemConteiner {
   width: 100%;
   float: left;
-  background-image: url(./bg_candidatos.jpg);
+  background-image: url(../imagens/bg_candidatos.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-position: top center;
@@ -155,78 +155,6 @@
   color: #2ad2b3 !important;
 }
 
-/* Contato */
-.contato {
-  width: 100%;
-  float: left;
-  background-color: #2ad2b3;
-  height: 320px;
-  /* display: table; */
-  padding-top: 30px;
-  padding-bottom: 30px;
-  background-image: url(./bg_formas_white.png);
-}
-
-.contato-logo {
-  text-align: center;
-}
-
-.contato-logo img{
-  background-repeat: no-repeat;
-  width: auto;
-  height: 60px;
-}
-
-.contato-mapa {
-  margin-top: 35px;
-}
-
-.contato-mapa iframe{
-  width: 550px;
-  border-radius: 15px;
-}
-
-.contato-endereco {
-  float: left;
-  text-align: left;
-  list-style: none;
-  padding-left: 75px;
-  margin-top: 33px;
-  border: 2px solid #FFFFFF;
-  border-radius: 15px;
-  background-color: #fff;
-  height: 155px;
-  padding-top: 5px;
-  margin-left: 10px;
-  width: 525px;
-}
-
-.contato-endereco ion-icon {
-  padding-right: 10px;
-  font-size: 120%;
-}
-
-.contato-endereco h4 {
-  color: #2ad2b3;
-  line-height: 10px;
-  font-size: 15px !important;
-  font-weight: 700;
-  margin-top: 7px;
-}
-
-/* Footer */
-.footer {
-  width: 100%;
-  float: left;
-  font-size: 10px;
-  line-height: 17px;
-  color: #9E9E9E;
-  background-color: #252525;
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
 /* Modal de Visuzação da Vaga */
 #visualizarVaga {
   margin-top: 28px;
@@ -286,8 +214,8 @@
 }
 
 .experiencia {
-  /* border: solid 2px #2ad2b3 !important; */
   margin: 15px !important;
+  width: 100%;
 }
 
 /* Cards */
@@ -329,90 +257,6 @@
   width: 50px;
   height: 50px;
   display: none;
-}
-
-
-@media only screen and (max-width: 500px) {
-  .card-container {
-    width: 350px;
-  }
-  .contato {
-    height: 290px;
-  }
-
-  .contato-logo img {
-    height: 45px;
-  }
-
-  .contato-mapa {
-    display: none;
-  }
-
-  .contato-endereco {
-    padding-left: 0px;
-    /* text-align: center; */
-    margin-top: 10px;
-    background-color: #FFFFFF !important;
-    border: 2px solid #FFFFFF;
-    padding-left: 10px;
-    max-width: calc(100vw - 50px);
-    height: 175px;
-  }
-
-  .contato-endereco h4 {
-    font-size: 12px !important;
-    line-height: 20px;
-    color: #2ad2b3;
-  }
-
-  .noBorderMobile {
-    padding-right: 0px !important;
-    padding-left: 0px !important;
-  }
-
-  .container-visualizar-vaga .noPaddingLeft {
-    padding-left: none !important;
-  }
-  .container-visualizar-vaga .noPaddingRight {
-    padding-right: none !important;
-  }
-
-  .tamanhoFixo {
-    display:block; 
-    width:auto; 
-    max-width: calc(100vw - 65px);
-    overflow-x: auto; 
-    white-space: nowrap;
-  }
-
-  .container-visualizar-vaga col-md-12 col-md-4 col-md-6 {
-    /* padding: 0 !important; */
-    padding-right: 0 !important;
-    padding-left:  0 !important;
-  }
-
-  .titulos {
-    font-size: 25px;
-    text-align: center;
-  }
-
-  .container-visualizar-vaga {
-    text-align: center;
-    border: solid 2px #2ad2b3 !important;
-    /* width: auto !important; */
-    width: calc(100vw - 54px) !important;
-    height: 350px !important;
-    overflow: auto !important;
-    padding: 0 !important;
-  }
-
-  .navbar .navbar-nav .nav-item .nav-link img {
-    height: 25px;
-  }
-
-  .card {
-    height: auto;
-  }
 }
 
 /* Styles dos Paginator */

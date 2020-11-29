@@ -20,7 +20,7 @@ import SidebarUser from "./SideBarUser";
 import Contato from "../paginaInicial/Contato.vue";
 import Footer from "../paginaInicial/Footer.vue";
 
-import { btnTop } from "@/assets";
+import { btnTop } from "@/assets/js";
 
 export default {
   name: "Usuario",

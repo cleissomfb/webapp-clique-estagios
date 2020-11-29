@@ -1,0 +1,124 @@
+@media only screen and (max-width: 500px) {
+  .card-container {
+    width: calc(100vw - 54px) !important;;
+  }
+  .contato {
+    height: 330px;
+  }
+
+  .contato-logo img {
+    height: 45px;
+  }
+
+  .contato-mapa {
+    display: none;
+  }
+
+  .contato-endereco {
+    padding-left: 0px;
+    /* text-align: center; */
+    margin-top: 20px;
+    background-color: #FFFFFF !important;
+    border: 2px solid #FFFFFF;
+    padding-left: 10px;
+    max-width: calc(100vw - 50px);
+    height: 175px;
+  }
+
+  .contato-endereco h4 {
+    font-size: 12px !important;
+    line-height: 20px;
+    color: #2ad2b3;
+  }
+
+  .contato .contato-rede-social {
+    margin-top: 20px;
+  }
+
+  .noBorderMobile {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  /* .container-visualizar-vaga .noPaddingLeft {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .container-visualizar-vaga .noPaddingRight {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  } */
+
+  .tamanhoFixo {
+    display:block; 
+    width:auto; 
+    max-width: calc(100vw - 65px);
+    overflow-x: auto; 
+    white-space: nowrap;
+  }
+
+  /* .container-visualizar-vaga col-md-12 col-md-4 col-md-6 {
+    padding: 0 !important;
+    padding-right: 0 !important;
+    padding-left:  0 !important;
+  } */
+
+  .container-visualizar-vaga .noPaddingLeft {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .container-visualizar-vaga .noPaddingRight {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .titulos {
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .container-visualizar-vaga {
+    text-align: center;
+    border: solid 2px #2ad2b3 !important;
+    /* width: auto !important; */
+    width: calc(100vw - 54px) !important;
+    height: 350px !important;
+    overflow: auto !important;
+    padding: 0 !important;
+  }
+
+  .navbar .navbar-nav .nav-item .nav-link img {
+    height: 25px;
+  }
+
+  .card {
+    height: auto;
+  }
+
+  .instituicao {
+    height: 270px;
+  }
+
+  .instituicao .title-instituicao {
+    font-size: 25px;
+  }
+
+  #scroller li {
+    width: auto;
+    min-width: 100px;
+    background-size: 100px auto;
+    height: 100px;
+  }
+
+  .btn-up {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px !important;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .btn-up .icon {
+    padding-right: 4px;
+  }
+}

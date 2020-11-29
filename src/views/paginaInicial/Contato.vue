@@ -4,7 +4,7 @@
       <b-row>
         <b-col md="12">
           <div class="contato-logo">
-             <img src="@/assets/logo_total.png" />
+             <img src="@/assets/imagens/logo_total.png" />
           </div>
         </b-col>
         <b-col md="6">
@@ -27,6 +27,14 @@
             <h4><ion-icon name="time-outline"></ion-icon>09:00 às 18:00 </h4>
             <h4><ion-icon name="calendar-outline"></ion-icon>Segunda a Sexta-feira, sem fechar ao meio
               dia.</h4>
+          </div>
+        </b-col>
+        <b-col md="12">
+          <div class="contato-rede-social">
+            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
           </div>
         </b-col>
       </b-row>

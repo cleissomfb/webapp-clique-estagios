@@ -1,26 +1,37 @@
 <template>
   <div>
     <NavbarPaginaInicial />
-    
-    <div class="mt-5 mb-5">
-      <h1 class="text-center">Página Inicial</h1>
-    </div>
+    <InstituicoesParceiras />
     <Contato />
     <Footer />
+    <div id="voltarTopo">
+      <b-button id="btnTop" @click="backToTop()" class="btn-up"
+        ><b-icon class="icon" icon="arrow-up"></b-icon
+      ></b-button>
+    </div>
   </div>
 </template>
 
 <script>
 import NavbarPaginaInicial from "./NavbarPaginaInicial";
+import InstituicoesParceiras from "./InstituicoesParceiras";
 import Contato from "./Contato";
-import Footer from "./Footer"
+import Footer from "./Footer";
+
+import { btnTop } from "@/assets/js";
 
 export default {
   name: "PaginaInicial",
   components: {
     NavbarPaginaInicial,
+    InstituicoesParceiras,
     Contato,
-    Footer
+    Footer,
+  },
+  methods: {
+    backToTop() {
+      btnTop.backToTop();
+    },
   },
 };
 </script>
