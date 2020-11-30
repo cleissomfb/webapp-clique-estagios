@@ -26,8 +26,7 @@
                 veritatis hic quidem, sunt, aut nesciunt incidunt sed quasi
                 earum. Reiciendis, quis?
                 <cite>
-                  <img src="@/assets/imagens/customer-1.jpg" alt="depoimento 2" />Ana
-                  Carolina
+                  <img src="@/assets/imagens/customer-1.jpg" alt="depoimento 2" />Gustavo 
                 </cite>
               </blockquote>
             </b-col>
@@ -38,8 +37,7 @@
                 veritatis hic quidem, sunt, aut nesciunt incidunt sed quasi
                 earum. Reiciendis, quis?
                 <cite>
-                  <img src="@/assets/imagens/customer-2.jpg" alt="depoimento 3" />Ana
-                  Carolina
+                  <img src="@/assets/imagens/customer-2.jpg" alt="depoimento 3" />Flávia Dias
                 </cite>
               </blockquote>
             </b-col>

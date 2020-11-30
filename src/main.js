@@ -16,6 +16,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueMask from 'v-mask'
 import Vuelidate from 'vuelidate'
 import './assets/js/scroller.js'
+import { CarouselPlugin } from 'bootstrap-vue'
+Vue.use(CarouselPlugin)
 
 Vue.use(Vuelidate)
 Vue.use(VueMask)

@@ -1,5 +1,5 @@
 <template>
-  <div class="section mt-5 imagem-oportunidade">
+  <div class="section imagem-oportunidade ">
     <div class="imagem-pagina-inicial">
       <div class="container"></div>
     </div>

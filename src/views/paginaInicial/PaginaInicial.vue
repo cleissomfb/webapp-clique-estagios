@@ -1,6 +1,7 @@
 <template>
   <div>
     <NavbarPaginaInicial />
+    <VagasDisponiveis />
     <ImagemOportunidade />
     <BusqueOportunidades />
     <Depoimentos />
@@ -17,6 +18,7 @@
 
 <script>
 import NavbarPaginaInicial from "./NavbarPaginaInicial";
+import VagasDisponiveis from "./VagasDisponiveis"
 import ImagemOportunidade from "./ImagemOportunidade";
 import BusqueOportunidades from "./BusqueOportunidades"
 import Depoimentos from "./Depoimentos"
@@ -30,6 +32,7 @@ export default {
   name: "PaginaInicial",
   components: {
     NavbarPaginaInicial,
+    VagasDisponiveis,
     ImagemOportunidade,
     BusqueOportunidades,
     Depoimentos,
