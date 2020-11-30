@@ -1,6 +1,5 @@
 <template>
   <div class="section">
-   
     <div class="busque-oportunidades ">
        <div class="imagem-busque-oportunidades">
       <div class="container">

@@ -3,6 +3,7 @@
     <NavbarPaginaInicial />
     <ImagemOportunidade />
     <BusqueOportunidades />
+    <Depoimentos />
     <InstituicoesParceiras />
     <Contato />
     <Footer />
@@ -18,6 +19,7 @@
 import NavbarPaginaInicial from "./NavbarPaginaInicial";
 import ImagemOportunidade from "./ImagemOportunidade";
 import BusqueOportunidades from "./BusqueOportunidades"
+import Depoimentos from "./Depoimentos"
 import InstituicoesParceiras from "./InstituicoesParceiras";
 import Contato from "./Contato";
 import Footer from "./Footer";
@@ -30,6 +32,7 @@ export default {
     NavbarPaginaInicial,
     ImagemOportunidade,
     BusqueOportunidades,
+    Depoimentos,
     InstituicoesParceiras,
     Contato,
     Footer,

@@ -123,8 +123,9 @@
   }
 
   .imagem-oportunidade {
-    background-size: auto auto;
-    background-position: 35% 0%
+    /* background-size: auto auto;
+    background-position: 35% 0% */
+    display: none;
   }
 
   .imagem-busque-oportunidades {
