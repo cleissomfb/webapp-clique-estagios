@@ -22,6 +22,35 @@
   color: #2ad2b3 !important;
 }
 
+/* Pagina Inicial Top */
+.imagem-topo {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../imagens/estudante-escola.jpg);
+  position: relative;
+  background-color: #FFFFFF !important;
+  width: 100%;
+  height: 650px;
+  background-position: top center;
+  background-size: 100% auto;
+  background-attachment: fixed;
+  display: block;
+}
+
+.imagem-topo .referencia {
+  position: absolute;
+	left: 30%;
+  top: 45%;
+}
+
+/* .imagem-topo .referencia img {
+
+} */
+
+.imagem-top .btn .btn-empresa{
+  position: absolute;
+	left: 30%;
+  top: 45%;
+}
+
 /* Imagem Oportunidade */
 .imagem-oportunidade {
   width: 100%;

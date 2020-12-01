@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <div class="depoimentos mt-5">
+    <div class="depoimentos">
       <div class="imagem-depoimentos">
         <div class="container">
           <form class="col-md-12 ml-auto mr-auto">

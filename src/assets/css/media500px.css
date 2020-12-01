@@ -132,4 +132,18 @@
     height: 520px;
   }
 
+  .imagem-topo {
+    height: 420px;
+    /* background-position: center center; */
+    background-size: auto 490px;
+  }
+  .imagem-topo .referencia {
+    left: 20%;
+  }
+
+  .imagem-topo .referencia img{
+    width: auto;
+    height: 50px;
+  }
+
 }
