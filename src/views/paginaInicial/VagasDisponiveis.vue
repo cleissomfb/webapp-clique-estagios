@@ -4,11 +4,11 @@
       <div class="imagem-depoimentos">
         <div class="container">
           <form class="col-md-12 ml-auto mr-auto">
-            <div class="mt-5">
-              <h2 class="title titulos">Visualizar Vagas</h2>
+            <div>
+              <h2 class="title titulo-vagas">Visualizar Vagas</h2>
             </div>
             <div md="12">
-              <div>
+              <div class="mt-5 mb-5">
                 <b-overlay :show="show" rounded="sm">
                   <b-row md="12">
                     <b-col md="12" v-if="vagasDisponiveis.length == 0">
@@ -16,73 +16,77 @@
                         Ainda não há vagas cadastradas.
                       </p>
                     </b-col>
-                    <b-col
-                      md="3"
-                      v-for="(input, k) in vagasDisponiveis.slice(
-                        (currentPage - 1) * perPage,
-                        (currentPage - 1) * perPage + perPage
-                      )"
-                      :key="k"
-                      class="my-4"
-                    >
-                      <b-card>
-                        <template #header>
-                          <div md="12">
-                            <label>{{ input.titulo }}</label>
-                          </div>
-                        </template>
-                        <div md="12">
-                          <b-card-text>
-                            <b-row>
+                    <b-col md="12">
+                      <swiper
+                        class="swiper"
+                        ref="swiper"
+                        :options="swiperOption"
+                      >
+                        <swiper-slide
+                          v-for="(input, k) in vagasDisponiveis"
+                          :key="k"
+                        >
+                          <b-card class="mx-2">
+                            <template #header>
+                              <div md="12">
+                                <label>{{ input.titulo }}</label>
+                              </div>
+                            </template>
+                            <div md="12">
+                              <b-card-text>
+                                <b-row>
+                                  <b-col md="12">
+                                    <div>
+                                      <div class="subtitulo">
+                                        <label>Atividade </label> <br />
+                                      </div>
+                                      <label class="item">{{
+                                        input.atividades
+                                      }}</label>
+                                    </div>
+                                  </b-col>
+                                  <b-col md="12">
+                                    <div>
+                                      <div class="subtitulo">
+                                        <label>Remuneração</label> <br />
+                                      </div>
+                                      <label class="item">{{
+                                        input.remuneracao
+                                      }}</label>
+                                    </div>
+                                  </b-col>
+                                </b-row>
+                              </b-card-text>
+                            </div>
+                            <template #footer>
                               <b-col md="12">
-                                <div>
-                                  <div class="subtitulo">
-                                    <label>Atividade </label> <br />
-                                  </div>
-                                  <label class="item">{{
-                                    input.atividades
-                                  }}</label>
-                                </div>
+                                <b-button
+                                  small
+                                  class="mr-1"
+                                  variant="info"
+                                  @click="visualizarVaga(input)"
+                                  v-b-tooltip.hover
+                                  title="Visualizar a vaga"
+                                  ><b-icon icon="file-earmark-text"></b-icon
+                                ></b-button>
                               </b-col>
-                              <b-col md="12">
-                                <div>
-                                  <div class="subtitulo">
-                                    <label>Remuneração</label> <br />
-                                  </div>
-                                  <label class="item">{{
-                                    input.remuneracao
-                                  }}</label>
-                                </div>
-                              </b-col>
-                            </b-row>
-                          </b-card-text>
-                        </div>
-                        <template #footer>
-                          <b-col md="12">
-                            <b-button
-                              small
-                              class="mr-1"
-                              variant="info"
-                              @click="visualizarVaga(input)"
-                              v-b-tooltip.hover
-                              title="Visualizar a vaga"
-                              ><b-icon icon="file-earmark-text"></b-icon
-                            ></b-button>
-                          </b-col>
-                        </template>
-                      </b-card>
+                            </template>
+                          </b-card>
+                        </swiper-slide>
+                        <div class="swiper-pagination" slot="pagination"></div>
+                        <!-- <div
+                          class="swiper-button-prev"
+                          slot="button-prev"
+                        ></div>
+                        <div
+                          class="swiper-button-next"
+                          slot="button-next"
+                        ></div> -->
+                      </swiper>
                     </b-col>
                   </b-row>
                 </b-overlay>
               </div>
-              <b-pagination
-                v-if="vagasDisponiveis.length > 0"
-                v-model="currentPage"
-                :per-page="perPage"
-                :total-rows="vagasDisponiveis.length"
-                align="center"
-                class="mt-5"
-              ></b-pagination>
             </div>
           </form>
         </div>
@@ -277,7 +281,7 @@
               Voltar
             </b-button>
           </template>
-        </b-modal> 
+        </b-modal>
         <b-modal
           id="cancelarPerfilUsuario"
           centered
@@ -285,7 +289,8 @@
           title="Ops, atenção!"
         >
           <p class="my-2">
-            Você precisa estar logado para se candidatar a vaga, gostaria de fazer login?
+            Você precisa estar logado para se candidatar a vaga, gostaria de
+            fazer login?
           </p>
           <template #modal-footer>
             <b-button
@@ -313,8 +318,15 @@
 
 <script>
 import { vagaService } from "@/service";
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import "@/assets/css/swiper.css";
+
 export default {
   name: "VagasDisponiveis",
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   data() {
     return {
       vagasDisponiveis: [],
@@ -324,6 +336,40 @@ export default {
       idVaga: null,
       vaga: {},
       show: false,
+
+      swiperOption: {
+        loop: true,
+        effect: "fade",
+
+        // If we need pagination
+        pagination: {
+          el: ".swiper-pagination",
+        },
+
+        // Navigation arrows
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+        },
+      },
     };
   },
   methods: {
@@ -391,9 +437,12 @@ export default {
     rows() {
       return this.vagasDisponiveis.length;
     },
+    swiper() {
+      return this.$refs.mySwiper.$swiper;
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
 </style>

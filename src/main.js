@@ -15,9 +15,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueMask from 'v-mask'
 import Vuelidate from 'vuelidate'
-import './assets/js/scroller.js'
-import { CarouselPlugin } from 'bootstrap-vue'
-Vue.use(CarouselPlugin)
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+// import style (>= Swiper 6.x)
+// import 'swiper/swiper-bundle.css'
+
+Vue.use(VueAwesomeSwiper)
 
 Vue.use(Vuelidate)
 Vue.use(VueMask)

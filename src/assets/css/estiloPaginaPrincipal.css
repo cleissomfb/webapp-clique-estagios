@@ -41,9 +41,10 @@
   top: 45%;
 }
 
-/* .imagem-topo .referencia img {
-
-} */
+/* Vagas Disponiveis */
+.titulo-vagas {
+  color: #2ad2b3;
+}
 
 .imagem-top .btn .btn-empresa{
   position: absolute;
