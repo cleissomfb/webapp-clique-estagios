@@ -305,6 +305,10 @@
   height: 60px;
 }
 
+.col-12-contato-endereco .contato-endereco{
+  display: none;
+}
+
 .contato-mapa {
   margin-top: 35px;
 }

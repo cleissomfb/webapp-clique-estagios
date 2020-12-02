@@ -1,6 +1,6 @@
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 720px) {
   .card-container {
-    width: calc(100vw - 54px) !important;
+    /* width: calc(100vw - 54px) !important; */
   }
   .contato {
     height: 330px;
@@ -10,13 +10,29 @@
     height: 45px;
   }
 
-  .col-6-contato-endereco {
+  .col-12-contato-endereco {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .col-12-contato-endereco .contato-endereco {
+    display: block !important;
+  }
+
+  .col-6-contato-endereco .contato-endereco{
     display: none !important;
   }
 
-  .contato-mapa {
-    display: none;
+  .col-6-contato-mapa .contato-mapa{
+    display: none !important;
   }
+
+  /* .contato-mapa{
+    display: none;
+  } */
 
   .contato-endereco {
     padding-left: 0px;
@@ -84,8 +100,8 @@
   .container-visualizar-vaga {
     text-align: center;
     border: solid 2px #2ad2b3 !important;
-    /* width: auto !important; */
-    width: calc(100vw - 54px) !important;
+    width: auto !important;
+    /* width: calc(100vw - 54px) !important; */
     height: 350px !important;
     overflow: auto !important;
     padding: 0 !important;
@@ -142,7 +158,7 @@
     background-size: auto 490px;
   }
   .imagem-topo .referencia {
-    left: 20%;
+    left: 35%;
   }
 
   .imagem-topo .referencia img{
