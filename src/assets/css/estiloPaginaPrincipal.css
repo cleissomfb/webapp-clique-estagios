@@ -360,3 +360,12 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.descrVagas {
+  padding: 0 !important;
+  margin: 0;
+}
+
+.vagaContainer {
+  width: 100% !important;
+}
