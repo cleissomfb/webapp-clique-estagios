@@ -338,7 +338,7 @@ export default {
       show: false,
 
       swiperOption: {
-        loop: true,
+        // loop: true,
         effect: "fade",
 
         // If we need pagination
@@ -392,6 +392,7 @@ export default {
 
     visualizarVaga(vaga) {
       this.$bvModal.show("visualizarVaga");
+      console.log("passei aqui")
       this.show = true;
       this.idVaga = vaga._id;
       vagaService
