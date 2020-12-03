@@ -1,13 +1,13 @@
 <template>
   <div class="instituicao section">
-    <div class="container">
+    <div class="">
       <b-row>
         <b-col md="12">
           <h1 class="title-instituicao">Instituições de Ensino Parceiras</h1>
         </b-col>
         <b-col md="12">
           <div id="scroller">
-            <div class="innerScrollArea">
+            <div class="innerScrollArea descrVagas">
               <ul>
                 <li class="imagem-1"></li>
                 <li class="imagem-2"></li>

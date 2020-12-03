@@ -1831,9 +1831,9 @@ export default {
           localStorage.setItem("usuario", JSON.stringify(this.usuario));
         })
         .catch((error) => {
-          this.errorMsg = error;
-          // this.errorMsg = "Erro ao criar a lista.";
-          console.log(error);
+          // this.errorMsg = error;
+          this.errorMsg = "Erro ao editar o perfil do candidato.";
+          // console.log(error);
           this.showAlertDanger();
         });
     },
@@ -1871,6 +1871,7 @@ export default {
         appendToast: append,
         variant: "success",
         solid: true,
+        toaster: "b-toaster-bottom-right",
       });
     },
     showAlertDanger(append = false) {
@@ -1881,6 +1882,7 @@ export default {
         appendToast: append,
         variant: "danger",
         solid: true,
+        toaster: "b-toaster-bottom-right",
       });
     },
     cancelarPerfilUsuario() {
@@ -1945,7 +1947,7 @@ export default {
     }
 
     // Experieências
-    console.log(this.usuario.informacoes.experiencias);
+    // console.log(this.usuario.informacoes.experiencias);
     if (this.usuario.informacoes.experiencias.length > 0) {
       for (let i = 0; i <= this.usuario.informacoes.experiencias.length; i++) {
         const experiencia = this.usuario.informacoes.experiencias[i];

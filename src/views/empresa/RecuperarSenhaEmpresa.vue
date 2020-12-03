@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavbarPaginaInicial />
-    <h1>Recuperar senha da empresa</h1>
+    <h1 class="mt-5 text-center">Página em Desenvolvimento</h1>
   </div>
 </template>
 

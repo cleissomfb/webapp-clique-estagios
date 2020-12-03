@@ -167,10 +167,22 @@
 .container-visualizar-vaga {
   text-align: center;
   border: solid 2px #2ad2b3 !important;
-  /* width: auto;
-  height: 350px;
-  overflow: auto;
-  padding: 0 !important; */
+  width: auto !important;
+  /* width: calc(100vw - 54px) !important; */
+  height: 350px !important;
+  overflow: auto !important;
+  padding: 0 !important;
+}
+
+.container-visualizar-vaga::-webkit-scrollbar-track {
+  background-color: #F4F4F4;
+}
+.container-visualizar-vaga::-webkit-scrollbar {
+  width: 6px;
+  background: #F4F4F4;
+}
+.container-visualizar-vaga::-webkit-scrollbar-thumb {
+  background: #dad7d7;
 }
 
 .container-visualizar-vaga .titulo-vaga{
@@ -198,6 +210,12 @@
 }
 
 .container-visualizar-vaga .subtitulo .item {
+  color: #212529;
+  font-weight: normal;
+}
+
+.container-visualizar-vaga .subtitulo .itemCurso {
+  white-space: normal;
   color: #212529;
   font-weight: normal;
 }

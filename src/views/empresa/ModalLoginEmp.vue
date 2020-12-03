@@ -65,9 +65,9 @@ export default {
       localStorage.removeItem("empresa");
 
       await signInEmp(this.loginEmp, this.senhaEmp).catch((error) => {
-        console.log(error);
-        //this.errorMsg = "Usuário ou senha inválidos.";
-        this.errorMsg = error;
+        // console.log(error);
+        this.errorMsg = "CNPJ ou senha inválidos.";
+        // this.errorMsg = error;
         this.showAlertDanger();
       });
       this.show = false;
@@ -81,6 +81,7 @@ export default {
         appendToast: append,
         variant: "danger",
         solid: true,
+        toaster: "b-toaster-bottom-right",
       });
     },
   },

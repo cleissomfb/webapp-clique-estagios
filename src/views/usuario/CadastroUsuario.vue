@@ -1993,6 +1993,7 @@ export default {
         appendToast: append,
         variant: "success",
         solid: true,
+        toaster: "b-toaster-bottom-right",
       });
     },
     showAlertDanger(append = false) {
@@ -2003,6 +2004,7 @@ export default {
         appendToast: append,
         variant: "danger",
         solid: true,
+        toaster: "b-toaster-bottom-right",
       });
     },
     cancelarCadastroCandicato() {

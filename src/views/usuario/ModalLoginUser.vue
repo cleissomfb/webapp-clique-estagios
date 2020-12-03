@@ -66,12 +66,23 @@ export default {
 
       await signInUser(this.loginUser, this.senhaUser).catch((error) => {
         console.log(error);
-        //this.errorMsg = "Usuário ou senha inválidos.";
+        this.errorMsg = "CPF ou senha inválidos.";
         // this.errorMsg = error
-        //this.showAlertDanger();
+        this.showAlertDanger();
       });
        this.show = false;
       this.$router.push("/usuario/homeUsuario");
+    },
+    showAlertDanger(append = false) {
+      this.toastCount++;
+      this.$bvToast.toast(this.errorMsg, {
+        title: "Error",
+        autoHideDelay: 5000,
+        appendToast: append,
+        variant: "danger",
+        solid: true,
+        toaster: "b-toaster-bottom-right",
+      });
     },
   },
 };
