@@ -1,0 +1,13 @@
+@media only screen and (max-width: 1200px) {
+
+  .contato-mapa iframe{
+    width: 460px;
+    border-radius: 15px;
+  }
+
+  .contato-endereco {
+    padding-left: 40px;
+    width: 460px;
+  }
+
+}
