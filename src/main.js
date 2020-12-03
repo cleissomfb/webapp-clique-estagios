@@ -9,6 +9,9 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+// Import da função que rola automaticamente as instituições parceiras
+import './assets/js/scroller.js'
+
 // Import do CSS do estilo o painelAdm
 import './assets/css/estiloPainelAdm.css'
 
