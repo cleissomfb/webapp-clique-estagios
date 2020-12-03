@@ -1880,6 +1880,7 @@ export default {
       console.log(this.$v.usuario.confirmarSenha);
       this.$v.$touch();
       if (this.$v.$invalid) {
+        this.show = false;
         return;
       }
 
