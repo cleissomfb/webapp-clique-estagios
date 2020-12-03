@@ -676,6 +676,11 @@
     </div>
     <Contato />
     <Footer />
+    <div id="voltarTopo">
+      <b-button id="btnTop" @click="backToTop()" class="btn-up"
+        ><b-icon class="icon" icon="arrow-up"></b-icon
+      ></b-button>
+    </div>
   </div>
 </template>
 
@@ -685,6 +690,7 @@ import Contato from "../paginaInicial/Contato";
 import Footer from "../paginaInicial/Footer";
 import { buscarCepService, empresaService } from "@/service";
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { btnTop } from "@/assets/js";
 
 export default {
   name: "NovaEmpresa",
@@ -836,6 +842,9 @@ export default {
     },
   },
   methods: {
+    backToTop() {
+      btnTop.backToTop();
+    },
     searchCep() {
       const parsed = this.cep
         .normalize("NFD")
