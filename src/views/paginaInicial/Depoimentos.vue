@@ -9,10 +9,7 @@
             </b-col>
             <b-col md="4">
               <blockquote>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatum dolor ut corporis amet ab unde quo placeat est
-                veritatis hic quidem, sunt, aut nesciunt incidunt sed quasi
-                earum. Reiciendis, quis?
+                Encontrei meu primeiro estágio como desenvolvedor de sistemas no Clique Estágios. Encontrei a vaga perfeita para mim e em poucas horas já recebi o contato da empresa.
                 <cite>
                   <img src="@/assets/imagens/depo1.jpg" alt="depoimento 1" />Ana
                   Carolina
@@ -21,21 +18,15 @@
             </b-col>
             <b-col md="4">
               <blockquote>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatum dolor ut corporis amet ab unde quo placeat est
-                veritatis hic quidem, sunt, aut nesciunt incidunt sed quasi
-                earum. Reiciendis, quis?
+                O site é bonito e responsivo. Várias empresas de vários ramos procuram profissionais aqui na Clique Estágios. É um ótimo lugar para encontrar o seu cargo perfeito.
                 <cite>
-                  <img src="@/assets/imagens/customer-1.jpg" alt="depoimento 2" />Gustavo 
+                  <img src="@/assets/imagens/customer-1.jpg" alt="depoimento 2" />Luís Gustavo
                 </cite>
               </blockquote>
             </b-col>
             <b-col md="4">
               <blockquote>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatum dolor ut corporis amet ab unde quo placeat est
-                veritatis hic quidem, sunt, aut nesciunt incidunt sed quasi
-                earum. Reiciendis, quis?
+                O Clique Estágios me ajudou num momento difícil. Estava há 7 meses sem me encontrar no mercado de trabalho. Encontrei diversas vagas correspondentes ao meu perfil e fui aceito em uma delas. Clique Estágios mudou a minha vida.
                 <cite>
                   <img src="@/assets/imagens/customer-2.jpg" alt="depoimento 3" />Flávia Dias
                 </cite>
