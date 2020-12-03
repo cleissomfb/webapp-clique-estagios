@@ -1458,6 +1458,11 @@
     </div>
     <Contato />
     <Footer />
+     <div id="voltarTopo">
+      <b-button id="btnTop" @click="backToTop()" class="btn-up"
+        ><b-icon class="icon" icon="arrow-up"></b-icon
+      ></b-button>
+    </div>
   </div>
 </template>
 
@@ -1467,6 +1472,7 @@ import Contato from "../paginaInicial/Contato";
 import Footer from "../paginaInicial/Footer";
 import { buscarCepService, usuarioService } from "@/service";
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { btnTop } from "@/assets/js";
 
 export default {
   name: "NovoUsuario",
@@ -1499,6 +1505,7 @@ export default {
       // Card de Endereço
       cep: "",
       data: {},
+      show: false,
 
       // Card de Habilidades
       selectedHabilidades: [],
@@ -1845,6 +1852,9 @@ export default {
     },
   },
   methods: {
+    backToTop() {
+      btnTop.backToTop();
+    },
     searchCep() {
       const parsed = this.cep
         .normalize("NFD")
@@ -1853,12 +1863,12 @@ export default {
         this.show = true;
         buscarCepService.buscarCep(parsed).then((response) => {
           this.data = response.data;
-          // console.log(response.data)
-          this.usuario.informacoes.endereco.cep = this.data.cep;
-          this.usuario.informacoes.endereco.rua = this.data.logradouro;
-          this.usuario.informacoes.endereco.uf = this.data.uf;
-          this.usuario.informacoes.endereco.cidade = this.data.localidade;
-          this.usuario.informacoes.endereco.bairro = this.data.bairro;
+          console.log(response.data)
+          this.usuario.informacoes.endereco.cep = this.data.code;
+          this.usuario.informacoes.endereco.rua = this.data.address;
+          this.usuario.informacoes.endereco.uf = this.data.state;
+          this.usuario.informacoes.endereco.cidade = this.data.city;
+          this.usuario.informacoes.endereco.bairro = this.data.district;
           this.show = false;
         });
       }

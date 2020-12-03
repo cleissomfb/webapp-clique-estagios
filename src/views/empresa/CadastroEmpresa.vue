@@ -847,11 +847,11 @@ export default {
           .then((response) => {
             this.data = response.data;
             // console.log(response.data)
-            this.empresa.informacoes.endereco.cep = this.data.cep;
-            this.empresa.informacoes.endereco.rua = this.data.logradouro;
-            this.empresa.informacoes.endereco.uf = this.data.uf;
-            this.empresa.informacoes.endereco.cidade = this.data.localidade;
-            this.empresa.informacoes.endereco.bairro = this.data.bairro;
+            this.empresa.informacoes.endereco.cep = this.data.code;
+            this.empresa.informacoes.endereco.rua = this.data.address;
+            this.empresa.informacoes.endereco.uf = this.data.state;
+            this.empresa.informacoes.endereco.cidade = this.data.city;
+            this.empresa.informacoes.endereco.bairro = this.data.district;
             this.show = false;
           })
           .catch((error) => {

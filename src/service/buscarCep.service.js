@@ -8,5 +8,5 @@ function buscarCep (cep) {
   const requestCfg = {
     method: 'GET'
   }
-  return Vue.axios.get(`https://viacep.com.br/ws/${cep}/json/`, requestCfg)
+  return Vue.axios.get(`https://ws.apicep.com/cep/${cep}.json/`, requestCfg)
 }
