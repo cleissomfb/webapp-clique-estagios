@@ -876,6 +876,8 @@ export default {
       console.log(this.$v.$invalid);
       this.$v.$touch();
       if (this.$v.$invalid) {
+        this.errorMsg = "Algum campo não foi preenchido, volte ao top.";
+        this.showAlertDanger();
         this.show = false;
         return;
       }
