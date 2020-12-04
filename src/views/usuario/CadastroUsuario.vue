@@ -1273,8 +1273,8 @@
                       <b-form-checkbox value="Banco de Dados"
                         >Banco de Dados</b-form-checkbox
                       ><br />
-                      <b-form-checkbox value="NaoFaloIngles"
-                        >Linux</b-form-checkbox
+                      <b-form-checkbox value="Windows"
+                        >Windows</b-form-checkbox
                       ><br />
                       <b-form-checkbox value="ASP">ASP</b-form-checkbox><br />
                       <b-form-checkbox value="Oracle">Oracle</b-form-checkbox
