@@ -42,6 +42,7 @@ export default {
     logout() {
       signOutUser();
       this.$router.push("/");
+      window.scrollTo(0, 0);
     },
   },
 };

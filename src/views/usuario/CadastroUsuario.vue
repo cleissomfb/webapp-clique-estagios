@@ -1986,6 +1986,7 @@ export default {
           this.showAlertSuccess();
           this.$router.push("/");
           this.show = false;
+          window.scrollTo(0, 0);
         })
         .catch((error) => {
           // this.errorMsg = error;
@@ -2045,6 +2046,7 @@ export default {
     },
     cancelarCadastroCandicato() {
       this.$router.push("/");
+      window.scrollTo(0, 0);
     },
 
     hideModalCancelarCandidato() {

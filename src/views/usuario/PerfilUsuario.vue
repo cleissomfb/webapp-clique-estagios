@@ -1853,6 +1853,7 @@ export default {
           this.infoMsg = "Candidato editado com sucesso!";
           this.showAlertSuccess();
           this.$router.push("/usuario/homeUsuario");
+          window.scrollTo(0, 0);
           localStorage.setItem("usuario", JSON.stringify(this.usuario));
         })
         .catch((error) => {
@@ -1912,6 +1913,7 @@ export default {
     },
     cancelarPerfilUsuario() {
       this.$router.push("/usuario/homeUsuario");
+      window.scrollTo(0, 0);
     },
 
     hideConfirmacaoUsuario() {

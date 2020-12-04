@@ -417,6 +417,7 @@ export default {
             this.show = false;
             this.showAlertSuccess();
             this.$router.push("/empresa/homeEmpresa");
+            window.scrollTo(0, 0);
           })
           .catch((error) => {
             // this.errorMsg = error;
@@ -435,6 +436,7 @@ export default {
             this.show = false;
             this.showAlertSuccess();
             this.$router.push("/empresa/vagasCadastradas");
+            window.scrollTo(0, 0);
           })
           .catch((error) => {
             // this.errorMsg = error;
@@ -474,8 +476,10 @@ export default {
     cancelarVaga() {
       if (this.idVagaExiste == true) {
         this.$router.push("/empresa/vagasCadastradas");
+        window.scrollTo(0, 0);
       } else {
         this.$router.push("/empresa/homeEmpresa");
+        window.scrollTo(0, 0);
       }
     },
 

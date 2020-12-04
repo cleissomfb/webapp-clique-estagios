@@ -43,8 +43,10 @@ export default {
   },
   methods: {
     logout(){
-       signOutEmp();
-       this.$router.push("/");
+      signOutEmp();
+      this.$router.push("/");
+      window.scrollTo(0, 0);
+
     },
   }
 };

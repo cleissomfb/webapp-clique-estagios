@@ -858,6 +858,7 @@ export default {
           this.show = false;
           this.showAlertSuccess();
           this.$router.push("/empresa/homeEmpresa");
+          window.scrollTo(0, 0);
           localStorage.setItem("empresa", JSON.stringify(this.empresa));
         })
         .catch((error) => {
@@ -871,6 +872,7 @@ export default {
 
     cancelarEmpresa() {
       this.$router.push("/empresa/homeEmpresa");
+      window.scrollTo(0, 0);
     },
 
     hideConfirmacaoEmpresa() {

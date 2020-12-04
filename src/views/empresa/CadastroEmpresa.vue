@@ -893,6 +893,7 @@ export default {
           this.show = false;
           this.showAlertSuccess();
           this.$router.push("/");
+          window.scrollTo(0, 0);
         })
         .catch((error) => {
           // this.errorMsg = error;
@@ -928,6 +929,7 @@ export default {
     },
     cancelarEmpresa() {
       this.$router.push("/");
+      window.scrollTo(0, 0);
     },
 
     hideConfirmacaoEmpresa() {

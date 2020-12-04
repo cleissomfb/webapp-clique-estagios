@@ -72,6 +72,7 @@ export default {
       });
        this.show = false;
       this.$router.push("/usuario/visualizarVagas");
+      window.scrollTo(0, 0);
     },
     showAlertDanger(append = false) {
       this.toastCount++;
