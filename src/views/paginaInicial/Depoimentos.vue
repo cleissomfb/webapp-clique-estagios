@@ -18,17 +18,17 @@
             </b-col>
             <b-col md="4">
               <blockquote>
-                O site é bonito e responsivo. Várias empresas de vários ramos procuram profissionais aqui na Clique Estágios. É um ótimo lugar para encontrar o seu cargo perfeito.
+                O Clique Estágios me ajudou num momento difícil. Estava há 7 meses sem me encontrar no mercado de trabalho. Encontrei diversas vagas correspondentes ao meu perfil e fui aceito em uma delas. Clique Estágios mudou a minha vida.
                 <cite>
-                  <img src="@/assets/imagens/customer-1.jpg" alt="depoimento 2" />Luís Gustavo
+                  <img src="@/assets/imagens/customer-2.jpg" alt="depoimento 3" />Flávia Dias
                 </cite>
               </blockquote>
             </b-col>
             <b-col md="4">
               <blockquote>
-                O Clique Estágios me ajudou num momento difícil. Estava há 7 meses sem me encontrar no mercado de trabalho. Encontrei diversas vagas correspondentes ao meu perfil e fui aceito em uma delas. Clique Estágios mudou a minha vida.
+                O site é bonito e responsivo. Várias empresas de vários ramos procuram profissionais aqui na Clique Estágios. É um ótimo lugar para encontrar o seu cargo perfeito.
                 <cite>
-                  <img src="@/assets/imagens/customer-2.jpg" alt="depoimento 3" />Flávia Dias
+                  <img src="@/assets/imagens/customer-1.jpg" alt="depoimento 2" />Luís Gustavo
                 </cite>
               </blockquote>
             </b-col>

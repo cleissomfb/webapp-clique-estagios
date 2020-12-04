@@ -854,7 +854,7 @@ export default {
           this.infoMsg = "Empresa cadastrada com sucesso!";
           this.show = false;
           this.showAlertSuccess();
-          this.$router.push("/empresa");
+          this.$router.push("/empresa/homeEmpresa");
           localStorage.setItem("empresa", JSON.stringify(this.empresa));
         })
         .catch((error) => {
