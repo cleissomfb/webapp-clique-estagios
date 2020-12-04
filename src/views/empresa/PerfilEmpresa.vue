@@ -632,7 +632,7 @@
       </div>
       <b-modal id="cancelar" centered class="mt-5" title="Ops, atenção!">
         <p class="my-2">
-          Você realmente deseja cancelar essa edição do perfil da empresa?
+          Você realmente deseja cancelar essa edição?
         </p>
         <template #modal-footer>
           <b-button
@@ -641,7 +641,7 @@
             class="float-right btn-editado mr-2"
             @click="cancelarEmpresa"
             ><b-icon icon="check" class="mr-1"></b-icon>
-            Sair
+            Sim
           </b-button>
           <b-button
             size="md"
@@ -649,7 +649,7 @@
             class="float-right btn-editado"
             @click="hideConfirmacaoEmpresa"
             ><b-icon icon="x" class="mr-1"></b-icon>
-            Cancelar
+            Não
           </b-button>
         </template>
       </b-modal>

@@ -304,7 +304,7 @@
             class="float-right btn-editado mr-2"
             @click="cancelarVaga"
             ><b-icon icon="check" class="mr-1"></b-icon>
-            Sair
+            Sim
           </b-button>
           <b-button
             size="md"
@@ -312,7 +312,7 @@
             class="float-right btn-editado"
             @click="hideConfirmacaoVaga"
             ><b-icon icon="x" class="mr-1"></b-icon>
-            Cancelar
+            Não
           </b-button>
         </template>
       </b-modal>

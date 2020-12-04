@@ -1434,7 +1434,7 @@
         title="Ops, atenção!"
       >
         <p class="my-2">
-          Você realmente deseja cancelar essa o cadastro deste candicato?
+          Você realmente deseja cancelar seu cadastro?
         </p>
         <template #modal-footer>
           <b-button
@@ -1443,7 +1443,7 @@
             class="float-right btn-editado mr-2"
             @click="cancelarCadastroCandicato"
             ><b-icon icon="check" class="mr-1"></b-icon>
-            Sair
+            Sim
           </b-button>
           <b-button
             size="md"
@@ -1451,7 +1451,7 @@
             class="float-right btn-editado"
             @click="hideModalCancelarCandidato"
             ><b-icon icon="x" class="mr-1"></b-icon>
-            Cancelar
+            Não
           </b-button>
         </template>
       </b-modal>
