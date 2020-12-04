@@ -1880,7 +1880,7 @@ export default {
       console.log(this.$v.usuario.confirmarSenha);
       this.$v.$touch();
       if (this.$v.$invalid) {
-        this.errorMsg = "Algum campo não foi preenchido, volte ao top.";
+        this.errorMsg = "Algum campo não foi preenchido, volte ao topo.";
         this.showAlertDanger();
         this.show = false;
         return;
@@ -1910,19 +1910,19 @@ export default {
         });
       }
 
-      console.log(this.selectedTurnoEstagio);
+      // console.log(this.selectedTurnoEstagio);
       this.usuario.informacoes.disponibilidade = this.selectedTurnoEstagio;
-      console.log(this.usuario.informacoes.disponibilidade);
+      // console.log(this.usuario.informacoes.disponibilidade);
 
       if (this.primeiraExperiencia == false) {
         if (
-          this.experienciaAtual != null ||
+          this.experienciaAtual != null &&
           this.experienciaAtual != undefined
         ) {
           this.usuario.informacoes.experiencias.push(this.experienciaAtual);
         }
         if (
-          this.experienciaPenultima != null ||
+          this.experienciaPenultima != null &&
           this.experienciaPenultima != undefined
         ) {
           this.usuario.informacoes.experiencias.push(this.experienciaPenultima);
@@ -1931,7 +1931,7 @@ export default {
 
       if (this.vivenciaAnterior == true) {
         if (
-          this.experienciaVivenciaAnterior1 != null ||
+          this.experienciaVivenciaAnterior1 != null &&
           this.experienciaVivenciaAnterior1 != undefined
         ) {
           this.usuario.informacoes.experiencias.push(
@@ -1939,7 +1939,7 @@ export default {
           );
         }
         if (
-          this.experienciaVivenciaAnterior2 != null ||
+          this.experienciaVivenciaAnterior2 != null &&
           this.experienciaVivenciaAnterior2 != undefined
         ) {
           this.usuario.informacoes.experiencias.push(

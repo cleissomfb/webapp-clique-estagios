@@ -14,6 +14,7 @@
                     id="cpf"
                     type="text"
                     v-mask="maskCpf"
+                    readonly
                     :class="{
                       'is-invalid':
                         submitted && $v.usuario.informacoes.pessoais.cpf.$error,
@@ -1781,6 +1782,7 @@ export default {
       this.usuario.informacoes.disponibilidade = this.selectedTurnoEstagio;
 
       if (this.primeiraExperiencia == false) {
+        this.usuario.informacoes.experiencias = [];
         if (
           this.experienciaAtual != null ||
           this.experienciaAtual != undefined
@@ -1827,7 +1829,7 @@ export default {
         .then(() => {
           this.infoMsg = "Candidato editado com sucesso!";
           this.showAlertSuccess();
-          this.$router.push("/usuario");
+          this.$router.push("/usuario/homeUsuario");
           localStorage.setItem("usuario", JSON.stringify(this.usuario));
         })
         .catch((error) => {
@@ -1895,7 +1897,7 @@ export default {
   },
   mounted() {
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
-    // console.log(this.usuario);
+    console.log(this.usuario);
 
     if (this.usuario.informacoes.endereco.cep) {
       this.cep = this.usuario.informacoes.endereco.cep;
@@ -1920,34 +1922,40 @@ export default {
 
     // Educação
     if (this.usuario.informacoes.educacao.length > 0) {
-      for (let i = 0; i <= this.usuario.informacoes.educacao.length; i++) {
-        const educacao = this.usuario.informacoes.educacao[i];
+        let iterator = 0;
+        this.usuario.informacoes.educacao.forEach(educacao => {
+          console.log(educacao);
+          if (iterator > 0) {
+            this.formacaoAnterior = true;
+            this.selectedNivelEnsinoForAnterior = educacao.nivelEnsino;
+            this.instituicaoEnsinoForAnterior = educacao.instituicao;
+            this.cursoGrauForAnterior = educacao.cursosGrau;
+            if (educacao.mesFormatura && educacao.anoFormatura && educacao.numeroMatricula ) {
+              this.verificacaoCamposEducacaoFormAnterior();
+              this.selectedMesFormaturaForAnterior = educacao.mesFormatura;
+              this.selectedAnoFormaturaForAnterior = educacao.anoFormatura;
+              this.numeroMatriculaForAnterior = educacao.numeroMatricula;
+            }
+            this.semestreForAnterior = educacao.semestre;
+            return;
+          }
 
-        if (i == 0) {
           this.selectedNivelEnsino = educacao.nivelEnsino;
           this.instituicaoEnsino = educacao.instituicao;
           this.cursoGrau = educacao.cursosGrau;
-          this.selectedMesFormatura = educacao.mesFormatura;
-          this.selectedAnoFormatura = educacao.anoFormatura;
-          this.numeroMatricula = educacao.numeroMatricula;
+          if (educacao.mesFormatura && educacao.anoFormatura && educacao.numeroMatricula) {
+              this.verificacaoCamposEducacao();
+              this.selectedMesFormatura = educacao.mesFormatura;
+              this.selectedAnoFormatura = educacao.anoFormatura;
+              this.numeroMatricula = educacao.numeroMatricula;
+          }
           this.semestre = educacao.semestre;
-        }
-
-        if (i == 1) {
-          this.formacaoAnterior = true;
-          this.selectedNivelEnsinoForAnterior = educacao.nivelEnsino;
-          this.instituicaoEnsinoForAnterior = educacao.instituicao;
-          this.cursoGrauForAnterior = educacao.cursosGrau;
-          this.selectedMesFormaturaForAnterior = educacao.mesFormatura;
-          this.selectedAnoFormaturaForAnterior = educacao.anoFormatura;
-          this.numeroMatriculaForAnterior = educacao.numeroMatricula;
-          this.semestreForAnterior = educacao.semestre;
-        }
-      }
+          iterator++;
+        });
     }
 
     // Experieências
-    // console.log(this.usuario.informacoes.experiencias);
+    console.log(this.usuario.informacoes.experiencias);
     if (this.usuario.informacoes.experiencias.length > 0) {
       for (let i = 0; i <= this.usuario.informacoes.experiencias.length; i++) {
         const experiencia = this.usuario.informacoes.experiencias[i];
@@ -1958,11 +1966,13 @@ export default {
         if (i == 1) {
           this.experienciaPenultima = experiencia;
         }
-        if (i == 2) {
+        if (i == 2 && experiencia != null) {
+          // console.log(experiencia)
+          console.log("cai aqui")
           this.vivenciaAnterior = true;
           this.experienciaVivenciaAnterior1 = experiencia;
         }
-        if (i == 3) {
+        if (i == 3 && experiencia != null) {
           this.experienciaVivenciaAnterior2 = experiencia;
         }
       }

@@ -15,6 +15,7 @@
                     type="text"
                     v-model="empresa.informacoes.principais.cnpj"
                     v-mask="maskCnpj"
+                    readonly
                     :class="{
                       'is-invalid':
                         submitted &&
