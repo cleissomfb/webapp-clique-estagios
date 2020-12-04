@@ -385,7 +385,7 @@ export default {
         .catch((error) => {
           // this.errorMsg = error;
           this.errorMsg = "Erro ao buscar o candidato pelo CPF.";
-          console.log(error);
+          // console.log(error);
           this.showAlertDanger();
         });
     },
@@ -402,7 +402,7 @@ export default {
         .catch((error) => {
           // this.errorMsg = error;
           this.errorMsg = "Erro buscar a vaga por id.";
-          console.log(error);
+          // console.log(error);
           this.showAlertDanger();
         });
     },

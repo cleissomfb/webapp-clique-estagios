@@ -2,7 +2,7 @@ import decode from 'jwt-decode'
 import request from './request'
 
 export async function signInUser(cpf, senha) {
-  console.log(cpf, senha);
+  // console.log(cpf, senha);
   await request('POST', '/auth', {
     cpf,
     senha

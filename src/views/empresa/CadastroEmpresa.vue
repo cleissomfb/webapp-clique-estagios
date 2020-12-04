@@ -862,13 +862,13 @@ export default {
             this.empresa.informacoes.endereco.cidade = this.data.city;
             this.empresa.informacoes.endereco.bairro = this.data.district;
             this.show = false;
-            console.log(this.data);
+            // console.log(this.data);
             if ( this.data.status == '404') {
               this.$bvModal.show("modalCep");
             }
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
             this.show = false;
             this.$bvModal.show("modalCep");
           });
@@ -877,7 +877,7 @@ export default {
     saveEmpresa() {
       this.show = true;
       this.submitted = true;
-      console.log(this.$v.$invalid);
+      // console.log(this.$v.$invalid);
       this.$v.$touch();
       if (this.$v.$invalid) {
         this.errorMsg = "Algum campo não foi preenchido, volte ao topo.";
@@ -885,7 +885,7 @@ export default {
         this.show = false;
         return;
       }
-      console.log(this.empresa);
+      // console.log(this.empresa);
       empresaService
         .saveEmpresa(this.empresa)
         .then(() => {
@@ -897,7 +897,7 @@ export default {
         .catch((error) => {
           // this.errorMsg = error;
           this.errorMsg = "Erro ao cadastrar a empresa.";
-          console.log(error);
+          // console.log(error);
           this.show = false;
           this.showAlertDanger();
         });

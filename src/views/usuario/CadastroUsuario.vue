@@ -1883,7 +1883,7 @@ export default {
         this.show = true;
         buscarCepService.buscarCep(parsed).then((response) => {
           this.data = response.data;
-          console.log(response.data)
+          // console.log(response.data)
           this.usuario.informacoes.endereco.cep = this.data.code;
           this.usuario.informacoes.endereco.rua = this.data.address;
           this.usuario.informacoes.endereco.uf = this.data.state;
@@ -1899,8 +1899,8 @@ export default {
     saveCandidato() {
       this.show = true;
       this.submitted = true;
-      console.log(this.$v.$invalid);
-      console.log(this.$v.usuario.confirmarSenha);
+      // console.log(this.$v.$invalid);
+      // console.log(this.$v.usuario.confirmarSenha);
       this.$v.$touch();
       if (this.$v.$invalid) {
         this.errorMsg = "Algum campo não foi preenchido, volte ao topo.";
@@ -1977,7 +1977,7 @@ export default {
 
       this.usuario.informacoes.conhecimentos.outros = this.selectedOutros;
 
-      console.log("Candidato: ", this.usuario);
+      // console.log("Candidato: ", this.usuario);
 
       usuarioService
         .saveUsuario(this.usuario)
@@ -1990,7 +1990,7 @@ export default {
         .catch((error) => {
           // this.errorMsg = error;
           this.errorMsg = "Erro ao criar o cadastro do usuário.";
-          console.log(error);
+          // console.log(error);
           this.show = false;
           this.showAlertDanger();
         });

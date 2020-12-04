@@ -387,14 +387,14 @@ export default {
         .catch((error) => {
           this.errorMsg = error;
           // this.errorMsg = "Erro ao criar a lista.";
-          console.log(error);
+          // console.log(error);
           this.showAlertDanger();
         });
     },
 
     visualizarVaga(vaga) {
       this.$bvModal.show("visualizarVaga");
-      console.log("passei aqui")
+      // console.log("passei aqui")
       this.show = true;
       this.idVaga = vaga._id;
       vagaService
@@ -406,7 +406,7 @@ export default {
         .catch((error) => {
           this.errorMsg = error;
           // this.errorMsg = "Erro ao criar a lista.";
-          console.log(error);
+          // console.log(error);
           this.show = false;
           this.showAlertDanger();
         });

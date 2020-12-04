@@ -52,7 +52,7 @@ function editUsuario (usuario) {
     method: 'PUT',
     headers: authHeader()
   }
-  console.log(requestCfg.headers)
+  // console.log(requestCfg.headers)
   return Vue.axios.put(baseURL + `/usuarios`, usuario, requestCfg)
 }
 

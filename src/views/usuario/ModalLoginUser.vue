@@ -65,7 +65,7 @@ export default {
       localStorage.removeItem("usuario");
 
       await signInUser(this.loginUser, this.senhaUser).catch((error) => {
-        console.log(error);
+        // console.log(error);
         this.errorMsg = "CPF ou senha inválidos.";
         // this.errorMsg = error
         this.showAlertDanger();

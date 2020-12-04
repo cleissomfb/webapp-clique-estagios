@@ -4,7 +4,7 @@ const baseURL = process.env.VUE_APP_API_LOCATION
 
 function getHeaders () {
   const token = localStorage.getItem('token')
-  console.log(token)
+  // console.log(token)
   return {
     'Content-Type': 'application/json',
     ...token && {
@@ -22,7 +22,7 @@ async function request (method, url, body) {
     }
   }
   const response = await fetch(baseURL + url, options)
-  console.log(response)
+  // console.log(response)
   return await response.json()
 }
 

@@ -844,7 +844,7 @@ export default {
     saveEmpresa() {
       this.show = true;
       this.submitted = true;
-      console.log(this.$v.$invalid);
+      // console.log(this.$v.$invalid);
       this.$v.$touch();
       if (this.$v.$invalid) {
         this.show = false;
@@ -864,7 +864,7 @@ export default {
           // this.errorMsg = error;
           this.errorMsg = "Erro ao editar o perfil da empresa.";
           this.show = false;
-          console.log(error);
+          // console.log(error);
           this.showAlertDanger();
         });
     },

@@ -384,7 +384,7 @@ export default {
           // this.errorMsg = error;
           this.errorMsg = "Erro ao deletar a vaga.";
           this.show = false;
-          console.log(error);
+          // console.log(error);
           this.showAlertDanger();
         });
     },
@@ -421,7 +421,7 @@ export default {
         .catch((error) => {
           this.errorMsg = error;
           // this.errorMsg = "Erro ao criar a lista.";
-          console.log(error);
+          // console.log(error);
           this.showAlertDanger();
         });
     },
@@ -440,7 +440,7 @@ export default {
           // this.errorMsg = error;
           this.errorMsg = "Erro ao visualizar a vaga.";
           this.show = false;
-          console.log(error);
+          // console.log(error);
           this.showAlertDanger();
         });
     },

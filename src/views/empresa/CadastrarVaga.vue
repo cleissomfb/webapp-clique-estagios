@@ -399,7 +399,7 @@ export default {
     saveVaga() {
       this.show = true;
       this.submitted = true;
-      console.log(this.$v.$invalid);
+      // console.log(this.$v.$invalid);
       this.$v.$touch();
       if (this.$v.$invalid) {
         this.show = false;
@@ -407,7 +407,7 @@ export default {
         this.showAlertDanger();
         return;
       }
-      console.log(this.idVagaExiste);
+      // console.log(this.idVagaExiste);
 
       if (this.idVagaExiste == false) {
         vagaService
@@ -422,10 +422,10 @@ export default {
             // this.errorMsg = error;
             this.errorMsg = "Erro ao cadastrar a vaga.";
             this.show = false;
-            console.log(error);
+            // console.log(error);
             this.showAlertDanger();
           });
-        console.log(this.vaga);
+        // console.log(this.vaga);
       }
       if (this.idVagaExiste == true) {
         vagaService
@@ -439,11 +439,11 @@ export default {
           .catch((error) => {
             // this.errorMsg = error;
             this.errorMsg = "Erro ao editar a vaga.";
-            console.log(error);
+            // console.log(error);
             this.show = false;
             this.showAlertDanger();
           });
-        console.log(this.vaga);
+        // console.log(this.vaga);
       }
     },
 
@@ -486,7 +486,7 @@ export default {
   mounted() {
     this.show = true;
     const idVaga = this.$route.params.id;
-    console.log(idVaga);
+    // console.log(idVaga);
 
     if (idVaga) {
       this.idVagaExiste = true;
@@ -501,10 +501,10 @@ export default {
           // this.errorMsg = error;
           this.errorMsg = "Erro ao buscar a vaga no servidor.";
           this.show = false;
-          console.log(error);
+          // console.log(error);
           this.showAlertDanger();
         });
-      console.log(this.idVagaExiste);
+      // console.log(this.idVagaExiste);
     } else {
       this.idVagaExiste = false;
 

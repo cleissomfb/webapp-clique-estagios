@@ -1845,7 +1845,7 @@ export default {
 
       this.usuario.informacoes.conhecimentos.outros = this.selectedOutros;
 
-      console.log("Candidato: ", this.usuario);
+      // console.log("Candidato: ", this.usuario);
 
       usuarioService
         .editUsuario(this.usuario)
@@ -1920,7 +1920,7 @@ export default {
   },
   mounted() {
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
-    console.log(this.usuario);
+    // console.log(this.usuario);
 
     if (this.usuario.informacoes.endereco.cep) {
       this.cep = this.usuario.informacoes.endereco.cep;
@@ -1947,7 +1947,7 @@ export default {
     if (this.usuario.informacoes.educacao.length > 0) {
         let iterator = 0;
         this.usuario.informacoes.educacao.forEach(educacao => {
-          console.log(educacao);
+          // console.log(educacao);
           if (iterator > 0) {
             this.formacaoAnterior = true;
             this.selectedNivelEnsinoForAnterior = educacao.nivelEnsino;
@@ -1978,7 +1978,7 @@ export default {
     }
 
     // Experieências
-    console.log(this.usuario.informacoes.experiencias);
+    // console.log(this.usuario.informacoes.experiencias);
     if (this.usuario.informacoes.experiencias.length > 0) {
       for (let i = 0; i <= this.usuario.informacoes.experiencias.length; i++) {
         const experiencia = this.usuario.informacoes.experiencias[i];
@@ -1991,7 +1991,7 @@ export default {
         }
         if (i == 2 && experiencia != null) {
           // console.log(experiencia)
-          console.log("cai aqui")
+          // console.log("cai aqui")
           this.vivenciaAnterior = true;
           this.experienciaVivenciaAnterior1 = experiencia;
         }

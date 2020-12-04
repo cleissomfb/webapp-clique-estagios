@@ -649,13 +649,13 @@ export default {
         .vagaInteressados(idVaga)
         .then((vagas) => {
           this.interessadosVagas = vagas.data;
-          console.log(this.interessadosVagas);
+          // console.log(this.interessadosVagas);
           this.show = false;
         })
         .catch((error) => {
           // this.errorMsg = error;
           this.errorMsg = "Erro ao buscar a vaga.";
-          console.log(error);
+          // console.log(error);
           this.showAlertDanger();
         });
     },
@@ -665,7 +665,7 @@ export default {
       const row = this.interessadosVagas.filter((data) => data._id == vaga._id);
       if (row != null) {
         this.candidato = row[0];
-        console.log(this.candidato);
+        // console.log(this.candidato);
         this.dadosPessoais = this.candidato.informacoes.pessoais;
         this.dadosDisponibilidade = this.candidato.informacoes.disponibilidade;
         this.dadosEndereco = this.candidato.informacoes.endereco;
@@ -707,7 +707,7 @@ export default {
 
   mounted() {
     const idVaga = this.$route.params.id;
-    console.log(idVaga);
+    // console.log(idVaga);
     this.findCandidatosVaga(idVaga);
   },
   computed: {
