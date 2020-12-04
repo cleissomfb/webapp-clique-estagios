@@ -244,16 +244,7 @@
                 <b-form-textarea
                   id="outrosBeneficios"
                   v-model="vaga.outrosBeneficios"
-                  :class="{
-                    'is-invalid': submitted && $v.vaga.outrosBeneficios.$error,
-                  }"
                 ></b-form-textarea>
-                <span
-                  class="text-danger text-center"
-                  v-if="submitted && !$v.vaga.outrosBeneficios.required"
-                >
-                  Digite os Outros Benefícios.
-                </span>
               </b-form-group>
             </b-col>
             <b-col md="6">
@@ -265,16 +256,7 @@
                 <b-form-textarea
                   id="observacao"
                   v-model="vaga.observacao"
-                  :class="{
-                    'is-invalid': submitted && $v.vaga.observacao.$error,
-                  }"
                 ></b-form-textarea>
-                <span
-                  class="text-danger text-center"
-                  v-if="submitted && !$v.vaga.observacao.required"
-                >
-                  Digite a Observação.
-                </span>
               </b-form-group>
             </b-col>
           </b-row>
@@ -385,12 +367,6 @@ export default {
         required,
       },
       beneficios: {
-        required,
-      },
-      outrosBeneficios: {
-        required,
-      },
-      observacao: {
         required,
       },
     },
