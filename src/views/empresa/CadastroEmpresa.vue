@@ -862,6 +862,7 @@ export default {
             this.empresa.informacoes.endereco.cidade = this.data.city;
             this.empresa.informacoes.endereco.bairro = this.data.district;
             this.show = false;
+            console.log(this.data);
             if ( this.data.status == '404') {
               this.$bvModal.show("modalCep");
             }

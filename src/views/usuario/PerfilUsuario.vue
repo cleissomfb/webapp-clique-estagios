@@ -1758,11 +1758,11 @@ export default {
         buscarCepService.buscarCep(parsed).then((response) => {
           this.data = response.data;
           // console.log(response.data)
-          this.usuario.informacoes.endereco.cep = this.data.cep;
-          this.usuario.informacoes.endereco.rua = this.data.logradouro;
-          this.usuario.informacoes.endereco.uf = this.data.uf;
-          this.usuario.informacoes.endereco.cidade = this.data.localidade;
-          this.usuario.informacoes.endereco.bairro = this.data.bairro;
+          this.usuario.informacoes.endereco.cep = this.data.code;
+          this.usuario.informacoes.endereco.rua = this.data.address;
+          this.usuario.informacoes.endereco.uf = this.data.state;
+          this.usuario.informacoes.endereco.cidade = this.data.city;
+          this.usuario.informacoes.endereco.bairro = this.data.district;
           this.show = false;
           if ( this.data.status == '404') {
               this.$bvModal.show("modalCep");
