@@ -403,18 +403,18 @@
                     id="telefone1"
                     type="text"
                     v-mask="maskTele"
-                    v-model="empresa.informacoes.contato.telefonePrincial"
+                    v-model="empresa.informacoes.contato.telefonePrincipal"
                     :class="{
                       'is-invalid':
                         submitted &&
-                        $v.empresa.informacoes.contato.telefonePrincial.$error,
+                        $v.empresa.informacoes.contato.telefonePrincipal.$error,
                     }"
                   ></b-form-input>
                   <span
                     class="text-danger text-center"
                     v-if="
                       submitted &&
-                      !$v.empresa.informacoes.contato.telefonePrincial.required
+                      !$v.empresa.informacoes.contato.telefonePrincipal.required
                     "
                   >
                     Digite um telefone.
@@ -723,7 +723,7 @@ export default {
           },
           contato: {
             celular: "",
-            telefonePrincial: "",
+            telefonePrincipal: "",
             telefonaAuxiliar: "",
             responsavel: "",
             substituto: "",
@@ -797,7 +797,7 @@ export default {
           },
         },
         contato: {
-          telefonePrincial: {
+          telefonePrincipal: {
             required,
           },
           responsavel: {
@@ -829,6 +829,9 @@ export default {
             this.empresa.informacoes.endereco.cidade = this.data.localidade;
             this.empresa.informacoes.endereco.bairro = this.data.bairro;
             this.show = false;
+            if ( this.data.status == '404') {
+              this.$bvModal.show("modalCep");
+            }
           })
           .catch((error) => {
             if (!error.status) {

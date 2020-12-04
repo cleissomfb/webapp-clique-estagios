@@ -307,3 +307,14 @@
   border-color: #2ad2b3 !important;
   background-color: #2ad2b3 !important;
 }
+
+.correcao-buttons .tamanho-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+}
+
+.correcao-buttons .tamanho-btn .b-icon {
+  width: 20px;
+  height: 26px;
+}

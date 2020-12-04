@@ -554,10 +554,10 @@
                       ></b-form-input>
                     </b-form-group>
                   </b-col>
-                  <b-col class="mt-4" md="3" cols="5">
+                  <b-col class="mt-4 descrVagas" md="3" cols="5">
                     <div class="correcao-buttons">
                       <b-button
-                        class="bg-button"
+                        class="bg-button tamanho-btn"
                         v-show="
                           k ==
                           usuario.informacoes.redesSociais.outras.length - 1
@@ -569,7 +569,7 @@
                           aria-hidden="true"
                         ></b-icon> </b-button
                       ><b-button
-                        class="ml-1 bg-danger"
+                        class="ml-1 bg-danger tamanho-btn"
                         v-show="
                           k ||
                           (!k &&
@@ -1455,6 +1455,21 @@
             </b-button>
           </template>
         </b-modal>
+                  <b-modal id="modalCep" centered class="mt-5" title="Ops, atenção!">
+        <p class="my-2">
+          O CEP não foi digitado corretamente, tente novamente!
+        </p>
+        <template #modal-footer>
+          <b-button
+            size="md"
+            pill
+            class="float-right btn-editado"
+            @click="hideCep"
+            ><b-icon icon="check" class="mr-1"></b-icon>
+            OK
+          </b-button>
+        </template>
+      </b-modal>
       </div>
     </div>
   </div>
@@ -1731,11 +1746,15 @@ export default {
     },
   },
   methods: {
+    hideCep() {
+      this.$bvModal.hide("modalCep");
+    },
     searchCep() {
       const parsed = this.cep
         .normalize("NFD")
         .replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, "");
       if (parsed.length == 8) {
+        this.show = true;
         buscarCepService.buscarCep(parsed).then((response) => {
           this.data = response.data;
           // console.log(response.data)
@@ -1744,6 +1763,10 @@ export default {
           this.usuario.informacoes.endereco.uf = this.data.uf;
           this.usuario.informacoes.endereco.cidade = this.data.localidade;
           this.usuario.informacoes.endereco.bairro = this.data.bairro;
+          this.show = false;
+          if ( this.data.status == '404') {
+              this.$bvModal.show("modalCep");
+            }
         });
       }
     },

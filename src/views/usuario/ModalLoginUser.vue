@@ -71,7 +71,7 @@ export default {
         this.showAlertDanger();
       });
        this.show = false;
-      this.$router.push("/usuario/homeUsuario");
+      this.$router.push("/usuario/visualizarVagas");
     },
     showAlertDanger(append = false) {
       this.toastCount++;

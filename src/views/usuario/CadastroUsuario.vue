@@ -1455,6 +1455,21 @@
           </b-button>
         </template>
       </b-modal>
+           <b-modal id="modalCep" centered class="mt-5" title="Ops, atenção!">
+        <p class="my-2">
+          O CEP não foi digitado corretamente, tente novamente!
+        </p>
+        <template #modal-footer>
+          <b-button
+            size="md"
+            pill
+            class="float-right btn-editado"
+            @click="hideCep"
+            ><b-icon icon="check" class="mr-1"></b-icon>
+            OK
+          </b-button>
+        </template>
+      </b-modal>
     </div>
     <Contato />
     <Footer />
@@ -1855,6 +1870,11 @@ export default {
     backToTop() {
       btnTop.backToTop();
     },
+
+    hideCep() {
+      this.$bvModal.hide("modalCep");
+    },
+
     searchCep() {
       const parsed = this.cep
         .normalize("NFD")
@@ -1870,6 +1890,9 @@ export default {
           this.usuario.informacoes.endereco.cidade = this.data.city;
           this.usuario.informacoes.endereco.bairro = this.data.district;
           this.show = false;
+          if ( this.data.status == '404') {
+              this.$bvModal.show("modalCep");
+            }
         });
       }
     },
