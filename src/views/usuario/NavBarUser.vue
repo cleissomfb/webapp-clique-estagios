@@ -2,7 +2,7 @@
   <div>
     <b-navbar class="navbar">
       <b-navbar-brand v-b-toggle.sidebar-no-header href="#"
-        ><ion-icon class="menu-sidebar" name="reorder-four-outline"></ion-icon
+        ><ion-icon v-pre class="menu-sidebar" name="reorder-four-outline"></ion-icon
       ></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

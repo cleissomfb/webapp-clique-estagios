@@ -9,11 +9,11 @@
         </b-col>
         <b-col md="12" class="col-12-contato-endereco">
           <div class="contato-endereco">
-            <h4><ion-icon name="navigate-outline"></ion-icon>Rua Coronel Genuino, 130 | Porto Alegre</h4>
-            <h4><ion-icon name="call-outline"></ion-icon>Telefone: (51) 0000 - 0000</h4>
-            <h4><ion-icon name="mail-outline"></ion-icon>cliqueestagios@cliqueestagios.com</h4>
-            <h4><ion-icon name="time-outline"></ion-icon>09:00 às 18:00 </h4>
-            <h4><ion-icon name="calendar-outline"></ion-icon>Segunda a Sexta-feira, sem fechar ao meio
+            <h4><ion-icon v-pre name="navigate-outline"></ion-icon>Rua Coronel Genuino, 130 | Porto Alegre</h4>
+            <h4><ion-icon v-pre name="call-outline"></ion-icon>Telefone: (51) 0000 - 0000</h4>
+            <h4><ion-icon v-pre name="mail-outline"></ion-icon>cliqueestagios@cliqueestagios.com</h4>
+            <h4><ion-icon v-pre name="time-outline"></ion-icon>09:00 às 18:00 </h4>
+            <h4><ion-icon v-pre name="calendar-outline"></ion-icon>Segunda a Sexta-feira, sem fechar ao meio
               dia.</h4>
           </div>
         </b-col>
@@ -31,20 +31,20 @@
         </b-col>
         <b-col md="6" class="col-6-contato-endereco">
           <div class="contato-endereco">
-            <h4><ion-icon name="navigate-outline"></ion-icon>Rua Coronel Genuino, 130 | Porto Alegre</h4>
-            <h4><ion-icon name="call-outline"></ion-icon>Telefone: (51) 0000 - 0000</h4>
-            <h4><ion-icon name="mail-outline"></ion-icon>cliqueestagios@cliqueestagios.com</h4>
-            <h4><ion-icon name="time-outline"></ion-icon>09:00 às 18:00 </h4>
-            <h4><ion-icon name="calendar-outline"></ion-icon>Segunda a Sexta-feira, sem fechar ao meio
+            <h4><ion-icon v-pre name="navigate-outline"></ion-icon>Rua Coronel Genuino, 130 | Porto Alegre</h4>
+            <h4><ion-icon v-pre name="call-outline"></ion-icon>Telefone: (51) 0000 - 0000</h4>
+            <h4><ion-icon v-pre name="mail-outline"></ion-icon>cliqueestagios@cliqueestagios.com</h4>
+            <h4><ion-icon v-pre name="time-outline"></ion-icon>09:00 às 18:00 </h4>
+            <h4><ion-icon v-pre name="calendar-outline"></ion-icon>Segunda a Sexta-feira, sem fechar ao meio
               dia.</h4>
           </div>
         </b-col>
         <b-col md="12">
           <div class="contato-rede-social">
-            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-            <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
-            <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="#"><ion-icon v-pre name="logo-facebook"></ion-icon></a>
+            <a href="#"><ion-icon v-pre name="logo-instagram"></ion-icon></a>
+            <a href="#"><ion-icon v-pre name="logo-linkedin"></ion-icon></a>
+            <a href="#"><ion-icon v-pre name="logo-youtube"></ion-icon></a>
           </div>
         </b-col>
       </b-row>
