@@ -1,6 +1,6 @@
 <template>
-  <div class="instituicao section">
-    <div class="">
+  <div class="section">
+    <div class="instituicao">
       <b-row>
         <b-col md="12">
           <h1 class="title-instituicao">Instituições de Ensino Parceiras</h1>
