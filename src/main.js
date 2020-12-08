@@ -38,6 +38,10 @@ import Vuelidate from 'vuelidate'
 // Import do slider para ver as vagas disponíveis index do site
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+// Import do plugin vue-fragment
+import { Plugin } from 'vue-fragment';
+
+Vue.use(Plugin);
 Vue.use(VueAwesomeSwiper)
 Vue.use(Vuelidate)
 Vue.use(VueMask)

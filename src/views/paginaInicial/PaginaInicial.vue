@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <fragment>
     <NavbarPaginaInicial />
     <PaginaInicialTop />
     <VagasDisponiveis />
@@ -14,7 +14,7 @@
         ><b-icon class="icon" icon="arrow-up"></b-icon
       ></b-button>
     </div>
-  </div>
+  </fragment>
 </template>
 
 <script>
