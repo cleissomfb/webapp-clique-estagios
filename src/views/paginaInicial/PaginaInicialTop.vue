@@ -1,13 +1,11 @@
 <template>
-  <section>
-    <div class="section">
+    <section class="section">
       <div class="imagem-topo mt-5">
         <div class="referencia">
           <img src="@/assets/imagens/logo_total.png" alt="logo principal" />
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 </template>
 
 <script>
