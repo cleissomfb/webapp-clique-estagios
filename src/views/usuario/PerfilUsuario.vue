@@ -1775,6 +1775,9 @@ export default {
       this.submitted = true;
       this.$v.$touch();
       if (this.$v.$invalid) {
+        this.show = false;
+        this.errorMsg = "Algum campo não foi preenchido, volte ao topo.";
+        this.showAlertDanger();
         return;
       }
 
@@ -1857,9 +1860,8 @@ export default {
           localStorage.setItem("usuario", JSON.stringify(this.usuario));
         })
         .catch((error) => {
-          // this.errorMsg = error;
           this.errorMsg = "Erro ao editar o perfil do candidato.";
-          // console.log(error);
+          this.show = false;
           this.showAlertDanger();
         });
     },

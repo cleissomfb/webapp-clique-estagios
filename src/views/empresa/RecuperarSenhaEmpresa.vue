@@ -1,17 +1,35 @@
 <template>
-  <div>
+  <fragment>
     <NavbarPaginaInicial />
-    <h1 class="mt-5 text-center">Página em Desenvolvimento</h1>
-  </div>
+    <section>
+      <div class="section">
+        <div class="imagem-oportunidade">
+          <div class="container">
+            <b-row>
+              <div class="titulo">
+                <h3>Página em Desenvolvimento.</h3>
+              </div>
+            </b-row>
+          </div>
+        </div>
+      </div>
+    </section>
+    <Contato />
+    <Footer />
+  </fragment>
 </template>
 
 <script>
 import NavbarPaginaInicial from "../paginaInicial/NavbarPaginaInicial";
+import Contato from "../paginaInicial/Contato";
+import Footer from "../paginaInicial/Footer";
 
 export default {
   name: 'RecuperarSenhaEmpresa',
   components: {
-    NavbarPaginaInicial
+    NavbarPaginaInicial,
+    Contato,
+    Footer,
   },
   data() {
     return {
