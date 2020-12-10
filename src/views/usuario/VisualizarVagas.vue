@@ -348,6 +348,24 @@
           </b-button>
         </template>
       </b-modal>
+      <b-modal
+        id="modalVagaJaSelecionada"
+        centered
+        class="mt-5"
+        title="Ops, atenção!"
+      >
+        <p class="my-2">{{errorMsg}}</p>
+        <template #modal-footer>
+          <b-button
+            size="md"
+            pill
+            class="float-right btn-editado"
+            @click="hideVagaJaSelecionada"
+            ><b-icon icon="x" class="mr-1"></b-icon>
+            Voltar
+          </b-button>
+        </template>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -444,8 +462,16 @@ export default {
       this.$bvModal.hide("visualizarVaga");
     },
 
+    hideInteresseVaga() {
+      this.$bvModal.hide("modalConfirmarVaga");
+    },
+
     modalConfirmarVaga() {
       this.$bvModal.show("modalConfirmarVaga");
+    },
+
+    hideVagaJaSelecionada() {
+      this.$bvModal.hide("modalVagaJaSelecionada");
     },
 
     confirmarInteresseVaga() {
@@ -465,11 +491,13 @@ export default {
           this.$bvModal.hide("visualizarVaga");
         })
         .catch((error) => {
-          // this.errorMsg = error;
-          this.errorMsg = "Erro ao se candidatar na vaga.";
-          // console.log(error);
+          // console.log("Error",error.response.data);
+          this.errorMsg = error.response.data.message;
+          // console.log("Mensagem Error", this.errorMsg);
+          // this.errorMsg = "Erro ao se candidatar na vaga.";
+          this.$bvModal.show("modalVagaJaSelecionada");
           this.show = false;
-          this.showAlertDanger();
+          // this.showAlertDanger();
         });
     },
   },
