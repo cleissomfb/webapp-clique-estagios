@@ -1,9 +1,9 @@
 <template>
     <section class="section">
       <div class="imagem-topo mt-5">
-        <div class="referencia">
+        <figure class="referencia">
           <img src="@/assets/imagens/logo_total.png" alt="logo principal" />
-        </div>
+        </figure>
       </div>
     </section>
 </template>

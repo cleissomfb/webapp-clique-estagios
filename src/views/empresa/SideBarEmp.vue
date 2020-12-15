@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <fragment>
     <b-sidebar
       id="sidebar-no-header"
       aria-labelledby="sidebar-no-header-title"
@@ -41,7 +41,7 @@
         </div>
       </template>
     </b-sidebar>
-  </div>
+  </fragment>
 </template>
 
 <script>

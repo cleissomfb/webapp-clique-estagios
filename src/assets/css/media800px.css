@@ -20,19 +20,23 @@
     margin-top: 20px;
     background-color: #FFFFFF !important;
     border: 2px solid #FFFFFF;
-    padding-left: 10px;
+    /* padding-left: 10px; */
     max-width: calc(100vw - 50px);
     height: 175px;
   }
 
-  .contato-endereco h4 {
-    font-size: 12px !important;
-    line-height: 20px;
+  .contato-endereco li {
+    font-size: 11px !important;
+    line-height: 15px;
     color: #2ad2b3;
   }
 
   .contato .contato-rede-social {
     margin-top: 20px;
+  }
+
+  .contato .contato-rede-social nav ul {
+    padding-left: 0px;
   }
 
   .noBorderMobile {
@@ -92,7 +96,7 @@
   }
 
   .card {
-    height: auto;
+    height: auto !important;
   }
 
   .instituicao {
@@ -164,4 +168,5 @@
   .card {
     height: auto;
   }
+
 }

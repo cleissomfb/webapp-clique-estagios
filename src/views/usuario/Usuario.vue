@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <fragment>
     <NavbarUser />
     <SidebarUser />
     <router-view name="usuarioView" />
@@ -10,7 +10,7 @@
         ><b-icon class="icon" icon="arrow-up"></b-icon
       ></b-button>
     </div>
-  </div>
+  </fragment>
 </template>
 
 <script>

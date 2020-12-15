@@ -67,7 +67,6 @@
                                     variant="info"
                                     @click="visualizarVaga(input)"
                                     v-b-tooltip.hover
-                                    title="Visualizar a vaga"
                                     ><b-icon icon="file-earmark-text"></b-icon
                                   ></b-button>
                                 </b-col>

@@ -10,7 +10,7 @@ import '@fortawesome/fontawesome-free/js/all.js'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 // Import da função que rola automaticamente as instituições parceiras
-import './assets/js/scroller.js'
+// import './assets/js/scroller.js'
 
 // Import do CSS do estilo o painelAdm
 import './assets/css/estiloPainelAdm.css'
@@ -21,6 +21,7 @@ import './assets/css/estiloPaginaPrincipal.css'
 // Import das resoluções 
 import './assets/css/media500px.css'
 import './assets/css/media720px.css'
+import './assets/css/media800px.css'
 import './assets/css/media1080px.css'
 import './assets/css/media1200px.css'
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <fragment>
     <b-form @submit.prevent="logarUsuario()">
       <b-overlay :show="show" rounded="sm">
         <b-row>
@@ -40,7 +40,7 @@
         </b-row>
       </b-overlay>
     </b-form>
-  </div>
+  </fragment>
 </template>
 
 <script>

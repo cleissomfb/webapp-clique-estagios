@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <fragment>
     <NavbarEmp />
     <SidebarEmp />
     <router-view name="empresaView" />
@@ -10,7 +10,7 @@
         ><b-icon class="icon" icon="arrow-up"></b-icon
       ></b-button>
     </div>
-  </div>
+  </fragment>
 </template>
 
 <script>

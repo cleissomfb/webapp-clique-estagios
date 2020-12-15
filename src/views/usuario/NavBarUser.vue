@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <fragment>
     <b-navbar class="navbar">
       <b-navbar-brand v-b-toggle.sidebar-no-header href="#"
         ><ion-icon v-pre class="menu-sidebar" name="reorder-four-outline"></ion-icon
@@ -27,7 +27,7 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-  </div>
+  </fragment>
 </template>
 
 <script>

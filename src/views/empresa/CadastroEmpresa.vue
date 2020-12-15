@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <fragment>
     <NavbarPaginaInicial />
-    <div class="section mt-5 mb-5 containerImagem">
+    <section class="section mt-5 mb-5 containerImagem">
       <div class="container">
         <b-overlay :show="show" rounded="sm">
           <form class="col-md-12 ml-auto mr-auto">
@@ -673,7 +673,7 @@
           </b-button>
         </template>
       </b-modal>
-    </div>
+    </section>
     <Contato />
     <Footer />
     <div id="voltarTopo">
@@ -681,7 +681,7 @@
         ><b-icon class="icon" icon="arrow-up"></b-icon
       ></b-button>
     </div>
-  </div>
+  </fragment>
 </template>
 
 <script>

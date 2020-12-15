@@ -1,5 +1,5 @@
 <template>
-  <div class="section mt-5 imagemConteiner">
+  <section class="section mt-5 imagemConteiner">
     <div class="imagemHome">
       <div class="container">
         <div class="card-container card-interno">
@@ -32,7 +32,7 @@
         <p class="my-4">Hello from modal!</p>
       </b-modal>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

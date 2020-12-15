@@ -350,14 +350,14 @@
   float: left;
   text-align: left;
   list-style: none;
-  padding-left: 75px;
+  /* padding-left: 75px; */
   margin-top: 33px;
   border: 2px solid #FFFFFF;
   border-radius: 15px;
   background-color: #fff;
   height: 155px;
-  padding-top: 5px;
-  margin-left: 10px;
+  /* padding-top: 5px; */
+  /* margin-left: 10px; */
   width: 525px;
 }
 
@@ -366,17 +366,23 @@
   font-size: 120%;
 }
 
-.contato-endereco h4 {
+.contato-endereco li {
   color: #2ad2b3;
   line-height: 10px;
-  font-size: 15px !important;
+  font-size: 14px !important;
   font-weight: 700;
-  margin-top: 7px;
+  margin-top: 11px;
+  list-style-type: none;
 }
 
 .contato .contato-rede-social {
   text-align: center;
   margin-top: 10px;
+}
+
+.contato .contato-rede-social nav ul li {
+  display: inline-block;
+  list-style-type: none;
 }
 
 .contato .contato-rede-social a ion-icon {

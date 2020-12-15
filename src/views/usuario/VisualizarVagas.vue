@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div class="section mt-5 containerImagem">
+    <section class="section mt-5 containerImagem">
       <div class="container">
         <form class="col-md-12 ml-auto mr-auto">
           <div class="mt-5">
@@ -49,7 +48,7 @@
                     </p>
                   </b-col>
                   <b-col
-                    md="4"
+                    xl="4" md="6" sm="12"
                     v-for="(input, k) in vagasDisponiveis.slice(
                       (currentPage - 1) * perPage,
                       (currentPage - 1) * perPage + perPage
@@ -107,7 +106,6 @@
                             variant="info"
                             @click="visualizarVaga(input)"
                             v-b-tooltip.hover
-                            title="Visualizar a vaga"
                             ><b-icon icon="file-earmark-text"></b-icon
                           ></b-button>
                         </b-col>
@@ -366,8 +364,7 @@
           </b-button>
         </template>
       </b-modal>
-    </div>
-  </div>
+    </section>
 </template>
 
 <script>

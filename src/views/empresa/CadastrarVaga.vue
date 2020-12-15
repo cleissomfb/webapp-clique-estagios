@@ -1,5 +1,5 @@
 <template>
-  <div class="section mt-5 mb-5 containerImagem">
+  <section class="section mt-5 mb-5 containerImagem">
     <div class="container">
       <b-overlay :show="show" rounded="sm">
         <form class="col-md-12 ml-auto mr-auto">
@@ -299,7 +299,7 @@
         </template>
       </b-modal>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,577 +1,571 @@
 <template>
-  <div>
-    <div class="section mt-5 containerImagem">
-      <div class="container">
-        <form class="col-md-12 ml-auto mr-auto">
-          <div class="mt-5">
-            <h2 class="title titulos">Usuários Interessados</h2>
+  <section class="section mt-5 containerImagem">
+    <div class="container">
+      <form class="col-md-12 ml-auto mr-auto">
+        <div class="mt-5">
+          <h2 class="title titulos">Usuários Interessados</h2>
+        </div>
+        <div md="12">
+          <div>
+            <b-overlay :show="show" rounded="sm">
+              <b-row md="12">
+                <b-col md="12" v-if="interessadosVagas.length == 0">
+                  <p class="text-center my-5">
+                    Ainda não há candidatos para essa vaga.
+                  </p>
+                </b-col>
+                <b-col
+                  md="4"
+                  v-for="(input, k) in interessadosVagas.slice(
+                    (currentPage - 1) * perPage,
+                    (currentPage - 1) * perPage + perPage
+                  )"
+                  :key="k"
+                  class="my-4"
+                >
+                  <b-card>
+                    <template #header>
+                      <div md="12">
+                        <label>{{ input.informacoes.pessoais.nome }}</label>
+                      </div>
+                    </template>
+                    <div md="12">
+                      <b-card-text>
+                        <b-row>
+                          <b-col md="12">
+                            <div>
+                              <div class="subtitulo">
+                                <label>E-mail</label> <br />
+                              </div>
+                              <label class="item">{{
+                                input.informacoes.pessoais.email
+                              }}</label>
+                            </div>
+                          </b-col>
+                          <b-col md="6">
+                            <div>
+                              <div class="subtitulo">
+                                <label>Celular </label> <br />
+                              </div>
+                              <label class="item">{{
+                                input.informacoes.contato.celular
+                              }}</label>
+                            </div>
+                          </b-col>
+                          <b-col md="6">
+                            <div>
+                              <div class="subtitulo">
+                                <label>Cidade </label> <br />
+                              </div>
+                              <label class="item">{{
+                                input.informacoes.endereco.cidade
+                              }}</label>
+                            </div>
+                          </b-col>
+                        </b-row>
+                      </b-card-text>
+                    </div>
+                    <template #footer>
+                      <b-col md="12">
+                        <b-button
+                          small
+                          class="mr-1"
+                          variant="info"
+                          @click="candidatoInteressado(input)"
+                          v-b-tooltip.hover
+                          title="Visualizar a candidato."
+                          ><b-icon icon="file-earmark-text"></b-icon
+                        ></b-button>
+                      </b-col>
+                    </template>
+                  </b-card>
+                </b-col>
+              </b-row>
+            </b-overlay>
+            <b-pagination
+              v-if="interessadosVagas.length > 0"
+              v-model="currentPage"
+              :per-page="perPage"
+              :total-rows="interessadosVagas.length"
+              align="center"
+            ></b-pagination>
           </div>
-          <div md="12">
-            <div>
-              <b-overlay :show="show" rounded="sm">
-                <b-row md="12">
-                  <b-col md="12" v-if="interessadosVagas.length == 0">
-                    <p class="text-center my-5">
-                      Ainda não há candidatos para essa vaga.
-                    </p>
+        </div>
+      </form>
+    </div>
+    <b-modal
+      id="visualizarVaga"
+      centered
+      class="modalVisualizarVaga"
+      size="lg"
+      title="Visualizar Candidato"
+    >
+      <div class="container-visualizar-vaga">
+        <b-overlay :show="show" rounded="sm">
+          <div class="candidatoContainer">
+            <b-row>
+              <b-col md="12" class="descrVagas">
+                <div class="titulo-vaga">
+                  <label class="item">{{ dadosPessoais.nome }}</label>
+                </div>
+              </b-col>
+              <b-col md="4" class="descrVagas">
+                <div>
+                  <div class="subtitulo"><label>CPF </label> <br /></div>
+                  <label class="item">{{ dadosPessoais.cpf }}</label>
+                </div>
+              </b-col>
+              <b-col md="4" class="descrVagas">
+                <div>
+                  <div class="subtitulo">
+                    <label class="sub-titulo">Data de Nascimento </label>
+                    <br />
+                  </div>
+                  <label class="item" v-if="dadosPessoais.dataNasc != null">
+                    {{ dadosPessoais.dataNasc }}</label
+                  >
+                  <label class="item" v-if="dadosPessoais.dataNasc == null"
+                    >Não Descrito</label
+                  >
+                </div>
+              </b-col>
+              <b-col md="4" class="descrVagas">
+                <div>
+                  <div class="subtitulo">
+                    <label class="sub-titulo">E-mail </label> <br />
+                  </div>
+                  <label class="item" v-if="dadosPessoais.email != null"
+                    >{{ dadosPessoais.email }}
+                  </label>
+                  <label class="item" v-if="dadosPessoais.email == null"
+                    >Não Descrito</label
+                  >
+                </div>
+              </b-col>
+              <b-col md="4" class="descrVagas">
+                <div>
+                  <div class="subtitulo">
+                    <label class="sub-titulo">Bairro </label> <br />
+                  </div>
+                  <label class="item" v-if="dadosEndereco.bairro != null"
+                    >{{ dadosEndereco.bairro }}
+                  </label>
+                  <label class="item" v-if="dadosEndereco.bairro == null"
+                    >Não Descrito</label
+                  >
+                </div>
+              </b-col>
+              <b-col md="4" class="descrVagas">
+                <div>
+                  <div class="subtitulo">
+                    <label class="sub-titulo">Cidade </label> <br />
+                  </div>
+                  <label class="item" v-if="dadosEndereco.cidade != null"
+                    >{{ dadosEndereco.cidade }}
+                  </label>
+                  <label class="item" v-if="dadosEndereco.cidade == null"
+                    >Não Descrito</label
+                  >
+                </div>
+              </b-col>
+              <b-col md="4" class="descrVagas">
+                <div>
+                  <div class="subtitulo">
+                    <label class="sub-titulo">UF </label> <br />
+                  </div>
+                  <label class="item" v-if="dadosEndereco.uf != null"
+                    >{{ dadosEndereco.uf }}
+                  </label>
+                  <label class="item" v-if="dadosEndereco.uf == null"
+                    >Não Descrito</label
+                  >
+                </div>
+              </b-col>
+              <b-col md="4" class="descrVagas mb-3">
+                <div>
+                  <div class="subtitulo">
+                    <label class="sub-titulo">Celular </label> <br />
+                  </div>
+                  <label class="item" v-if="dadosContato.celular != null"
+                    >{{ dadosContato.celular }}
+                  </label>
+                  <label class="item" v-if="dadosContato.celular == null"
+                    >Não Descrito</label
+                  >
+                </div>
+              </b-col>
+              <b-col md="4" class="descrVagas mb-3">
+                <div>
+                  <div class="subtitulo">
+                    <label class="sub-titulo">Telefone Principal </label>
+                    <br />
+                  </div>
+                  <label
+                    class="item"
+                    v-if="dadosContato.telefonePrincipal != null"
+                    >{{ dadosContato.telefonePrincipal }}
+                  </label>
+                  <label
+                    class="item"
+                    v-if="dadosContato.telefonePrincipal == null"
+                    >Não Descrito</label
+                  >
+                </div>
+              </b-col>
+              <b-col md="4" class="descrVagas mb-3">
+                <div>
+                  <div class="subtitulo">
+                    <label class="sub-titulo">Recado </label> <br />
+                  </div>
+                  <label
+                    class="item"
+                    v-if="dadosContato.responsavelRecado != null"
+                    >{{ dadosContato.responsavelRecado }}
+                  </label>
+                  <label
+                    class="item"
+                    v-if="dadosContato.responsavelRecado == null"
+                    >Não Descrito</label
+                  >
+                </div>
+              </b-col>
+              <div md="12" class="descrVagas">
+                <b-row>
+                  <b-col md="12">
+                    <div class="subtitulo">
+                      <label>Educação Atual</label>
+                    </div>
+                  </b-col>
+                  <b-col md="12">
+                    <label class="item"></label>
+                  </b-col>
+                  <b-col md="4" class="descrVagas">
+                    <div>
+                      <div class="subtitulo">
+                        <label class="sub-titulo">Mês da Formatura </label>
+                        <br />
+                      </div>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'janeiro'
+                        "
+                        >Janeiro
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'fevereiro'
+                        "
+                        >Fevereiro
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'marco'
+                        "
+                        >Março
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'abril'
+                        "
+                        >Abril
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'maio'
+                        "
+                        >Maio
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'junho'
+                        "
+                        >Junho
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'julho'
+                        "
+                        >Julho
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'agosto'
+                        "
+                        >Agosto
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'setembro'
+                        "
+                        >Setembro
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'outubro'
+                        "
+                        >Outubro
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'novembro'
+                        "
+                        >Novembro
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.mesFormatura != null &&
+                            dadosEducacaoAtual.mesFormatura === 'dezembro'
+                        "
+                        >Dezembro
+                      </label>
+                      <label
+                        class="item"
+                        v-if="dadosEducacaoAtual.mesFormatura == null"
+                        >Não Descrito</label
+                      >
+                    </div>
+                  </b-col>
+                  <b-col md="4" class="descrVagas">
+                    <div>
+                      <div class="subtitulo">
+                        <label class="sub-titulo">Ano da Formatura </label>
+                        <br />
+                      </div>
+                      <label
+                        class="item"
+                        v-if="dadosEducacaoAtual.anoFormatura != null"
+                        >{{ dadosEducacaoAtual.anoFormatura }}
+                      </label>
+                      <label
+                        class="item"
+                        v-if="dadosEducacaoAtual.anoFormatura == null"
+                        >Não Descrito</label
+                      >
+                    </div>
+                  </b-col>
+                  <b-col md="4" class="descrVagas">
+                    <div>
+                      <div class="subtitulo">
+                        <label class="sub-titulo">Curso </label> <br />
+                      </div>
+                      <label
+                        class="itemCurso"
+                        v-if="dadosEducacaoAtual.cursosGrau != null"
+                        >{{ dadosEducacaoAtual.cursosGrau }}
+                      </label>
+                      <label
+                        class="item"
+                        v-if="dadosEducacaoAtual.cursosGrau == null"
+                        >Não Descrito</label
+                      >
+                    </div>
+                  </b-col>
+                  <b-col md="4" class="descrVagas">
+                    <div>
+                      <div class="subtitulo">
+                        <label class="sub-titulo">Instituição </label> <br />
+                      </div>
+                      <label
+                        class="item"
+                        v-if="dadosEducacaoAtual.instituicao != null"
+                        >{{ dadosEducacaoAtual.instituicao }}
+                      </label>
+                      <label
+                        class="item"
+                        v-if="dadosEducacaoAtual.instituicao == null"
+                        >Não Descrito</label
+                      >
+                    </div>
+                  </b-col>
+                  <b-col md="4" class="descrVagas">
+                    <div>
+                      <div class="subtitulo">
+                        <label class="sub-titulo">Nível Ensino </label> <br />
+                      </div>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.nivelEnsino != null &&
+                            dadosEducacaoAtual.nivelEnsino === 1
+                        "
+                        >Ensino Médio e Supletivo
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.nivelEnsino != null &&
+                            dadosEducacaoAtual.nivelEnsino === 2
+                        "
+                        >Cursos (Técnicos e Profissionalizantes)
+                      </label>
+                      <label
+                        class="item"
+                        v-if="
+                          dadosEducacaoAtual.nivelEnsino != null &&
+                            dadosEducacaoAtual.nivelEnsino === 3
+                        "
+                        >Ensino Superior
+                      </label>
+                      <label
+                        class="item"
+                        v-if="dadosEducacaoAtual.nivelEnsino == null"
+                        >Não Descrito</label
+                      >
+                    </div>
+                  </b-col>
+                  <b-col md="4" class="descrVagas">
+                    <div>
+                      <div class="subtitulo">
+                        <label class="sub-titulo">Semestre </label> <br />
+                      </div>
+                      <label
+                        class="item"
+                        v-if="dadosEducacaoAtual.semestre != null"
+                        >{{ dadosEducacaoAtual.semestre }}
+                      </label>
+                      <label
+                        class="item"
+                        v-if="dadosEducacaoAtual.semestre == null"
+                        >Não Descrito</label
+                      >
+                    </div>
+                  </b-col>
+                </b-row>
+              </div>
+              <div md="12" class="experiencia">
+                <b-row>
+                  <b-col md="12">
+                    <div class="subtitulo">
+                      <label v-if="dadosExperienciaAtualBoolean == true"
+                        >Experiência Atual</label
+                      >
+                      <label v-if="dadosExperienciaAtualBoolean == false"
+                        >Experiência</label
+                      >
+                    </div>
+                  </b-col>
+                  <b-col md="12">
+                    <label
+                      v-if="dadosExperienciaAtualBoolean == true"
+                      class="item"
+                    ></label>
+                    <label
+                      v-if="dadosExperienciaAtualBoolean == false"
+                      class="item"
+                      >Candidato(a) sem experiência</label
+                    >
                   </b-col>
                   <b-col
                     md="4"
-                    v-for="(input, k) in interessadosVagas.slice(
-                      (currentPage - 1) * perPage,
-                      (currentPage - 1) * perPage + perPage
-                    )"
-                    :key="k"
-                    class="my-4"
+                    class="noPaddingRight"
+                    v-if="dadosExperienciaAtualBoolean == true"
                   >
-                    <b-card>
-                      <template #header>
-                        <div md="12">
-                          <label>{{ input.informacoes.pessoais.nome }}</label>
-                        </div>
-                      </template>
-                      <div md="12">
-                        <b-card-text>
-                          <b-row>
-                            <b-col md="12">
-                              <div>
-                                <div class="subtitulo">
-                                  <label>E-mail</label> <br />
-                                </div>
-                                <label class="item">{{
-                                  input.informacoes.pessoais.email
-                                }}</label>
-                              </div>
-                            </b-col>
-                            <b-col md="6">
-                              <div>
-                                <div class="subtitulo">
-                                  <label>Celular </label> <br />
-                                </div>
-                                <label class="item">{{
-                                  input.informacoes.contato.celular
-                                }}</label>
-                              </div>
-                            </b-col>
-                            <b-col md="6">
-                              <div>
-                                <div class="subtitulo">
-                                  <label>Cidade </label> <br />
-                                </div>
-                                <label class="item">{{
-                                  input.informacoes.endereco.cidade
-                                }}</label>
-                              </div>
-                            </b-col>
-                          </b-row>
-                        </b-card-text>
+                    <div>
+                      <div class="subtitulo">
+                        <label class="sub-titulo">Empresa</label> <br />
                       </div>
-                      <template #footer>
-                        <b-col md="12">
-                          <b-button
-                            small
-                            class="mr-1"
-                            variant="info"
-                            @click="candidatoInteressado(input)"
-                            v-b-tooltip.hover
-                            title="Visualizar a candidato."
-                            ><b-icon icon="file-earmark-text"></b-icon
-                          ></b-button>
-                        </b-col>
-                      </template>
-                    </b-card>
+                      <label
+                        class="item"
+                        v-if="dadosExperienciaAtual.empresaAtual != null"
+                        >{{ dadosExperienciaAtual.empresaAtual }}
+                      </label>
+                      <label
+                        class="item"
+                        v-if="dadosExperienciaAtual.empresaAtual == null"
+                        >Não Descrito</label
+                      >
+                    </div>
+                  </b-col>
+                  <b-col
+                    md="4"
+                    class="noPaddingLeft noPaddingRight"
+                    v-if="dadosExperienciaAtualBoolean == true"
+                  >
+                    <div>
+                      <div class="subtitulo">
+                        <label class="sub-titulo">Atividade</label>
+                        <br />
+                      </div>
+                      <label
+                        class="item"
+                        v-if="dadosExperienciaAtual.atividadesAtual != null"
+                        >{{ dadosExperienciaAtual.atividadesAtual }}
+                      </label>
+                      <label
+                        class="item"
+                        v-if="dadosExperienciaAtual.atividadesAtual == null"
+                        >Não Descrito</label
+                      >
+                    </div>
+                  </b-col>
+                  <b-col
+                    md="4"
+                    class="noPaddingLeft"
+                    v-if="dadosExperienciaAtualBoolean == true"
+                  >
+                    <div>
+                      <div class="subtitulo">
+                        <label class="sub-titulo">Periodo Inicial</label>
+                        <br />
+                      </div>
+                      <label
+                        class="item"
+                        v-if="dadosExperienciaAtual.periodoInicialAtual != null"
+                        >{{
+                          formatarData(
+                            dadosExperienciaAtual.periodoInicialAtual
+                          )
+                        }}
+                      </label>
+                      <label
+                        class="item"
+                        v-if="dadosExperienciaAtual.periodoInicialAtual == null"
+                        >Não Descrito</label
+                      >
+                    </div>
                   </b-col>
                 </b-row>
-              </b-overlay>
-              <b-pagination
-                v-if="interessadosVagas.length > 0"
-                v-model="currentPage"
-                :per-page="perPage"
-                :total-rows="interessadosVagas.length"
-                align="center"
-              ></b-pagination>
-            </div>
+              </div>
+            </b-row>
           </div>
-        </form>
+        </b-overlay>
       </div>
-      <b-modal
-        id="visualizarVaga"
-        centered
-        class="modalVisualizarVaga"
-        size="lg"
-        title="Visualizar Candidato"
-      >
-        <div class="container-visualizar-vaga">
-          <b-overlay :show="show" rounded="sm">
-            <div class="candidatoContainer">
-              <b-row>
-                <b-col md="12" class="descrVagas">
-                  <div class="titulo-vaga">
-                    <label class="item">{{ dadosPessoais.nome }}</label>
-                  </div>
-                </b-col>
-                <b-col md="4" class="descrVagas">
-                  <div>
-                    <div class="subtitulo"><label>CPF </label> <br /></div>
-                    <label class="item">{{ dadosPessoais.cpf }}</label>
-                  </div>
-                </b-col>
-                <b-col md="4" class="descrVagas">
-                  <div>
-                    <div class="subtitulo">
-                      <label class="sub-titulo">Data de Nascimento </label>
-                      <br />
-                    </div>
-                    <label class="item" v-if="dadosPessoais.dataNasc != null">
-                      {{ dadosPessoais.dataNasc }}</label
-                    >
-                    <label class="item" v-if="dadosPessoais.dataNasc == null"
-                      >Não Descrito</label
-                    >
-                  </div>
-                </b-col>
-                <b-col md="4" class="descrVagas">
-                  <div>
-                    <div class="subtitulo">
-                      <label class="sub-titulo">E-mail </label> <br />
-                    </div>
-                    <label class="item" v-if="dadosPessoais.email != null"
-                      >{{ dadosPessoais.email }}
-                    </label>
-                    <label class="item" v-if="dadosPessoais.email == null"
-                      >Não Descrito</label
-                    >
-                  </div>
-                </b-col>
-                <b-col md="4" class="descrVagas">
-                  <div>
-                    <div class="subtitulo">
-                      <label class="sub-titulo">Bairro </label> <br />
-                    </div>
-                    <label class="item" v-if="dadosEndereco.bairro != null"
-                      >{{ dadosEndereco.bairro }}
-                    </label>
-                    <label class="item" v-if="dadosEndereco.bairro == null"
-                      >Não Descrito</label
-                    >
-                  </div>
-                </b-col>
-                <b-col md="4" class="descrVagas">
-                  <div>
-                    <div class="subtitulo">
-                      <label class="sub-titulo">Cidade </label> <br />
-                    </div>
-                    <label class="item" v-if="dadosEndereco.cidade != null"
-                      >{{ dadosEndereco.cidade }}
-                    </label>
-                    <label class="item" v-if="dadosEndereco.cidade == null"
-                      >Não Descrito</label
-                    >
-                  </div>
-                </b-col>
-                <b-col md="4" class="descrVagas">
-                  <div>
-                    <div class="subtitulo">
-                      <label class="sub-titulo">UF </label> <br />
-                    </div>
-                    <label class="item" v-if="dadosEndereco.uf != null"
-                      >{{ dadosEndereco.uf }}
-                    </label>
-                    <label class="item" v-if="dadosEndereco.uf == null"
-                      >Não Descrito</label
-                    >
-                  </div>
-                </b-col>
-                <b-col md="4" class="descrVagas mb-3">
-                  <div>
-                    <div class="subtitulo">
-                      <label class="sub-titulo">Celular </label> <br />
-                    </div>
-                    <label class="item" v-if="dadosContato.celular != null"
-                      >{{ dadosContato.celular }}
-                    </label>
-                    <label class="item" v-if="dadosContato.celular == null"
-                      >Não Descrito</label
-                    >
-                  </div>
-                </b-col>
-                <b-col md="4" class="descrVagas mb-3">
-                  <div>
-                    <div class="subtitulo">
-                      <label class="sub-titulo">Telefone Principal </label>
-                      <br />
-                    </div>
-                    <label
-                      class="item"
-                      v-if="dadosContato.telefonePrincipal != null"
-                      >{{ dadosContato.telefonePrincipal }}
-                    </label>
-                    <label
-                      class="item"
-                      v-if="dadosContato.telefonePrincipal == null"
-                      >Não Descrito</label
-                    >
-                  </div>
-                </b-col>
-                <b-col md="4" class="descrVagas mb-3">
-                  <div>
-                    <div class="subtitulo">
-                      <label class="sub-titulo">Recado </label> <br />
-                    </div>
-                    <label
-                      class="item"
-                      v-if="dadosContato.responsavelRecado != null"
-                      >{{ dadosContato.responsavelRecado }}
-                    </label>
-                    <label
-                      class="item"
-                      v-if="dadosContato.responsavelRecado == null"
-                      >Não Descrito</label
-                    >
-                  </div>
-                </b-col>
-                <div md="12" class="descrVagas">
-                  <b-row>
-                    <b-col md="12">
-                      <div class="subtitulo">
-                        <label>Educação Atual</label>
-                      </div>
-                    </b-col>
-                    <b-col md="12">
-                      <label class="item"></label>
-                    </b-col>
-                    <b-col md="4" class="descrVagas">
-                      <div>
-                        <div class="subtitulo">
-                          <label class="sub-titulo">Mês da Formatura </label>
-                          <br />
-                        </div>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'janeiro'
-                          "
-                          >Janeiro
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'fevereiro'
-                          "
-                          >Fevereiro
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'marco'
-                          "
-                          >Março
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'abril'
-                          "
-                          >Abril
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'maio'
-                          "
-                          >Maio
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'junho'
-                          "
-                          >Junho
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'julho'
-                          "
-                          >Julho
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'agosto'
-                          "
-                          >Agosto
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'setembro'
-                          "
-                          >Setembro
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'outubro'
-                          "
-                          >Outubro
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'novembro'
-                          "
-                          >Novembro
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.mesFormatura != null &&
-                            dadosEducacaoAtual.mesFormatura === 'dezembro'
-                          "
-                          >Dezembro
-                        </label>
-                        <label
-                          class="item"
-                          v-if="dadosEducacaoAtual.mesFormatura == null"
-                          >Não Descrito</label
-                        >
-                      </div>
-                    </b-col>
-                    <b-col md="4" class="descrVagas">
-                      <div>
-                        <div class="subtitulo">
-                          <label class="sub-titulo">Ano da Formatura </label>
-                          <br />
-                        </div>
-                        <label
-                          class="item"
-                          v-if="dadosEducacaoAtual.anoFormatura != null"
-                          >{{ dadosEducacaoAtual.anoFormatura }}
-                        </label>
-                        <label
-                          class="item"
-                          v-if="dadosEducacaoAtual.anoFormatura == null"
-                          >Não Descrito</label
-                        >
-                      </div>
-                    </b-col>
-                    <b-col md="4" class="descrVagas">
-                      <div>
-                        <div class="subtitulo">
-                          <label class="sub-titulo">Curso </label> <br />
-                        </div>
-                        <label
-                          class="itemCurso"
-                          v-if="dadosEducacaoAtual.cursosGrau != null"
-                          >{{ dadosEducacaoAtual.cursosGrau }}
-                        </label>
-                        <label
-                          class="item"
-                          v-if="dadosEducacaoAtual.cursosGrau == null"
-                          >Não Descrito</label
-                        >
-                      </div>
-                    </b-col>
-                    <b-col md="4" class="descrVagas">
-                      <div>
-                        <div class="subtitulo">
-                          <label class="sub-titulo">Instituição </label> <br />
-                        </div>
-                        <label
-                          class="item"
-                          v-if="dadosEducacaoAtual.instituicao != null"
-                          >{{ dadosEducacaoAtual.instituicao }}
-                        </label>
-                        <label
-                          class="item"
-                          v-if="dadosEducacaoAtual.instituicao == null"
-                          >Não Descrito</label
-                        >
-                      </div>
-                    </b-col>
-                    <b-col md="4" class="descrVagas">
-                      <div>
-                        <div class="subtitulo">
-                          <label class="sub-titulo">Nível Ensino </label> <br />
-                        </div>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.nivelEnsino != null &&
-                            dadosEducacaoAtual.nivelEnsino === 1
-                          "
-                          >Ensino Médio e Supletivo
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.nivelEnsino != null &&
-                            dadosEducacaoAtual.nivelEnsino === 2
-                          "
-                          >Cursos (Técnicos e Profissionalizantes)
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosEducacaoAtual.nivelEnsino != null &&
-                            dadosEducacaoAtual.nivelEnsino === 3
-                          "
-                          >Ensino Superior
-                        </label>
-                        <label
-                          class="item"
-                          v-if="dadosEducacaoAtual.nivelEnsino == null"
-                          >Não Descrito</label
-                        >
-                      </div>
-                    </b-col>
-                    <b-col md="4" class="descrVagas">
-                      <div>
-                        <div class="subtitulo">
-                          <label class="sub-titulo">Semestre </label> <br />
-                        </div>
-                        <label
-                          class="item"
-                          v-if="dadosEducacaoAtual.semestre != null"
-                          >{{ dadosEducacaoAtual.semestre }}
-                        </label>
-                        <label
-                          class="item"
-                          v-if="dadosEducacaoAtual.semestre == null"
-                          >Não Descrito</label
-                        >
-                      </div>
-                    </b-col>
-                  </b-row>
-                </div>
-                <div md="12" class="experiencia">
-                  <b-row>
-                    <b-col md="12">
-                      <div class="subtitulo">
-                        <label v-if="dadosExperienciaAtualBoolean == true"
-                          >Experiência Atual</label
-                        >
-                        <label v-if="dadosExperienciaAtualBoolean == false"
-                          >Experiência</label
-                        >
-                      </div>
-                    </b-col>
-                    <b-col md="12">
-                      <label
-                        v-if="dadosExperienciaAtualBoolean == true"
-                        class="item"
-                      ></label>
-                      <label
-                        v-if="dadosExperienciaAtualBoolean == false"
-                        class="item"
-                        >Candidato(a) sem experiência</label
-                      >
-                    </b-col>
-                    <b-col
-                      md="4"
-                      class="noPaddingRight"
-                      v-if="dadosExperienciaAtualBoolean == true"
-                    >
-                      <div>
-                        <div class="subtitulo">
-                          <label class="sub-titulo">Empresa</label> <br />
-                        </div>
-                        <label
-                          class="item"
-                          v-if="dadosExperienciaAtual.empresaAtual != null"
-                          >{{ dadosExperienciaAtual.empresaAtual }}
-                        </label>
-                        <label
-                          class="item"
-                          v-if="dadosExperienciaAtual.empresaAtual == null"
-                          >Não Descrito</label
-                        >
-                      </div>
-                    </b-col>
-                    <b-col
-                      md="4"
-                      class="noPaddingLeft noPaddingRight"
-                      v-if="dadosExperienciaAtualBoolean == true"
-                    >
-                      <div>
-                        <div class="subtitulo">
-                          <label class="sub-titulo">Atividade</label>
-                          <br />
-                        </div>
-                        <label
-                          class="item"
-                          v-if="dadosExperienciaAtual.atividadesAtual != null"
-                          >{{ dadosExperienciaAtual.atividadesAtual }}
-                        </label>
-                        <label
-                          class="item"
-                          v-if="dadosExperienciaAtual.atividadesAtual == null"
-                          >Não Descrito</label
-                        >
-                      </div>
-                    </b-col>
-                    <b-col
-                      md="4"
-                      class="noPaddingLeft"
-                      v-if="dadosExperienciaAtualBoolean == true"
-                    >
-                      <div>
-                        <div class="subtitulo">
-                          <label class="sub-titulo">Periodo Inicial</label>
-                          <br />
-                        </div>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosExperienciaAtual.periodoInicialAtual != null
-                          "
-                          >{{
-                            formatarData(
-                              dadosExperienciaAtual.periodoInicialAtual
-                            )
-                          }}
-                        </label>
-                        <label
-                          class="item"
-                          v-if="
-                            dadosExperienciaAtual.periodoInicialAtual == null
-                          "
-                          >Não Descrito</label
-                        >
-                      </div>
-                    </b-col>
-                  </b-row>
-                </div>
-              </b-row>
-            </div>
-          </b-overlay>
-        </div>
 
-        <template #modal-footer>
-          <b-button
-            size="md"
-            pill
-            class="float-right btn-editado"
-            @click="hideVisualizarVaga"
-            ><b-icon icon="x" class="mr-1"></b-icon>
-            Voltar
-          </b-button>
-        </template>
-      </b-modal>
-    </div>
-  </div>
+      <template #modal-footer>
+        <b-button
+          size="md"
+          pill
+          class="float-right btn-editado"
+          @click="hideVisualizarVaga"
+          ><b-icon icon="x" class="mr-1"></b-icon>
+          Voltar
+        </b-button>
+      </template>
+    </b-modal>
+  </section>
 </template>
 
 <script>
@@ -718,5 +712,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

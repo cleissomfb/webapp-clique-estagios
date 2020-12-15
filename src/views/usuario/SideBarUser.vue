@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <fragment>
     <b-sidebar
       id="sidebar-no-header"
       aria-labelledby="sidebar-no-header-title"
@@ -25,7 +25,7 @@
               >
               <b-nav-item active href="/usuario/perfilUsuario" @click="hide"
                 ><b-icon icon="pencil" class="mr-3"></b-icon
-                >Perfil Perfil</b-nav-item
+                >Editar Perfil</b-nav-item
               >
               <b-nav-item  active href="/usuario/visualizarVagas" @click="hide"
                 ><b-icon icon="card-text" class="mr-3"></b-icon
@@ -39,7 +39,7 @@
         </div>
       </template>
     </b-sidebar>
-  </div>
+  </fragment>
 </template>
 
 <script>
