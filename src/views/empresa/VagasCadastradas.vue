@@ -214,7 +214,7 @@
                     <label>Remuneração: </label> <br />
                   </div>
                   <!-- <label > {{ vaga.remuneracao }}</label> -->
-                  <span>{{ vaga.remuneracao | VMask(mask) }}</span>
+                  <span>{{ vaga.remuneracao |  mask  }}</span>
                 </div>
               </b-col>
               <b-col md="4" class="descrVagas">
@@ -334,13 +334,13 @@
 
 <script>
 import { vagaService } from "@/service";
-// import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-// const currencyMask = createNumberMask({
-//     prefix: '$',
-//     allowDecimal: true,
-//     includeThousandsSeparator: true,
-//     allowNegative: false,
-//   });
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+const currencyMask = createNumberMask({
+    prefix: '$',
+    allowDecimal: true,
+    includeThousandsSeparator: true,
+    allowNegative: false,
+  });
 export default {
   name: "VagasCadastradas",
   data() {
