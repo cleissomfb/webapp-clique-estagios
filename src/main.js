@@ -30,7 +30,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-// Import das maskaras de imput
+// Import das maskaras de input
 import VueMask from 'v-mask'
 
 // Import da validação dos campos
@@ -40,9 +40,16 @@ import Vuelidate from 'vuelidate'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 // Import do plugin vue-fragment
-import { Plugin } from 'vue-fragment';
+import { Plugin } from 'vue-fragment'
 
-Vue.use(Plugin);
+import VueCurrencyInput from 'vue-currency-input'
+const pluginOptions = {
+  /* see config reference */
+  globalOptions: { currency: 'R$' }
+}
+Vue.use(VueCurrencyInput, pluginOptions)
+
+Vue.use(Plugin)
 Vue.use(VueAwesomeSwiper)
 Vue.use(Vuelidate)
 Vue.use(VueMask)

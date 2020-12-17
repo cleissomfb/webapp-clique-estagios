@@ -213,7 +213,8 @@
                   <div class="subtitulo noBorderMobile">
                     <label>Remuneração: </label> <br />
                   </div>
-                  <label> {{ vaga.remuneracao }}</label>
+                  <!-- <label > {{ vaga.remuneracao }}</label> -->
+                  <span>{{ vaga.remuneracao | VMask(mask) }}</span>
                 </div>
               </b-col>
               <b-col md="4" class="descrVagas">
@@ -333,6 +334,13 @@
 
 <script>
 import { vagaService } from "@/service";
+// import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+// const currencyMask = createNumberMask({
+//     prefix: '$',
+//     allowDecimal: true,
+//     includeThousandsSeparator: true,
+//     allowNegative: false,
+//   });
 export default {
   name: "VagasCadastradas",
   data() {
@@ -351,6 +359,7 @@ export default {
           thStyle: { width: "25% !important" },
         },
       ],
+      mask: currencyMask,
       empresa: {},
       perPage: 6,
       currentPage: 1,

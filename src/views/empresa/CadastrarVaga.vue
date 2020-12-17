@@ -56,6 +56,11 @@
                 >
                   Digite o Número de Vagas.
                 </span>
+                <span
+                  class="text-danger text-center"
+                  v-if="!$v.vaga.numeroVagas.numeric"
+                  >Digite somente números</span
+                >
               </b-form-group>
             </b-col>
             <b-col md="4">
@@ -64,20 +69,40 @@
                 label="Remuneração:"
                 label-for="remuneracao"
               >
-                <b-form-input
-                  id="remuneracao"
-                  v-model="vaga.remuneracao"
-                  type="text"
-                  :class="{
-                    'is-invalid': submitted && $v.vaga.remuneracao.$error,
-                  }"
-                ></b-form-input>
+                <b-input-group>
+                  <!-- <b-input-group-prepend is-text> R$ </b-input-group-prepend> -->
+                  <!-- <b-form-input
+                    id="remuneracao"
+                    v-model="vaga.remuneracao"
+                    type="text"
+                    v-mask="maskRs"
+                    :class="{
+                      'is-invalid': submitted && $v.vaga.remuneracao.$error,
+                    }"
+                    
+                  ></b-form-input> -->
+                  <currency-input 
+                    :class="{
+                      'is-invalid': submitted && $v.vaga.remuneracao.$error,
+                    }" 
+                    v-model="vaga.remuneracao" 
+                    locale="pt"
+                    currency="BRL"
+                    id="remuneracao"
+                    class="form-control"
+                     />
+                </b-input-group>
                 <span
                   class="text-danger text-center"
                   v-if="submitted && !$v.vaga.remuneracao.required"
                 >
                   Digite a Remuneração.
                 </span>
+                <span
+                  class="text-danger text-center"
+                  v-if="!$v.vaga.remuneracao.numeric"
+                  >Digite somente números</span
+                >
               </b-form-group>
             </b-col>
             <b-col md="4">
@@ -147,6 +172,11 @@
                 >
                   Digite a Carga Horária.
                 </span>
+                <span
+                  class="text-danger text-center"
+                  v-if="!$v.vaga.cargaHoraria.numeric"
+                  >Digite somente números</span
+                >
               </b-form-group>
             </b-col>
             <b-col md="6">
@@ -191,6 +221,11 @@
                 >
                   Digite o Semestre Mínimo.
                 </span>
+                <span
+                  class="text-danger text-center"
+                  v-if="!$v.vaga.semestreMinimo.numeric"
+                  >Digite somente números</span
+                >
               </b-form-group>
             </b-col>
             <b-col md="6">
@@ -304,7 +339,7 @@
 
 <script>
 import { vagaService } from "@/service";
-import { required } from "vuelidate/lib/validators";
+import { required, numeric } from "vuelidate/lib/validators";
 
 export default {
   name: "CadastrarVaga",
@@ -316,6 +351,7 @@ export default {
       errorMsg: null,
       infoMsg: null,
       show: false,
+      maskRs: "###.###,##",
       vaga: {
         titulo: "",
         atividades: "",
@@ -347,9 +383,11 @@ export default {
       },
       numeroVagas: {
         required,
+        numeric,
       },
       remuneracao: {
         required,
+        numeric,
       },
       possibilidadeEfetivacao: {
         required,
@@ -359,12 +397,14 @@ export default {
       },
       cargaHoraria: {
         required,
+        numeric,
       },
       requisitos: {
         required,
       },
       semestreMinimo: {
         required,
+        numeric,
       },
       beneficios: {
         required,
