@@ -47,9 +47,7 @@
                               <div class="subtitulo">
                                 <label>Remuneração</label> <br />
                               </div>
-                              <label class="item">{{
-                                input.remuneracao
-                              }}</label>
+                              <label class="item">{{ input.remuneracao | moneyMask }}</label>
                             </div>
                           </b-col>
                           <b-col md="6">
@@ -213,8 +211,7 @@
                   <div class="subtitulo noBorderMobile">
                     <label>Remuneração: </label> <br />
                   </div>
-                  <!-- <label > {{ vaga.remuneracao }}</label> -->
-                  <span>{{ vaga.remuneracao |  mask  }}</span>
+                  <span>{{ vaga.remuneracao | moneyMask }}</span>
                 </div>
               </b-col>
               <b-col md="4" class="descrVagas">
@@ -231,7 +228,7 @@
                   <div class="subtitulo">
                     <label class="sub-titulo">Remuneração: </label> <br />
                   </div>
-                  <label> {{ vaga.remuneracao }}</label>
+                  <label> {{ vaga.remuneracao | moneyMask }}</label>
                 </div>
               </b-col>
               <b-col md="6" class="descrVagas">
@@ -335,6 +332,7 @@
 <script>
 import { vagaService } from "@/service";
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 const currencyMask = createNumberMask({
     prefix: '$',
     allowDecimal: true,
@@ -468,6 +466,12 @@ export default {
         path: `/empresa/candidatosInteressados/${vaga._id}`,
       });
     },
+  },
+
+  filters: {
+    moneyMask: function (value) {
+      return parseFloat(value).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    }
   },
 
   mounted() {

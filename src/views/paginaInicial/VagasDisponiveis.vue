@@ -52,7 +52,7 @@
                                           <label>Remuneração</label> <br />
                                         </div>
                                         <label class="item">{{
-                                          input.remuneracao
+                                          input.remuneracao | moneyMask
                                         }}</label>
                                       </div>
                                     </b-col>
@@ -182,7 +182,7 @@
                         <div class="subtitulo noBorderMobile">
                           <label>Remuneração: </label> <br />
                         </div>
-                        <label> {{ vaga.remuneracao }}</label>
+                        <label> {{ vaga.remuneracao | moneyMask }}</label>
                       </div>
                     </b-col>
                     <b-col md="4"  class="descrVagas">
@@ -199,7 +199,7 @@
                         <div class="subtitulo">
                           <label class="sub-titulo">Remuneração: </label> <br />
                         </div>
-                        <label> {{ vaga.remuneracao }}</label>
+                        <label> {{ vaga.remuneracao | moneyMask }}</label>
                       </div>
                     </b-col>
                     <b-col md="6"  class="descrVagas">
@@ -441,6 +441,11 @@ export default {
     },
   },
 
+  filters: {
+    moneyMask: function (value) {
+      return parseFloat(value).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    }
+  },
   mounted() {
     // this.empresa = JSON.parse(localStorage.getItem("empresa"));
     this.findVagas();

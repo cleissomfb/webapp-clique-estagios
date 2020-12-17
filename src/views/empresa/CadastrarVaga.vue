@@ -70,27 +70,15 @@
                 label-for="remuneracao"
               >
                 <b-input-group>
-                  <!-- <b-input-group-prepend is-text> R$ </b-input-group-prepend> -->
-                  <!-- <b-form-input
-                    id="remuneracao"
-                    v-model="vaga.remuneracao"
-                    type="text"
-                    v-mask="maskRs"
+                  <currency-input
                     :class="{
                       'is-invalid': submitted && $v.vaga.remuneracao.$error,
                     }"
-                    
-                  ></b-form-input> -->
-                  <currency-input 
-                    :class="{
-                      'is-invalid': submitted && $v.vaga.remuneracao.$error,
-                    }" 
-                    v-model="vaga.remuneracao" 
-                    locale="pt"
+                    v-model="vaga.remuneracao"
                     currency="BRL"
                     id="remuneracao"
                     class="form-control"
-                     />
+                  />
                 </b-input-group>
                 <span
                   class="text-danger text-center"
@@ -119,10 +107,6 @@
                       submitted && $v.vaga.possibilidadeEfetivacao.$error,
                   }"
                 >
-                  <b-form-select-option :value="null" selected
-                    >Selecione a Possibilidade de
-                    Efetivação</b-form-select-option
-                  >
                   <b-form-select-option value="sim">Sim</b-form-select-option>
                   <b-form-select-option value="nao">Não</b-form-select-option>
                 </b-form-select>
@@ -351,7 +335,6 @@ export default {
       errorMsg: null,
       infoMsg: null,
       show: false,
-      maskRs: "###.###,##",
       vaga: {
         titulo: "",
         atividades: "",

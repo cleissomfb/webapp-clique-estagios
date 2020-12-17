@@ -43,11 +43,8 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import { Plugin } from 'vue-fragment'
 
 import VueCurrencyInput from 'vue-currency-input'
-const pluginOptions = {
-  /* see config reference */
-  globalOptions: { currency: 'R$' }
-}
-Vue.use(VueCurrencyInput, pluginOptions)
+
+Vue.use(VueCurrencyInput)
 
 Vue.use(Plugin)
 Vue.use(VueAwesomeSwiper)
